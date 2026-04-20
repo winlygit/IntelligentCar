@@ -3,15 +3,15 @@
         {
             "name": "IntelligentCar",
             "includePath": [
-                "e:\\cubemx project\\IntelligentCar\\Core\\Inc",
-                "e:\\cubemx project\\IntelligentCar\\Drivers\\STM32F1xx_HAL_Driver\\Inc",
-                "e:\\cubemx project\\IntelligentCar\\Drivers\\STM32F1xx_HAL_Driver\\Inc\\Legacy",
-                "e:\\cubemx project\\IntelligentCar\\Drivers\\CMSIS\\Device\\ST\\STM32F1xx\\Include",
-                "e:\\cubemx project\\IntelligentCar\\Drivers\\CMSIS\\Include",
-                "e:\\cubemx project\\IntelligentCar\\User",
-                "e:\\cubemx project\\IntelligentCar\\MDK-ARM",
-                "e:\\cubemx project\\IntelligentCar\\Core\\Src",
-                "e:\\cubemx project\\IntelligentCar\\Drivers\\STM32F1xx_HAL_Driver\\Src"
+                "${env:INTELLIGENTCAR}\\IntelligentCar\\Core\\Inc",
+                "${env:INTELLIGENTCAR}\\IntelligentCar\\Drivers\\STM32F1xx_HAL_Driver\\Inc",
+                "${env:INTELLIGENTCAR}\\IntelligentCar\\Drivers\\STM32F1xx_HAL_Driver\\Inc\\Legacy",
+                "${env:INTELLIGENTCAR}\\IntelligentCar\\Drivers\\CMSIS\\Device\\ST\\STM32F1xx\\Include",
+                "${env:INTELLIGENTCAR}\\IntelligentCar\\Drivers\\CMSIS\\Include",
+                "${env:INTELLIGENTCAR}\\IntelligentCar\\User",
+                "${env:INTELLIGENTCAR}\\IntelligentCar\\MDK-ARM",
+                "${env:INTELLIGENTCAR}\\IntelligentCar\\Core\\Src",
+                "${env:INTELLIGENTCAR}\\IntelligentCar\\Drivers\\STM32F1xx_HAL_Driver\\Src"
             ],
             "defines": [
                 "USE_HAL_DRIVER",
