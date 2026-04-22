@@ -16,6 +16,7 @@
 
 
 
+
 //void U1_printf (const uint8_t* pData ) //向串口1发送数据
 //{   
 //    if (pData == NULL){
@@ -78,3 +79,5 @@ void USART3_IRQHandler(void)//读取上位机数据
   /* USER CODE END USART3_IRQn 1 */
 }
  
+
+

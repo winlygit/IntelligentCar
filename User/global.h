@@ -22,6 +22,7 @@
 
 /****************存放uart中的宏定义和全局变量*****************/
 #define MAX 256        //最大接收量
+#define BlueState HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_8)
 
 
 
