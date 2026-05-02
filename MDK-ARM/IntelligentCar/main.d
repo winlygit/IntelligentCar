@@ -26,4 +26,11 @@ intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
 intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
-intelligentcar\main.o: ..\User\global.h
+intelligentcar\main.o: ../User/global.h
+intelligentcar\main.o: ../User/uart.h
+intelligentcar\main.o: ../User/readdata.h
+intelligentcar\main.o: ../User/ik.h
+intelligentcar\main.o: ../User/motor.h
+intelligentcar\main.o: ../User/buzzer.h
+intelligentcar\main.o: ../User/led.h
+intelligentcar\main.o: ../User/servo.h

@@ -6,7 +6,7 @@
 #include "global.h"
 
 
-void SendCmd(motorSPEED MSPD);                 //将速度通过总线发送到电机
+void SendCmd(void);                 //将速度通过总线发送到电机
 
 
 

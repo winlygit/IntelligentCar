@@ -37,6 +37,14 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "global.h"
+#include "uart.h"
+#include "readdata.h"
+#include "ik.h"
+#include "motor.h"
+#include "buzzer.h"
+#include "led.h"
+#include "servo.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -113,14 +121,15 @@ int main(void)
   while (1)
   {
     if(BlueState == 1){
+      if(rxcplt_flag == 1){
+          
+          motor_readdata(RxData);
+          motor_ik();
+          SendCmd();
 
-
-
-
-
-
-
-
+          rxcplt_flag = 0;
+          ifrxstart = 0;
+      }
 
 
 

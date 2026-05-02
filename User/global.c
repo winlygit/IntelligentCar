@@ -32,7 +32,10 @@
 /****************存放uart中的全局变量*****************/
 uint8_t RxData[MAX];          //上位机原始数据帧存放处
 
-
+uint8_t value;     //上位机发来的字节
+uint16_t volatile uart_index;    //读到位
+uint8_t volatile ifrxstart;
+uint8_t volatile rxcplt_flag = 0;      //数据读完标志位
 
 
 

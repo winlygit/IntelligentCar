@@ -19,17 +19,13 @@
 
 
 
-SPEED motor_readdata (uint8_t Data[]){              //电机控制数据帧解析
-    
-    
-    
-    SPEED speed;
 
-    if(Data[0] == 'A'){
+void motor_readdata (uint8_t Data[]){              //电机控制数据帧解析
     
     
-    speed.Vx = readindexdata4(Data ,9,10,11,12);      //读取特定位上的数据
-    speed.Vy = -readindexdata4(Data ,16,17,18,19);
+    
+    speed.Vx = readindexdata4(Data ,11,12,13,13);      //读取特定位上的数据12
+    speed.Vy = -readindexdata4(Data ,17,18,19,20);
     
         if((speed.Vx <= limit&&speed.Vx >= -limit)&&(speed.Vy <= limit&&speed.Vy >= -limit)){
             speed.Vx = 0;
@@ -43,8 +39,7 @@ SPEED motor_readdata (uint8_t Data[]){              //电机控制数据帧解析
         }else if(Data[WW] == '2'){
             speed.Wz = Vz;
         }
-    }
-        return speed;
+    
         
 }
 

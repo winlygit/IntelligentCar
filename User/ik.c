@@ -24,15 +24,15 @@
 /****************ÓÐ¹ØÂó¿ÏÄÉÄ·ÂÖµÄÄæ½âËã·¨*****************/
 
 
-motorSPEED motor_ik(SPEED spd){             //½«ËÙ¶ÈÁ¿×ª»¯Îªµ¥¸öÂÖ×ÓµÄËÙ¶È,·¶Î§£¨-1000 £¬ 1000£©
-    motorSPEED mospd;
-    mospd.LFsd =  (spd.Vx+spd.Vy-spd.Wz)*1000/Add;
-    mospd.RFsd = (-spd.Vx+spd.Vy+spd.Wz)*1000/Add;
-    mospd.LBsd = (-spd.Vx+spd.Vy-spd.Wz)*1000/Add;
-    mospd.RBsd =  (spd.Vx+spd.Vy+spd.Wz)*1000/Add;
+ void motor_ik(void){             //½«ËÙ¶ÈÁ¿×ª»¯Îªµ¥¸öÂÖ×ÓµÄËÙ¶È,·¶Î§£¨-1000 £¬ 1000£©
+    
+    motorspeed.LFsd =  (speed.Vx+speed.Vy-speed.Wz)*1000/Add;
+    motorspeed.RFsd = (-speed.Vx+speed.Vy+speed.Wz)*1000/Add;
+    motorspeed.LBsd = (-speed.Vx+speed.Vy-speed.Wz)*1000/Add;
+    motorspeed.RBsd =  (speed.Vx+speed.Vy+speed.Wz)*1000/Add;
 
     
-    int V[4] = {mospd.LFsd , mospd.RFsd , mospd.LBsd , mospd.RBsd};
+    int V[4] = {motorspeed.LFsd , motorspeed.RFsd , motorspeed.LBsd , motorspeed.RBsd};
     int MAX_MEM = abs(V[0]);         //ÕÒµ½ÂÖËÙ×î´óÖµ
     for(int i=1;i<4;i++){
         if(MAX_MEM < abs(V[i])){
@@ -41,21 +41,21 @@ motorSPEED motor_ik(SPEED spd){             //½«ËÙ¶ÈÁ¿×ª»¯Îªµ¥¸öÂÖ×ÓµÄËÙ¶È,·¶Î§£
     }
     
     
-    float b = sqrt(spd.Vx*spd.Vx + spd.Vy*spd.Vy + spd.Wz*spd.Wz)/90;        //¶¨ÒåËÙ¶È³Ì¶È²ÎÊý
+    float b = sqrt(speed.Vx*speed.Vx + speed.Vy*speed.Vy + speed.Wz*speed.Wz)/90;        //¶¨ÒåËÙ¶È³Ì¶È²ÎÊý
     if(b > 1){
         b = 1;
     }
     
     
-    float k = b*1000/MAX;             //Ëõ·Å±ÈÀý
+    float k = b*1000/MAX_MEM;             //Ëõ·Å±ÈÀý
     
-    mospd.LFsd *= k;
-    mospd.RFsd *= k;
-    mospd.LBsd *= k;
-    mospd.RBsd *= k;
+    motorspeed.LFsd *= k;
+    motorspeed.RFsd *= k;
+    motorspeed.LBsd *= k;
+    motorspeed.RBsd *= k;
 
     
-    return mospd;
+    
 }
 
 

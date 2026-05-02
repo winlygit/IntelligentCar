@@ -16,21 +16,19 @@
 
 
 
-void SendCmd(motorSPEED MSPD){                 //将速度通过总线发送到电机
+void SendCmd(void){                 //将速度通过总线发送到电机
     int LF,RF,LB,RB;   
-    LF = 1500 + MSPD.LFsd;
-    RF = 1500 + MSPD.RFsd;
-    LB = 1500 + MSPD.LBsd;
-    RB = 1500 + MSPD.RBsd;
+    LF = 1500 + motorspeed.LFsd;
+    RF = 1500 + motorspeed.RFsd;
+    LB = 1500 + motorspeed.LBsd;
+    RB = 1500 + motorspeed.RBsd;
     
     
-    char cmd[60];
-    sprintf(cmd,"#001P%04dT0000!#002P%04dT0000!#003P%04dT0000!#004P%04dT0000!\r\n",LF,RF,LB,RB);
+    char cmd[61];
+    sprintf(cmd,"#001P%04dT0000!#002P%04dT0000!#003P%04dT0000!#004P%04dT0000!",LF,RF,LB,RB);
     
     
     U3_printf((uint8_t*)cmd);
- 
-    
 }
 
 

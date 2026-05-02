@@ -68,15 +68,26 @@ void U3_printf (const uint8_t* pData ) //向串口3发送数据
 
 
 
-void USART3_IRQHandler(void)//读取上位机数据
-{
-  /* USER CODE BEGIN USART3_IRQn 0 */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+    
+    if(value == '@'){
+    uart_index = 0;
+    ifrxstart = 1;
+    }
+    
+    if(ifrxstart ==1){
+    RxData[uart_index++] = value;
 
-  /* USER CODE END USART3_IRQn 0 */
-  HAL_UART_IRQHandler(&huart3);
-  /* USER CODE BEGIN USART3_IRQn 1 */
-
-  /* USER CODE END USART3_IRQn 1 */
+    }
+    
+    if(value == '#'){
+        
+        rxcplt_flag = 1;
+            
+    }
+    
+    HAL_UART_Receive_IT(&huart3,&value,1);
+    
 }
  
 
