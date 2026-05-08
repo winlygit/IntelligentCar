@@ -5,11 +5,7 @@
 # Core/
 # 但忽略部分可能包含敏感或重新生成的文件（后面有说明）
 
-# ---------- 驱动库 & 中间件 ----------
-# CubeMX 可完全重新生成的库和 CMSIS，建议忽略
-Drivers/CMSIS/
-Drivers/STM32F1xx_HAL_Driver   
-Middlewares/
+
 
 # ---------- 编译输出 ----------
 */RTE/
