@@ -1,28 +1,21 @@
-intelligentcar\led.o: ..\User\led.c
-intelligentcar\led.o: ../Core/Inc/main.h
-intelligentcar\led.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
-intelligentcar\led.o: ../Core/Inc/stm32f1xx_hal_conf.h
-intelligentcar\led.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h
-intelligentcar\led.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h
-intelligentcar\led.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h
-intelligentcar\led.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h
-intelligentcar\led.o: ../Drivers/CMSIS/Include/core_cm3.h
-intelligentcar\led.o: E:\keil5mdk\exe\core\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
-intelligentcar\led.o: ../Drivers/CMSIS/Include/cmsis_version.h
-intelligentcar\led.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
-intelligentcar\led.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
-intelligentcar\led.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
-intelligentcar\led.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
-intelligentcar\led.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-intelligentcar\led.o: E:\keil5mdk\exe\core\ARM\ARM_Compiler_5.06u7\Bin\..\include\stddef.h
-intelligentcar\led.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h
-intelligentcar\led.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h
-intelligentcar\led.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h
-intelligentcar\led.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h
-intelligentcar\led.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h
-intelligentcar\led.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h
-intelligentcar\led.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h
-intelligentcar\led.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
-intelligentcar\led.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
-intelligentcar\led.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
-intelligentcar\led.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
+intelligentcar/led.o: ..\User\led.c ..\Core\Inc\main.h \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h \
+  ..\Core\Inc\stm32f1xx_hal_conf.h \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h \
+  ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h \
+  ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xb.h \
+  ..\Drivers\CMSIS\Include\core_cm3.h \
+  ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_exti.h \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h
