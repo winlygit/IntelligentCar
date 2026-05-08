@@ -1,7 +1,7 @@
 Dependencies for Project 'IntelligentCar', Target 'IntelligentCar': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARM_Compiler_5.06u7
 F (startup_stm32f103xb.s)(0x69F5C4D1)(--cpu Cortex-M3 -g --apcs=interwork -I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include--pd "__UVISION_VERSION SETA 543" --pd "STM32F10X_MD SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f103xb.lst --xref -o intelligentcar\startup_stm32f103xb.o --depend intelligentcar\startup_stm32f103xb.d)
-F (../Core/Src/main.c)(0x69F5CC5F)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\main.o --omf_browse intelligentcar\main.crf --depend intelligentcar\main.d)
+F (../Core/Src/main.c)(0x69F8BAFF)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\main.o --omf_browse intelligentcar\main.crf --depend intelligentcar\main.d)
 I (../Core/Inc/main.h)(0x69D52704)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x69AD4FC5)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x69D52704)
@@ -28,14 +28,14 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x69AD4FC5)
-I (../User/global.h)(0x69F5CCF9)
-I (../User/uart.h)(0x69D64C20)
-I (../User/readdata.h)(0x69F5CC5F)
-I (../User/ik.h)(0x69F5CC5F)
-I (../User/motor.h)(0x69F5CC5F)
-I (../User/buzzer.h)(0x69D52D58)
-I (../User/led.h)(0x69D52D58)
-I (../User/servo.h)(0x69D64B2C)
+I (../User/global.h)(0x69F8BB5A)
+I (../User/uart.h)(0x69F8BB97)
+I (../User/readdata.h)(0x69F8BB83)
+I (../User/ik.h)(0x69F8BB65)
+I (../User/motor.h)(0x69F8BB78)
+I (../User/buzzer.h)(0x69F8BB4F)
+I (../User/led.h)(0x69F8BB71)
+I (../User/servo.h)(0x69F8BB8D)
 F (../Core/Src/stm32f1xx_it.c)(0x69F5C9C2)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\stm32f1xx_it.o --omf_browse intelligentcar\stm32f1xx_it.crf --depend intelligentcar\stm32f1xx_it.d)
 I (../Core/Inc/main.h)(0x69D52704)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x69AD4FC5)
@@ -429,9 +429,9 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x69AD4FC5)
-F (..\User\buzzer.c)(0x69D527CA)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\buzzer.o --omf_browse intelligentcar\buzzer.crf --depend intelligentcar\buzzer.d)
-F (..\User\buzzer.h)(0x69D52D58)()
-F (..\User\global.c)(0x69F5CC5F)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\global.o --omf_browse intelligentcar\global.crf --depend intelligentcar\global.d)
+F (..\User\buzzer.c)(0x69F8BB49)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\buzzer.o --omf_browse intelligentcar\buzzer.crf --depend intelligentcar\buzzer.d)
+F (..\User\buzzer.h)(0x69F8BB4F)()
+F (..\User\global.c)(0x69F8BB55)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\global.o --omf_browse intelligentcar\global.crf --depend intelligentcar\global.d)
 I (../Core/Inc/main.h)(0x69D52704)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x69AD4FC5)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x69D52704)
@@ -458,9 +458,9 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x69AD4FC5)
-I (..\User\global.h)(0x69F5CCF9)
-F (..\User\global.h)(0x69F5CCF9)()
-F (..\User\ik.c)(0x69F5CC5F)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\ik.o --omf_browse intelligentcar\ik.crf --depend intelligentcar\ik.d)
+I (..\User\global.h)(0x69F8BB5A)
+F (..\User\global.h)(0x69F8BB5A)()
+F (..\User\ik.c)(0x69F8BB60)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\ik.o --omf_browse intelligentcar\ik.crf --depend intelligentcar\ik.d)
 I (../Core/Inc/main.h)(0x69D52704)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x69AD4FC5)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x69D52704)
@@ -487,14 +487,14 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x69AD4FC5)
-I (..\User\global.h)(0x69F5CCF9)
-I (..\User\uart.h)(0x69D64C20)
+I (..\User\global.h)(0x69F8BB5A)
+I (..\User\uart.h)(0x69F8BB97)
 I (E:\keil5mdk\exe\core\ARM\ARM_Compiler_5.06u7\include\math.h)(0x5E8E3CC2)
 I (E:\keil5mdk\exe\core\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
 I (E:\keil5mdk\exe\core\ARM\ARM_Compiler_5.06u7\include\stdlib.h)(0x5E8E3CC2)
 I (E:\keil5mdk\exe\core\ARM\ARM_Compiler_5.06u7\include\string.h)(0x5E8E3CC2)
-F (..\User\ik.h)(0x69F5CC5F)()
-F (..\User\led.c)(0x69F5CD05)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\led.o --omf_browse intelligentcar\led.crf --depend intelligentcar\led.d)
+F (..\User\ik.h)(0x69F8BB65)()
+F (..\User\led.c)(0x69F8BB6C)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\led.o --omf_browse intelligentcar\led.crf --depend intelligentcar\led.d)
 I (../Core/Inc/main.h)(0x69D52704)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x69AD4FC5)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x69D52704)
@@ -521,8 +521,8 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x69AD4FC5)
-F (..\User\led.h)(0x69D52D58)()
-F (..\User\motor.c)(0x69F5CC5F)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\motor.o --omf_browse intelligentcar\motor.crf --depend intelligentcar\motor.d)
+F (..\User\led.h)(0x69F8BB71)()
+F (..\User\motor.c)(0x69F8BB26)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\motor.o --omf_browse intelligentcar\motor.crf --depend intelligentcar\motor.d)
 I (../Core/Inc/main.h)(0x69D52704)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x69AD4FC5)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x69D52704)
@@ -549,13 +549,13 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x69AD4FC5)
-I (..\User\global.h)(0x69F5CCF9)
+I (..\User\global.h)(0x69F8BB5A)
 I (E:\keil5mdk\exe\core\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
-I (..\User\uart.h)(0x69D64C20)
-F (..\User\motor.h)(0x69F5CC5F)()
-F (..\User\servo.c)(0x69D64B76)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\servo.o --omf_browse intelligentcar\servo.crf --depend intelligentcar\servo.d)
-F (..\User\servo.h)(0x69D64B2C)()
-F (..\User\uart.c)(0x69F5CC5F)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\uart.o --omf_browse intelligentcar\uart.crf --depend intelligentcar\uart.d)
+I (..\User\uart.h)(0x69F8BB97)
+F (..\User\motor.h)(0x69F8BB78)()
+F (..\User\servo.c)(0x69F8BB88)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\servo.o --omf_browse intelligentcar\servo.crf --depend intelligentcar\servo.d)
+F (..\User\servo.h)(0x69F8BB8D)()
+F (..\User\uart.c)(0x69F8BB91)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\uart.o --omf_browse intelligentcar\uart.crf --depend intelligentcar\uart.d)
 I (../Core/Inc/main.h)(0x69D52704)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x69AD4FC5)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x69D52704)
@@ -582,10 +582,10 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x69AD4FC5)
-I (..\User\uart.h)(0x69D64C20)
-I (..\User\global.h)(0x69F5CCF9)
-F (..\User\uart.h)(0x69D64C20)()
-F (..\User\readdata.c)(0x69F5CC5F)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\readdata.o --omf_browse intelligentcar\readdata.crf --depend intelligentcar\readdata.d)
+I (..\User\uart.h)(0x69F8BB97)
+I (..\User\global.h)(0x69F8BB5A)
+F (..\User\uart.h)(0x69F8BB97)()
+F (..\User\readdata.c)(0x69F8BB7E)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I.\RTE\_IntelligentCar-IE:\keil5mdk\exe\pack\ARM\CMSIS\6.2.0\CMSIS\Core\Include-IE:\keil5mdk\exe\pack\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="543" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar\readdata.o --omf_browse intelligentcar\readdata.crf --depend intelligentcar\readdata.d)
 I (../Core/Inc/main.h)(0x69D52704)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x69AD4FC5)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x69D52704)
@@ -612,6 +612,6 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x69AD4FC5)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x69AD4FC5)
-I (..\User\readdata.h)(0x69F5CC5F)
-I (..\User\global.h)(0x69F5CCF9)
-F (..\User\readdata.h)(0x69F5CC5F)()
+I (..\User\readdata.h)(0x69F8BB83)
+I (..\User\global.h)(0x69F8BB5A)
+F (..\User\readdata.h)(0x69F8BB83)()
