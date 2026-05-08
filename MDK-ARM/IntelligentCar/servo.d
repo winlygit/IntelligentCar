@@ -1,1 +1,1 @@
-intelligentcar\servo.o: ..\User\servo.c
+intelligentcar/servo.o: ..\User\servo.c

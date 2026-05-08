@@ -3,31 +3,35 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: ¦ÌVision V5.43.1.0
+IDE-Version: ¦ÌVision V5.42.0.0
 Copyright (C) 2025 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: 1 Winly, 1, LIC=UJWP0-B1F29-Y8EFK-ZNSRS-R47UK-3MSB3
+License Information: li 482484686@qq.com
+e3
+User-based license: Keil MDK Community (non-commercial free of charge)
+Valid until: Jun 1 2033. Cached until: May 15 2026
  
 Tool Versions:
-Toolchain:       MDK-ARM Plus  Version: 5.43.0.0
-Toolchain Path:  E:\keil5mdk\exe\core\ARM\ARM_Compiler_5.06u7\Bin
-C Compiler:      Armcc.exe V5.06 update 7 (build 960)
-Assembler:       Armasm.exe V5.06 update 7 (build 960)
-Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
-Library Manager: ArmAr.exe V5.06 update 7 (build 960)
-Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
-CPU DLL:         SARMCM3.DLL V5.43.0.0
+Toolchain:       Keil MDK Community (non-commercial free of charge  Version: 5.42.0.0
+Toolchain Path:  C:\Users\48248\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.23
+Assembler:       Armasm.exe V6.23
+Linker/Locator:  ArmLink.exe V6.23
+Library Manager: ArmAr.exe V6.23
+Hex Converter:   FromElf.exe V6.23
+CPU DLL:         SARMCM3.DLL V5.42.0.0
 Dialog DLL:      DCM.DLL V1.17.5.0
-Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.3.1.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.3.0.0
 Dialog DLL:      TCM.DLL V1.56.6.0
  
 <h2>Project:</h2>
-E:\cubemx project\IntelligentCar\MDK-ARM\IntelligentCar.uvprojx
-Project File Date:  05/02/2026
+C:\Users\48248\Desktop\IntelligentCar-1\MDK-ARM\IntelligentCar.uvprojx
+Project File Date:  05/08/2026
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'E:\keil5mdk\exe\core\ARM\ARM_Compiler_5.06u7\Bin'
+*** Using Compiler 'V6.23', folder: 'C:\Users\48248\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'IntelligentCar'
 assembling startup_stm32f103xb.s...
+<<<<<<< HEAD
 compiling stm32f1xx_hal_msp.c...
 compiling stm32f1xx_hal_gpio_ex.c...
 compiling stm32f1xx_hal.c...
@@ -52,18 +56,44 @@ compiling stm32f1xx_hal_flash.c...
 compiling ik.c...
 compiling readdata.c...
 compiling stm32f1xx_hal_exti.c...
+=======
+compiling stm32f1xx_hal_gpio_ex.c...
+compiling stm32f1xx_hal.c...
+compiling stm32f1xx_it.c...
+compiling stm32f1xx_hal_msp.c...
+compiling main.c...
+compiling stm32f1xx_hal_rcc_ex.c...
+compiling stm32f1xx_hal_gpio.c...
+compiling stm32f1xx_hal_dma.c...
+compiling stm32f1xx_hal_rcc.c...
+compiling stm32f1xx_hal_cortex.c...
+compiling stm32f1xx_hal_pwr.c...
+compiling buzzer.c...
+compiling stm32f1xx_hal_flash.c...
+compiling stm32f1xx_hal_flash_ex.c...
+compiling global.c...
+compiling led.c...
+compiling system_stm32f1xx.c...
+compiling ik.c...
+compiling stm32f1xx_hal_exti.c...
+compiling servo.c...
+compiling stm32f1xx_hal_uart.c...
+compiling motor.c...
+compiling uart.c...
+compiling readdata.c...
+>>>>>>> 0b653304b9043b287af760da584909456a02a77d
 linking...
-Program Size: Code=8696 RO-data=328 RW-data=24 ZI-data=1992  
+Program Size: Code=10604 RO-data=328 RW-data=12 ZI-data=2012  
 FromELF: creating hex file...
 "IntelligentCar\IntelligentCar.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
-                https://www.keil.com/pack/ARM.CMSIS.6.2.0.pack
-                ARM::CMSIS@6.2.0
+                https://www.keil.com/pack/ARM.CMSIS.6.1.0.pack
+                ARM::CMSIS@6.1.0
                 CMSIS (Common Microcontroller Software Interface Standard)
-   * Component: CORE Version: 6.1.1
+   * Component: CORE Version: 6.1.0
 
 Package Vendor: Keil
                 https://www.keil.com/pack/Keil.STM32F1xx_DFP.2.4.1.pack
@@ -72,14 +102,14 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   ./RTE/_IntelligentCar
-  E:/keil5mdk/exe/pack/ARM/CMSIS/6.2.0/CMSIS/Core/Include
-  E:/keil5mdk/exe/pack/Keil/STM32F1xx_DFP/2.4.1/Device/Include
+  C:/Users/48248/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include
+  C:/Users/48248/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ARM::CMSIS:CORE@6.1.1
+   * Component: ARM::CMSIS:CORE@6.1.0
       Include file:  CMSIS/Core/Include/tz_context.h
-Build Time Elapsed:  00:00:04
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

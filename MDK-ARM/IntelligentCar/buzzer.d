@@ -1,1 +1,1 @@
-intelligentcar\buzzer.o: ..\User\buzzer.c
+intelligentcar/buzzer.o: ..\User\buzzer.c
