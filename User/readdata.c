@@ -20,24 +20,24 @@
 
 
 
-void motor_readdata (uint8_t Data[]){              //电机控制数据帧解析
+void readdata (uint8_t Data[]){              //控制数据帧解析
     
     
     
-    speed.Vx = readindexdata4(Data ,11,12,13,13);      //读取特定位上的数据12
-    speed.Vy = -readindexdata4(Data ,17,18,19,20);
+    speedData_primary.Vx = readindexdata4(Data ,11,12,13,13);      //读取特定位上的数据12
+    speedData_primary.Vy = -readindexdata4(Data ,17,18,19,20);
     
-        if((speed.Vx <= limit&&speed.Vx >= -limit)&&(speed.Vy <= limit&&speed.Vy >= -limit)){
-            speed.Vx = 0;
-            speed.Vy = 0;
+        if((speedData_primary.Vx <= limit&&speedData_primary.Vx >= -limit)&&(speedData_primary.Vy <= limit&&speedData_primary.Vy >= -limit)){
+            speedData_primary.Vx = 0;
+            speedData_primary.Vy = 0;
         }
         
         if (Data[WW] == '0'){
-            speed.Wz =   0;
+            speedData_primary.Wz =   0;
         }else if(Data[WW] == '1'){
-            speed.Wz =  -Vz;
+            speedData_primary.Wz =  -Vz;
         }else if(Data[WW] == '2'){
-            speed.Wz = Vz;
+            speedData_primary.Wz = Vz;
         }
     
         

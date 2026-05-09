@@ -46,7 +46,15 @@ uint8_t volatile rxcplt_flag = 0;      //数据读完标志位
 
 
 /****************存放readdata中的全局变量*****************/
-SPEED speed;          //解析数据帧得到的原始陀螺仪数据
+uint8_t ifgrab;      //是否抓取标志位，0为不抓取，1为抓取
+uint8_t actionnum;        //动作组中的动作编号
+
+MDATA speedData_primary;          //上位机发来的原始陀螺仪数据
+
+SDATA servoData_primary;    //上位机发来的六个舵机原始控制量
+
+
+
 
 
 
@@ -61,6 +69,7 @@ SPEED speed;          //解析数据帧得到的原始陀螺仪数据
 /****************存放ik中的全局变量*****************/
 motorSPEED motorspeed;          //计算后得到的电机相对转速，范围（-1000，1000）
 
+servoANGLE servoangle;        //计算后得到的舵机控制量，范围-135-135
 
 
 

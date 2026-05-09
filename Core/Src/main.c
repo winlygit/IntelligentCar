@@ -113,7 +113,7 @@ int main(void)
   MX_GPIO_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_UART_Receive_IT(&huart3,&value,1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
