@@ -26,10 +26,10 @@
 
  void motor_ik(void){             //将速度量转化为单个轮子的速度,范围（-1000 ， 1000）
     
-    motorspeed.LFsd =  (speed.Vx+speed.Vy-speed.Wz)*1000/Add;
-    motorspeed.RFsd = (-speed.Vx+speed.Vy+speed.Wz)*1000/Add;
-    motorspeed.LBsd = (-speed.Vx+speed.Vy-speed.Wz)*1000/Add;
-    motorspeed.RBsd =  (speed.Vx+speed.Vy+speed.Wz)*1000/Add;
+    motorspeed.LFsd =  (speedData_primary.Vx+speedData_primary.Vy-speedData_primary.Wz)*1000/Add;
+    motorspeed.RFsd = (-speedData_primary.Vx+speedData_primary.Vy+speedData_primary.Wz)*1000/Add;
+    motorspeed.LBsd = (-speedData_primary.Vx+speedData_primary.Vy-speedData_primary.Wz)*1000/Add;
+    motorspeed.RBsd =  (speedData_primary.Vx+speedData_primary.Vy+speedData_primary.Wz)*1000/Add;
 
     
     int V[4] = {motorspeed.LFsd , motorspeed.RFsd , motorspeed.LBsd , motorspeed.RBsd};
@@ -41,7 +41,7 @@
     }
     
     
-    float b = sqrt(speed.Vx*speed.Vx + speed.Vy*speed.Vy + speed.Wz*speed.Wz)/90;        //定义速度程度参数
+    float b = sqrt(speedData_primary.Vx*speedData_primary.Vx + speedData_primary.Vy*speedData_primary.Vy + speedData_primary.Wz*speedData_primary.Wz)/90;        //定义速度程度参数
     if(b > 1){
         b = 1;
     }
