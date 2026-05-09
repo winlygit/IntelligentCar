@@ -123,10 +123,20 @@ int main(void)
     if(BlueState == 1){
       if(rxcplt_flag == 1){
           
-          motor_readdata(RxData);
+          readdata(RxData);
           motor_ik();
-          SendCmd();
+          SendmotorCmd();
 
+
+
+
+
+
+
+
+
+
+          
           rxcplt_flag = 0;
           ifrxstart = 0;
       }

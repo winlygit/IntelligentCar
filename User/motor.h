@@ -6,7 +6,7 @@
 #include "global.h"
 
 
-void SendCmd(void);                 //将速度通过总线发送到电机
+void SendmotorCmd(void);                 //将速度通过总线发送到电机
 
 
 

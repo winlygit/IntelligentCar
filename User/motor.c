@@ -16,7 +16,7 @@
 
 
 
-void SendCmd(void){                 //将速度通过总线发送到电机
+void SendmotorCmd(void){                 //将速度通过总线发送到电机
     int LF,RF,LB,RB;   
     LF = 1500 + motorspeed.LFsd;
     RF = 1500 + motorspeed.RFsd;
