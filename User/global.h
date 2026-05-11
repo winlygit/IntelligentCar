@@ -42,7 +42,7 @@ extern uint8_t volatile rxcplt_flag;      //数据读完标志位
 
 
 /****************存放readdata中的宏定义和全局变量*****************/
-#define WW 28     //控制wz的数据的位置
+#define WW 25     //控制wz的数据的位置
 #define Vz 60    //控制z轴旋转速度的量
 #define limit 20      //角度死区
 

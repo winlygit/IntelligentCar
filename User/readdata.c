@@ -22,10 +22,10 @@
 
 void readdata (uint8_t Data[]){              //控制数据帧解析
     
+    //电机部分
     
-    
-    speedData_primary.Vx = readindexdata4(Data ,11,12,13,13);      //读取特定位上的数据12
-    speedData_primary.Vy = -readindexdata4(Data ,17,18,19,20);
+    speedData_primary.Vx = readindexdata4(Data ,2,3,4,5);
+    speedData_primary.Vy = -readindexdata4(Data ,7,8,9,10);
     
         if((speedData_primary.Vx <= limit&&speedData_primary.Vx >= -limit)&&(speedData_primary.Vy <= limit&&speedData_primary.Vy >= -limit)){
             speedData_primary.Vx = 0;
@@ -39,12 +39,31 @@ void readdata (uint8_t Data[]){              //控制数据帧解析
         }else if(Data[WW] == '2'){
             speedData_primary.Wz = Vz;
         }
+
+    //舵机部分
+    servoData_primary.D1 = readindexdata3(Data ,17,18,19);
+    servoData_primary.D2 = readindexdata4(Data ,33,34,35,36);
+    servoData_primary.D3 = readindexdata4(Data ,38,39,40,41);
+    servoData_primary.D4 = readindexdata4(Data ,43,44,45,46);
+    servoData_primary.D5 = readindexdata3(Data ,21,22,23);
+    servoData_primary.D6 = Data[25] - '0';
+
+    //读取动作组
+    actionnum = readindexdata3(Data ,29,30,31);
     
         
 }
 
 
-
+int readindexdata2(uint8_t data[],int index1,int index2){      //读取指定两位数，两位数据，默认为正
+    
+    
+    int a = data[index1] - '0';
+    int b = data[index2] - '0';
+    int number = a*10 + b*1 ;
+    
+    return number;
+}
 
 
 
