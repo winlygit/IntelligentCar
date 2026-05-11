@@ -12,6 +12,8 @@
 #include "main.h"
 #include "global.h"
 #include "uart.h"
+#include "readdata.h"
+#include "ik.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -63,7 +65,24 @@
 
 /****************有关机械臂的逆解算法*****************/
 
-
+void servo_ik(void){
+//    if(servoData_primary.D1 >= 0 && servoData_primary.D1 <= 30){
+//        while(servoangle.D1 <= 90){
+//            servoangle.D1 += 1;
+//            HAL_Delay(50);
+//        }
+//    }else if(servoData_primary.D1 > 60 && servoData_primary.D1 <= 90){
+//        while(servoangle.D1 >= 0){
+//            servoangle.D1 -= 1;
+//            HAL_Delay(50);
+//        }
+//    }
+    servoangle.D2 = servoData_primary.D2 + 135;
+    servoangle.D3 = servoData_primary.D3 + 135;
+    servoangle.D4 = servoData_primary.D4 + 135;
+    servoangle.D5 = servoData_primary.D5 + 135;
+    servoangle.D6 = servoData_primary.D6 * 45;
+}
 
 
 

@@ -36,6 +36,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
 #include "global.h"
 #include "uart.h"
 #include "readdata.h"
@@ -97,7 +98,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+  sprintf((char*)RxData,"@,+070,+060,+120,040,050,0,2,088,+000,+000,-000,cs,#");
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -129,6 +130,9 @@ int main(void)
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
+	servo_int();
+	HAL_UART_Receive_IT(&huart3,&value,1);
+	HAL_Delay(10000);
 	
 	  
   /* USER CODE END 2 */
@@ -138,15 +142,26 @@ int main(void)
 	
   while (1)
   {
-		Servo_SetAngle(SERVO_CH_PB3,90);
-		Servo_SetAngle(SERVO_CH_PB4,90);
-		Servo_SetAngle(SERVO_CH_PB6,90);
-		Servo_SetAngle(SERVO_CH_PB7,90);
-		Servo_SetAngle(SERVO_CH_PB8,90);
-		Servo_SetAngle(SERVO_CH_PB9,90);
-		
-		
+        // if(BlueState == 1){
+       if(rxcplt_flag == 1){
+          
+          readdata(RxData); 
+          // motor_ik();
+          // SendmotorCmd();
+           servo_ik();
+           Servo_Sendcmd();
+          rxcplt_flag = 0;
+          ifrxstart = 0;
+      }
+
+
+
+    // }else{
+
+    // }
+
     /* USER CODE END WHILE */
+    
 
     /* USER CODE BEGIN 3 */
   }

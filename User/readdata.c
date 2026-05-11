@@ -40,6 +40,7 @@ void readdata (uint8_t Data[]){              //控制数据帧解析
             speedData_primary.Wz = Vz;
         }
 
+    
     //舵机部分
     servoData_primary.D1 = readindexdata3(Data ,17,18,19);
     servoData_primary.D2 = readindexdata4(Data ,33,34,35,36);

@@ -42,6 +42,24 @@ void Servo_SetAngle(uint8_t channel, uint16_t angle)
     }
 }
 
+void Servo_Sendcmd(void){
+    Servo_SetAngle(SERVO_CH_PB3,servoangle.D1);
+    Servo_SetAngle(SERVO_CH_PB4,servoangle.D2);
+    Servo_SetAngle(SERVO_CH_PB6,servoangle.D3);
+    Servo_SetAngle(SERVO_CH_PB7,servoangle.D4);
+    Servo_SetAngle(SERVO_CH_PB8,servoangle.D5);
+    Servo_SetAngle(SERVO_CH_PB9,servoangle.D6);
+}
+
+void servo_int(void){
+    Servo_SetAngle(SERVO_CH_PB3,135);
+	Servo_SetAngle(SERVO_CH_PB4,135);
+	Servo_SetAngle(SERVO_CH_PB6,135);
+	Servo_SetAngle(SERVO_CH_PB7,135);
+	Servo_SetAngle(SERVO_CH_PB8,135);
+	Servo_SetAngle(SERVO_CH_PB9,180);
+}
+
 
 
 
