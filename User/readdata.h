@@ -11,7 +11,7 @@
 
 
 
-SPEED motor_readdata (uint8_t Data[]);              //电机控制数据帧解析
+void readdata (uint8_t Data[]);
 
 int readindexdata3(uint8_t data[],int index1,int index2,int index3);
 
