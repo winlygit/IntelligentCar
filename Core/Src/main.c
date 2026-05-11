@@ -98,7 +98,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-  sprintf((char*)RxData,"@,+070,+060,+120,040,050,0,2,088,+000,+000,-000,cs,#");
+  sprintf((char*)RxData,"@,+000,+000,+000,045,045,0,0,088,+000,+000,+000,cs,#");
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -124,15 +124,8 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
-  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
-  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
-  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2);
-  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
-  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
-	servo_int();
-	HAL_UART_Receive_IT(&huart3,&value,1);
-	HAL_Delay(10000);
+  uart_init();
+	servo_init();
 	
 	  
   /* USER CODE END 2 */

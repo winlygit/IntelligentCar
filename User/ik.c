@@ -66,22 +66,35 @@
 /****************有关机械臂的逆解算法*****************/
 
 void servo_ik(void){
-//    if(servoData_primary.D1 >= 0 && servoData_primary.D1 <= 30){
-//        while(servoangle.D1 <= 90){
-//            servoangle.D1 += 1;
-//            HAL_Delay(50);
-//        }
-//    }else if(servoData_primary.D1 > 60 && servoData_primary.D1 <= 90){
-//        while(servoangle.D1 >= 0){
-//            servoangle.D1 -= 1;
-//            HAL_Delay(50);
-//        }
-//    }
+
+    //对D1的处理
+    HAL_Delay(10);
+    if(servoData_primary.D1 >= 0 && servoData_primary.D1 <= 30){     //每10ms变化0.2度
+        botom_angle +=0.2;
+       
+    }else if(servoData_primary.D1 > 60 && servoData_primary.D1 <= 90){
+        botom_angle -=0.2;
+    }
+
+    if(botom_angle > 270){          //死区限制
+        botom_angle = 270;
+    }else if(botom_angle < 0){
+        botom_angle = 0;
+    }
+    servoangle.D1 = botom_angle;
+
+    //对D6的处理
+    if(servoData_primary.D6 == 1){       //占空比0.25对应夹爪打开，0.75对应夹爪关闭，68-202为实际控制量范围
+        servoangle.D6 = 140;
+    }else if(servoData_primary.D6 == 0){
+        servoangle.D6 = 68;
+    }
+
+    //对D2-D5的处理
     servoangle.D2 = servoData_primary.D2 + 135;
     servoangle.D3 = servoData_primary.D3 + 135;
     servoangle.D4 = servoData_primary.D4 + 135;
-    servoangle.D5 = servoData_primary.D5 + 135;
-    servoangle.D6 = servoData_primary.D6 * 45;
+    servoangle.D5 = servoData_primary.D5 + 135;//有待处理，记得加死区，-90-90；
 }
 
 

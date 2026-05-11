@@ -51,13 +51,20 @@ void Servo_Sendcmd(void){
     Servo_SetAngle(SERVO_CH_PB9,servoangle.D6);
 }
 
-void servo_int(void){
+void servo_init(void){
+    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
+    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
+    HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
+    HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2);
+    HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
+    HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
+
     Servo_SetAngle(SERVO_CH_PB3,135);
 	Servo_SetAngle(SERVO_CH_PB4,135);
 	Servo_SetAngle(SERVO_CH_PB6,135);
 	Servo_SetAngle(SERVO_CH_PB7,135);
 	Servo_SetAngle(SERVO_CH_PB8,135);
-	Servo_SetAngle(SERVO_CH_PB9,180);
+	Servo_SetAngle(SERVO_CH_PB9,202);
 }
 
 

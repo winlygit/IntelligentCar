@@ -15,7 +15,7 @@ extern UART_HandleTypeDef huart3;
 //void U1_printf (const uint8_t* pData);
 //void U2_printf (const uint8_t* pData);
 void U3_printf (const uint8_t* pData);
-
+void uart_init(void);
 
 
 
