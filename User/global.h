@@ -106,7 +106,7 @@ typedef struct {         //计算后舵机数据格式
 extern motorSPEED motorspeed;          //计算后得到的电机相对转速，范围（-1000，1000）
 extern servoANGLE servoangle;        //计算后得到的舵机控制量，范围-135-135
 extern float botom_angle;         //底盘舵机控制量，范围0-270
-
+extern float circle_angle;         //手腕舵机控制量，范围45-225
 
 
 
