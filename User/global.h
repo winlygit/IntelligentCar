@@ -42,7 +42,7 @@ extern uint8_t volatile rxcplt_flag;      //数据读完标志位
 
 
 /****************存放readdata中的宏定义和全局变量*****************/
-#define WW 25     //控制wz的数据的位置
+#define WW 29     //控制wz的数据的位置
 #define Vz 60    //控制z轴旋转速度的量
 #define limit 20      //角度死区
 
@@ -82,6 +82,7 @@ extern uint8_t RxData[MAX];          //上位机原始数据帧存放处
 /****************存放ik中的宏定义和全局变量*****************/
 
 #define Add 270       //数据和的最大值，用于确定程度
+#define ANGLE 2       //每10ms变化的角度量
 
 typedef struct  {                //计算后电机数据格式
     int LFsd;         //左前，对应电机id 001

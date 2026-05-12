@@ -40,17 +40,16 @@ void readdata (uint8_t Data[]){              //控制数据帧解析
             speedData_primary.Wz = Vz;
         }
 
-    
     //舵机部分
-    servoData_primary.D1 = readindexdata3(Data ,17,18,19);
-    servoData_primary.D2 = readindexdata4(Data ,33,34,35,36);
-    servoData_primary.D3 = readindexdata4(Data ,38,39,40,41);
-    servoData_primary.D4 = readindexdata4(Data ,43,44,45,46);
-    servoData_primary.D5 = readindexdata3(Data ,21,22,23);
-    servoData_primary.D6 = Data[25] - '0';
+    servoData_primary.D1 = readindexdata3(Data ,18,19,20);
+    servoData_primary.D2 = readindexdata4(Data ,35,36,37,38);
+    servoData_primary.D3 = readindexdata4(Data ,40,41,42,43);
+    servoData_primary.D4 = readindexdata4(Data ,45,46,47,48);
+    servoData_primary.D5 = readindexdata3(Data ,23,24,25);
+    servoData_primary.D6 = Data[27] - '0';
 
     //读取动作组
-    actionnum = readindexdata3(Data ,29,30,31);
+    actionnum = readindexdata3(Data ,31,32,33);
     
         
 }

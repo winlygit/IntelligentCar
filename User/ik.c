@@ -69,11 +69,11 @@ void servo_ik(void){
 
     //对D1的处理
     HAL_Delay(5);
-    if(servoData_primary.D1 >= 0 && servoData_primary.D1 <= 30){     //每10ms变化0.2度
-        botom_angle +=0.2;
+    if(servoData_primary.D1 >= 0 && servoData_primary.D1 <= 30){     //每10ms变化ANGLE度
+        botom_angle -=ANGLE;
        
     }else if(servoData_primary.D1 > 60 && servoData_primary.D1 <= 90){
-        botom_angle -=0.2;
+        botom_angle +=ANGLE;
     }
 
     if(botom_angle > 270){          //死区限制
@@ -85,11 +85,11 @@ void servo_ik(void){
 
     //对D5的处理
     HAL_Delay(5);
-    if(servoData_primary.D5 >= 0 && servoData_primary.D5 <= 30){     //每10ms变化0.2度
-        circle_angle +=0.2;
+    if(servoData_primary.D5 >= 0 && servoData_primary.D5 <= 30){     //每10ms变化ANGLE度
+        circle_angle +=ANGLE;
        
     }else if(servoData_primary.D5 > 60 && servoData_primary.D5 <= 90){
-        circle_angle -=0.2;
+        circle_angle -=ANGLE;
     }
     
     if(circle_angle > 225){          //死区限制
@@ -107,9 +107,9 @@ void servo_ik(void){
     }
 
     //对D2-D4的处理
-    servoangle.D2 = servoData_primary.D2 + 135;
-    servoangle.D3 = servoData_primary.D3 + 135;
-    servoangle.D4 = servoData_primary.D4 + 135;
+    servoangle.D2 = servoData_primary.D2 - 90 +135;
+    servoangle.D3 = 270-(servoData_primary.D3 - 90 +135);
+    servoangle.D4 = 270-(servoData_primary.D4 - 90 +135);
 }
 
 

@@ -126,7 +126,6 @@ int main(void)
   /* USER CODE BEGIN 2 */
   uart_init();
 	servo_init();
-	
 	  
   /* USER CODE END 2 */
 
