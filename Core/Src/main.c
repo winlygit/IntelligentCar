@@ -138,10 +138,10 @@ int main(void)
        if(rxcplt_flag == 1){
           
           readdata(RxData); 
-          // motor_ik();
-          // SendmotorCmd();
-           servo_ik();
-           Servo_Sendcmd();
+          motor_ik();
+          SendmotorCmd();
+          servo_ik();
+          Servo_Sendcmd();
           rxcplt_flag = 0;
           ifrxstart = 0;
       }
