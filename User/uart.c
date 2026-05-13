@@ -91,6 +91,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 }
 
 void uart_init(void){
+    sprintf((char*)RxData,"@,+000,+000,+000,045,045,0,0,088,+000,+000,+000,cs,#");
     HAL_UART_Receive_IT(&huart3,&value,1);
 }
  

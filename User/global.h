@@ -22,13 +22,13 @@
 
 /****************存放uart中的宏定义和全局变量*****************/
 #define MAX 256        //最大接收量
-#define BlueState HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_8)
+#define BlueState HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_8)     //蓝牙状态检测引脚
 
 extern uint8_t RxData[MAX];          //上位机原始数据帧存放处
 
 extern uint8_t value;     //上位机发来的字节
 extern uint16_t volatile uart_index;    //读到位
-extern uint8_t volatile ifrxstart;
+extern uint8_t volatile ifrxstart;       //是否开始读数据的标志位
 extern uint8_t volatile rxcplt_flag;      //数据读完标志位
 
 
@@ -47,13 +47,13 @@ extern uint8_t volatile rxcplt_flag;      //数据读完标志位
 #define limit 20      //角度死区
 
 
-typedef struct {                     //原始数据格式
+typedef struct {                     //原始陀螺仪数据格式
     int Vx,Vy,Wz;
 }MDATA;
 
 
 
-typedef struct {                 //原始数据格式
+typedef struct {                 //原始舵机数据格式
     int D1;           //底盘舵机  0-90
     int D2;           //舵机2     -135-135
     int D3;           //舵机3     -135-135
@@ -82,7 +82,7 @@ extern uint8_t RxData[MAX];          //上位机原始数据帧存放处
 /****************存放ik中的宏定义和全局变量*****************/
 
 #define Add 270       //数据和的最大值，用于确定程度
-#define ANGLE 2       //每10ms变化的角度量
+#define ANGLE 2       //地盘和夹爪每10ms变化的角度量
 
 typedef struct  {                //计算后电机数据格式
     int LFsd;         //左前，对应电机id 001

@@ -4,7 +4,8 @@
 
 #include "main.h"
 
-
+void LED_On(void);
+void LED_Off(void);
 
 
 

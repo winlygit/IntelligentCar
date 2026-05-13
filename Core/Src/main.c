@@ -98,7 +98,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-  sprintf((char*)RxData,"@,+000,+000,+000,045,045,0,0,088,+000,+000,+000,cs,#");
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
