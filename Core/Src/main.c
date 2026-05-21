@@ -133,8 +133,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 	
   while (1)
-  {
-        // if(BlueState == 1){
+  { 
+       
        if(rxcplt_flag == 1){
           
           readdata(RxData); 
@@ -148,12 +148,8 @@ int main(void)
 
 
 
-    // }else{
-
-    // }
 
     /* USER CODE END WHILE */
-    
 
     /* USER CODE BEGIN 3 */
   }
@@ -440,9 +436,13 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin : PA8 */
   GPIO_InitStruct.Pin = GPIO_PIN_8;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
@@ -450,7 +450,16 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+  if(GPIO_Pin == GPIO_PIN_8){
+        servo_init();
+      motorspeed.LBsd = 0;
+      motorspeed.LFsd = 0;
+      motorspeed.RBsd = 0;
+      motorspeed.RFsd = 0;
+      SendmotorCmd();
+  }
+}
 /* USER CODE END 4 */
 
 /**
