@@ -49,9 +49,7 @@ uint8_t volatile rxcplt_flag = 0;      //数据读完标志位
 uint8_t ifgrab;      //是否抓取标志位，0为不抓取，1为抓取
 uint8_t actionnum;        //动作组中的动作编号
 
-MDATA speedData_primary;          //上位机发来的原始陀螺仪数据
 
-SDATA servoData_primary;    //上位机发来的六个舵机原始控制量
 
 
 

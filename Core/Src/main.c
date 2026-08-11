@@ -45,6 +45,7 @@
 #include "buzzer.h"
 #include "led.h"
 #include "servo.h"
+#include "mode.h"
 
 /* USER CODE END Includes */
 
@@ -98,7 +99,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+  MODE mode;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -136,14 +137,26 @@ int main(void)
   { 
        
        if(rxcplt_flag == 1){
-          
-          readdata(RxData); 
-          motor_ik();
-          SendmotorCmd();
-          servo_ik();
-          Servo_Sendcmd();
+          mode = readmode(RxData);
           rxcplt_flag = 0;
           ifrxstart = 0;
+          
+          switch (mode) {
+              case mode1:
+                  mode1_handle();
+                  break;
+              case mode2:
+                  mode2_handle();
+                  break;
+              case mode3:
+                  mode3_handle();
+                  break;
+              case mode4:
+                  mode4_handle();
+                  break;
+              default:
+                  break;
+          }
       }
 
 

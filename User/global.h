@@ -42,7 +42,6 @@ extern uint8_t volatile rxcplt_flag;      //数据读完标志位
 
 
 /****************存放readdata中的宏定义和全局变量*****************/
-#define WW 29     //控制wz的数据的位置
 #define Vz 60    //控制z轴旋转速度的量
 #define limit 20      //角度死区
 
@@ -62,10 +61,46 @@ typedef struct {                 //原始舵机数据格式
     uint8_t D6;           //夹爪舵机    为01值
 }SDATA;
 
+typedef enum{   //模式枚举变量
+    STOP = 0,
+    mode1,
+    mode2,
+    mode3,
+    mode4,
+}MODE;
 
-extern uint8_t actionnum;        //动作组中的动作编号
-extern MDATA speedData_primary;          //解析数据帧得到的原始陀螺仪数据
-extern SDATA servoData_primary;    //上位机发来的六个舵机原始控制量
+//模式1和模式2数据帧包含的所有数据
+typedef struct {
+
+    uint8_t IFSTOP;        //是否退出当前模式
+    uint8_t STATUS;        //当前模式的状态
+    MDATA speedData_primary;          //当前模式下的陀螺仪数据
+    SDATA servoData_primary;    //当前模式下的六个舵机控制量
+}mode12_data;
+
+//模式3数据帧包含的所有数据
+typedef struct {
+    uint8_t IFSTOP;        //是否退出当前模式
+    uint8_t IFREFRESH;     //是否请求刷新动作组目录
+    uint8_t IFEXECUTE;      //是否请求执行动作组
+    uint8_t ACTIONID;       //请求执行的动作组编号
+    uint8_t IFDELETE;       //是否请求删除动作组
+    uint8_t DELETEID;       //请求删除的动作组编号
+
+}mode3_data;
+
+//模式4数据帧包含的所有数据
+typedef struct {
+    uint8_t IFSTOP;        //是否退出当前模式
+    uint8_t IFREFRESH;     //是否请求刷新动作组目录
+    uint8_t STATUS;        //当前模式的状态,是否循迹
+    uint8_t ACTIONID;       //请求执行的动作组编号
+    uint8_t LENTH;         //执行动作组的距离阈值
+
+}mode4_data;
+
+
+
 extern uint8_t RxData[MAX];          //上位机原始数据帧存放处
 
 
@@ -108,36 +143,6 @@ extern motorSPEED motorspeed;          //计算后得到的电机相对转速，
 extern servoANGLE servoangle;        //计算后得到的舵机控制量，范围-135-135
 extern float botom_angle;         //底盘舵机控制量，范围0-270
 extern float circle_angle;         //手腕舵机控制量，范围45-225
-
-
-
-/****************存放servo中的宏定义和全局变量*****************/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/****************存放motor中的宏定义和全局变量*****************/
-
-
-
-
-
-
-
 
 
 

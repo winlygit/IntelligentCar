@@ -11,7 +11,7 @@
 
 
 
-void readdata (uint8_t Data[]);
+MODE readmode (uint8_t Data[]);
 
 int readindexdata3(uint8_t data[],int index1,int index2,int index3);
 

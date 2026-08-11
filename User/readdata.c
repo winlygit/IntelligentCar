@@ -15,46 +15,6 @@
 #include "readdata.h"
 #include "global.h"
 
-
-
-
-
-
-void readdata (uint8_t Data[]){              //控制数据帧解析
-    
-    //电机部分
-    
-    speedData_primary.Vx = readindexdata4(Data ,2,3,4,5);
-    speedData_primary.Vy = -readindexdata4(Data ,7,8,9,10);
-    
-        if((speedData_primary.Vx <= limit&&speedData_primary.Vx >= -limit)&&(speedData_primary.Vy <= limit&&speedData_primary.Vy >= -limit)){
-            speedData_primary.Vx = 0;
-            speedData_primary.Vy = 0;
-        }
-        
-        if (Data[WW] == '0'){
-            speedData_primary.Wz =   0;
-        }else if(Data[WW] == '1'){
-            speedData_primary.Wz =  -Vz;
-        }else if(Data[WW] == '2'){
-            speedData_primary.Wz = Vz;
-        }
-
-    //舵机部分
-    servoData_primary.D1 = readindexdata3(Data ,18,19,20);
-    servoData_primary.D2 = readindexdata4(Data ,35,36,37,38);
-    servoData_primary.D3 = readindexdata4(Data ,40,41,42,43);
-    servoData_primary.D4 = readindexdata4(Data ,45,46,47,48);
-    servoData_primary.D5 = readindexdata3(Data ,23,24,25);
-    servoData_primary.D6 = Data[27] - '0';
-
-    //读取动作组
-    actionnum = readindexdata3(Data ,31,32,33);
-    
-        
-}
-
-
 int readindexdata2(uint8_t data[],int index1,int index2){      //读取指定两位数，两位数据，默认为正
     
     
@@ -93,6 +53,109 @@ int readindexdata4(uint8_t data[],int index1,int index2,int index3,int index4){ 
     }
     return number;
 }
+
+
+
+
+MODE readmode (uint8_t Data[]){              //模式解析函数
+
+    //解析模式部分
+    MODE mode;
+    if(Data[1] == 'M' && Data[2] == '1'){
+        mode = mode1;
+    }else if(Data[1] == 'M' && Data[2] == '2'){
+        mode = mode2;
+    }else if(Data[1] == 'M' && Data[2] == '3'){
+        mode = mode3;
+    }else if(Data[1] == 'M' && Data[2] == '4'){
+        mode = mode4;
+    }else{
+        mode = STOP;
+    }
+    return mode;
+}
+
+void readdata12(mode12_data *data,uint8_t Data[])              //模式1和模式2数据解析函数
+{
+    if(Data[1]=='S'&&Data[2]=='T'){
+        data->IFSTOP = 1;
+    }else if(Data[3]== 'A'&&Data[4]== 'C'){
+        data->STATUS = 1;
+    }else if(Data[3]== 'S'&&Data[4]== 'T'){
+        data->STATUS = 0;
+    }else if(Data[3]== ','){
+    //电机部分
+    
+    data->speedData_primary.Vx = readindexdata4(Data ,4,5,6,7);
+    data->speedData_primary.Vy = -readindexdata4(Data ,9,10,11,12);
+    
+    if((data->speedData_primary.Vx <= limit&&data->speedData_primary.Vx >= -limit)&&(data->speedData_primary.Vy <= limit&&data->speedData_primary.Vy >= -limit)){
+        data->speedData_primary.Vx = 0;
+        data->speedData_primary.Vy = 0;
+    }
+    #define WW 29     //控制wz的数据的位置
+    if (Data[WW] == '0'){
+        data->speedData_primary.Wz =   0;
+    }else if(Data[WW] == '1'){
+        data->speedData_primary.Wz =  -Vz;
+    }else if(Data[WW] == '2'){
+        data->speedData_primary.Wz = Vz;
+    }
+
+    //舵机部分
+    data->servoData_primary.D1 = readindexdata3(Data ,19,20,21);
+    data->servoData_primary.D2 = readindexdata4(Data ,31,32,33,34);
+    data->servoData_primary.D3 = readindexdata4(Data ,36,37,38,39);
+    data->servoData_primary.D4 = readindexdata4(Data ,41,42,43,44);
+    data->servoData_primary.D5 = readindexdata3(Data ,23,24,25);
+    data->servoData_primary.D6 = Data[27] - '0';
+    }
+
+}
+
+void readdata3(mode3_data *data,uint8_t Data[])              //模式3数据解析函数
+{
+
+}
+
+void readdata4(mode4_data *data,uint8_t Data[])              //模式4数据解析函数
+{
+
+
+}
+
+    // //电机部分
+    
+    // speedData_primary.Vx = readindexdata4(Data ,2,3,4,5);
+    // speedData_primary.Vy = -readindexdata4(Data ,7,8,9,10);
+    
+    //     if((speedData_primary.Vx <= limit&&speedData_primary.Vx >= -limit)&&(speedData_primary.Vy <= limit&&speedData_primary.Vy >= -limit)){
+    //         speedData_primary.Vx = 0;
+    //         speedData_primary.Vy = 0;
+    //     }
+        
+    //     if (Data[WW] == '0'){
+    //         speedData_primary.Wz =   0;
+    //     }else if(Data[WW] == '1'){
+    //         speedData_primary.Wz =  -Vz;
+    //     }else if(Data[WW] == '2'){
+    //         speedData_primary.Wz = Vz;
+    //     }
+
+    // //舵机部分
+    // servoData_primary.D1 = readindexdata3(Data ,18,19,20);
+    // servoData_primary.D2 = readindexdata4(Data ,35,36,37,38);
+    // servoData_primary.D3 = readindexdata4(Data ,40,41,42,43);
+    // servoData_primary.D4 = readindexdata4(Data ,45,46,47,48);
+    // servoData_primary.D5 = readindexdata3(Data ,23,24,25);
+    // servoData_primary.D6 = Data[27] - '0';
+
+    // //读取动作组
+    // actionnum = readindexdata3(Data ,31,32,33);
+        
+
+
+
 
 
 
