@@ -29,4 +29,4 @@ intelligentcar/main.o: ../Core/Src/main.c ../Core/Inc\main.h \
   ../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_hal_uart.h \
   D:\keil\exe\core\ARM\ARMCLANG\Bin\..\include\stdio.h ../User\global.h \
   ../User\uart.h ../User\readdata.h ../User\ik.h ../User\motor.h \
-  ../User\buzzer.h ../User\led.h ../User\servo.h
+  ../User\buzzer.h ../User\led.h ../User\servo.h ../User\mode.h

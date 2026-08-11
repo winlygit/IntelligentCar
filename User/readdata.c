@@ -15,7 +15,7 @@
 #include "readdata.h"
 #include "global.h"
 
-int readindexdata2(uint8_t data[],int index1,int index2){      //读取指定两位数，两位数据，默认为正
+int readindexdata2(uint8_t *data,int index1,int index2){      //读取指定两位数，两位数据，默认为正
     
     
     int a = data[index1] - '0';
@@ -29,7 +29,7 @@ int readindexdata2(uint8_t data[],int index1,int index2){      //读取指定两
 
 
 
-int readindexdata3(uint8_t data[],int index1,int index2,int index3){      //读取指定三位数，三位数据，默认为正
+int readindexdata3(uint8_t *data,int index1,int index2,int index3){      //读取指定三位数，三位数据，默认为正
     
     
     int a = data[index1] - '0';
@@ -41,7 +41,7 @@ int readindexdata3(uint8_t data[],int index1,int index2,int index3){      //读�
 }
 
 
-int readindexdata4(uint8_t data[],int index1,int index2,int index3,int index4){      //读取指定四位数，符号+三位数据
+int readindexdata4(uint8_t *data,int index1,int index2,int index3,int index4){      //读取指定四位数，符号+三位数据
     
     char a = data[index1];
     int b = data[index2] - '0';
@@ -57,7 +57,7 @@ int readindexdata4(uint8_t data[],int index1,int index2,int index3,int index4){ 
 
 
 
-MODE readmode (uint8_t Data[]){              //模式解析函数
+MODE readmode (uint8_t *Data){              //模式解析函数
 
     //解析模式部分
     MODE mode;
@@ -75,10 +75,10 @@ MODE readmode (uint8_t Data[]){              //模式解析函数
     return mode;
 }
 
-void readdata12(mode12_data *data,uint8_t Data[])              //模式1和模式2数据解析函数
+void readdata12(mode12_data *data,uint8_t* Data)              //模式1和模式2数据解析函数
 {
     if(Data[1]=='S'&&Data[2]=='T'){
-        data->IFSTOP = 1;
+        data->IFSTOP = 1;//需手动归零
     }else if(Data[3]== 'A'&&Data[4]== 'C'){
         data->STATUS = 1;
     }else if(Data[3]== 'S'&&Data[4]== 'T'){
@@ -113,14 +113,34 @@ void readdata12(mode12_data *data,uint8_t Data[])              //模式1和模�
 
 }
 
-void readdata3(mode3_data *data,uint8_t Data[])              //模式3数据解析函数
+void readdata3(mode3_data *data,uint8_t* Data)              //模式3数据解析函数
 {
-
+    if(Data[1]=='S'&&Data[2]=='T'){
+        data->IFSTOP = 1;//需手动归零
+    }else if(Data[3]== 'R'&&Data[4]== 'E'){
+        data->IFREFRESH = 1;//需手动归零
+    }else if(Data[3]== 'B'){
+        data->IFEXECUTE = 1;//需手动归零
+        data->ACTIONID = readindexdata3(Data ,4,5,6);
+    }else if(Data[3]== 'D'){
+        data->IFDELETE = 1;//需手动归零
+        data->DELETEID = readindexdata3(Data ,4,5,6);
+    }
 }
 
-void readdata4(mode4_data *data,uint8_t Data[])              //模式4数据解析函数
+void readdata4(mode4_data *data,uint8_t* Data)              //模式4数据解析函数
 {
-
+    if(Data[1]=='S'&&Data[2]=='T'){
+        data->IFSTOP = 1;//需手动归零
+    }else if(Data[3]== 'R'&&Data[4]== 'E'){
+        data->IFREFRESH = 1;//需手动归零
+    }else if(Data[3]== 'A'&&Data[4]== 'C'&&Data[5]== 'L'){
+        data->STATUS = 1;
+        data->ACTIONID = readindexdata3(Data ,6,7,8);
+        data->LENTH = readindexdata2(Data ,10,11);
+    }else if(Data[3]== 'S'&&Data[4]== 'T'){
+        data->STATUS = 0;
+    }
 
 }
 

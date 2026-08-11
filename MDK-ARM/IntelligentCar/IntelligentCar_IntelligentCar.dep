@@ -1,6 +1,6 @@
 Dependencies for Project 'IntelligentCar', Target 'IntelligentCar': (DO NOT MODIFY !)
 F (startup_stm32f103xb.s)(0x6A0E6D0E)(--cpu Cortex-M3 -g-I.\RTE\_IntelligentCar-ID:\keil\exe\pack\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil\exe\pack\Keil\STM32F1xx_DFP\2.2.0\Device\Include--pd "__UVISION_VERSION SETA 524"--pd "_RTE_ SETA 1"--pd "STM32F10X_MD SETA 1"--list startup_stm32f103xb.lst--xref -o intelligentcar\startup_stm32f103xb.o--depend intelligentcar\startup_stm32f103xb.d)
-F (../Core/Src/main.c)(0x6A0E6E3D)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_IntelligentCar-ID:/keil/exe/pack/ARM/CMSIS/5.0.1/CMSIS/Include-ID:/keil/exe/pack/Keil/STM32F1xx_DFP/2.2.0/Device/Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar/main.o -MD)
+F (../Core/Src/main.c)(0x6A7AD3F3)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_IntelligentCar-ID:/keil/exe/pack/ARM/CMSIS/5.0.1/CMSIS/Include-ID:/keil/exe/pack/Keil/STM32F1xx_DFP/2.2.0/Device/Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar/main.o -MD)
 I (..\Core\Inc\main.h)(0x6A0434B7)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x69C51C9A)
 I (..\Core\Inc\stm32f1xx_hal_conf.h)(0x6A0434B7)
@@ -31,14 +31,15 @@ I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x69C51C9A)
 I (D:\keil\exe\core\ARM\ARMCLANG\include\stdio.h)(0x588CAFD2)
-I (..\User\global.h)(0x6A0E64A3)
+I (..\User\global.h)(0x6A783817)
 I (..\User\uart.h)(0x6A0434B7)
-I (..\User\readdata.h)(0x6A0157C1)
-I (..\User\ik.h)(0x6A0434B7)
-I (..\User\motor.h)(0x6A0157C1)
+I (..\User\readdata.h)(0x6A7AD31D)
+I (..\User\ik.h)(0x6A7AD76D)
+I (..\User\motor.h)(0x6A7AD10E)
 I (..\User\buzzer.h)(0x69E5AC9E)
 I (..\User\led.h)(0x6A044AE6)
-I (..\User\servo.h)(0x6A0434B7)
+I (..\User\servo.h)(0x6A7AD10E)
+I (..\User\mode.h)(0x6A7AD250)
 F (../Core/Src/stm32f1xx_it.c)(0x6A0E6D0C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_IntelligentCar-ID:/keil/exe/pack/ARM/CMSIS/5.0.1/CMSIS/Include-ID:/keil/exe/pack/Keil/STM32F1xx_DFP/2.2.0/Device/Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar/stm32f1xx_it.o -MD)
 I (..\Core\Inc\main.h)(0x6A0434B7)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x69C51C9A)
@@ -567,7 +568,7 @@ I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x69C51C9A)
 I (..\User\buzzer.h)(0x69E5AC9E)
 F (..\User\buzzer.h)(0x69E5AC9E)()
-F (..\User\global.c)(0x6A0434B7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_IntelligentCar-ID:/keil/exe/pack/ARM/CMSIS/5.0.1/CMSIS/Include-ID:/keil/exe/pack/Keil/STM32F1xx_DFP/2.2.0/Device/Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar/global.o -MD)
+F (..\User\global.c)(0x6A7AD10E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_IntelligentCar-ID:/keil/exe/pack/ARM/CMSIS/5.0.1/CMSIS/Include-ID:/keil/exe/pack/Keil/STM32F1xx_DFP/2.2.0/Device/Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar/global.o -MD)
 I (..\Core\Inc\main.h)(0x6A0434B7)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x69C51C9A)
 I (..\Core\Inc\stm32f1xx_hal_conf.h)(0x6A0434B7)
@@ -597,9 +598,9 @@ I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x69C51C9A)
-I (..\User\global.h)(0x6A0E64A3)
-F (..\User\global.h)(0x6A0E64A3)()
-F (..\User\ik.c)(0x6A0434B7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_IntelligentCar-ID:/keil/exe/pack/ARM/CMSIS/5.0.1/CMSIS/Include-ID:/keil/exe/pack/Keil/STM32F1xx_DFP/2.2.0/Device/Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar/ik.o -MD)
+I (..\User\global.h)(0x6A783817)
+F (..\User\global.h)(0x6A783817)()
+F (..\User\ik.c)(0x6A7AD76D)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_IntelligentCar-ID:/keil/exe/pack/ARM/CMSIS/5.0.1/CMSIS/Include-ID:/keil/exe/pack/Keil/STM32F1xx_DFP/2.2.0/Device/Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar/ik.o -MD)
 I (..\Core\Inc\main.h)(0x6A0434B7)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x69C51C9A)
 I (..\Core\Inc\stm32f1xx_hal_conf.h)(0x6A0434B7)
@@ -629,15 +630,15 @@ I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x69C51C9A)
-I (..\User\global.h)(0x6A0E64A3)
+I (..\User\global.h)(0x6A783817)
 I (..\User\uart.h)(0x6A0434B7)
-I (..\User\readdata.h)(0x6A0157C1)
-I (..\User\ik.h)(0x6A0434B7)
+I (..\User\readdata.h)(0x6A7AD31D)
+I (..\User\ik.h)(0x6A7AD76D)
 I (D:\keil\exe\core\ARM\ARMCLANG\include\math.h)(0x58A47FFE)
 I (D:\keil\exe\core\ARM\ARMCLANG\include\stdio.h)(0x588CAFD2)
 I (D:\keil\exe\core\ARM\ARMCLANG\include\stdlib.h)(0x588CAFDA)
 I (D:\keil\exe\core\ARM\ARMCLANG\include\string.h)(0x588CAFD2)
-F (..\User\ik.h)(0x6A0434B7)()
+F (..\User\ik.h)(0x6A7AD76D)()
 F (..\User\led.c)(0x6A044AE6)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_IntelligentCar-ID:/keil/exe/pack/ARM/CMSIS/5.0.1/CMSIS/Include-ID:/keil/exe/pack/Keil/STM32F1xx_DFP/2.2.0/Device/Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar/led.o -MD)
 I (..\Core\Inc\main.h)(0x6A0434B7)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x69C51C9A)
@@ -669,7 +670,7 @@ I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x69C51C9A)
 F (..\User\led.h)(0x6A044AE6)()
-F (..\User\motor.c)(0x6A01592C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_IntelligentCar-ID:/keil/exe/pack/ARM/CMSIS/5.0.1/CMSIS/Include-ID:/keil/exe/pack/Keil/STM32F1xx_DFP/2.2.0/Device/Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar/motor.o -MD)
+F (..\User\motor.c)(0x6A7AD10E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_IntelligentCar-ID:/keil/exe/pack/ARM/CMSIS/5.0.1/CMSIS/Include-ID:/keil/exe/pack/Keil/STM32F1xx_DFP/2.2.0/Device/Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar/motor.o -MD)
 I (..\Core\Inc\main.h)(0x6A0434B7)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x69C51C9A)
 I (..\Core\Inc\stm32f1xx_hal_conf.h)(0x6A0434B7)
@@ -699,12 +700,12 @@ I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x69C51C9A)
-I (..\User\global.h)(0x6A0E64A3)
+I (..\User\global.h)(0x6A783817)
 I (D:\keil\exe\core\ARM\ARMCLANG\include\stdio.h)(0x588CAFD2)
 I (..\User\uart.h)(0x6A0434B7)
-F (..\User\motor.h)(0x6A0157C1)()
-F (..\User\servo.c)(0x6A0434B7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_IntelligentCar-ID:/keil/exe/pack/ARM/CMSIS/5.0.1/CMSIS/Include-ID:/keil/exe/pack/Keil/STM32F1xx_DFP/2.2.0/Device/Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar/servo.o -MD)
-I (..\User\servo.h)(0x6A0434B7)
+F (..\User\motor.h)(0x6A7AD10E)()
+F (..\User\servo.c)(0x6A7AD10E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_IntelligentCar-ID:/keil/exe/pack/ARM/CMSIS/5.0.1/CMSIS/Include-ID:/keil/exe/pack/Keil/STM32F1xx_DFP/2.2.0/Device/Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar/servo.o -MD)
+I (..\User\servo.h)(0x6A7AD10E)
 I (..\Core\Inc\main.h)(0x6A0434B7)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x69C51C9A)
 I (..\Core\Inc\stm32f1xx_hal_conf.h)(0x6A0434B7)
@@ -734,10 +735,10 @@ I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x69C51C9A)
-I (..\User\global.h)(0x6A0E64A3)
+I (..\User\global.h)(0x6A783817)
 I (D:\keil\exe\core\ARM\ARMCLANG\include\stdio.h)(0x588CAFD2)
-F (..\User\servo.h)(0x6A0434B7)()
-F (..\User\uart.c)(0x6A044AE6)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_IntelligentCar-ID:/keil/exe/pack/ARM/CMSIS/5.0.1/CMSIS/Include-ID:/keil/exe/pack/Keil/STM32F1xx_DFP/2.2.0/Device/Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar/uart.o -MD)
+F (..\User\servo.h)(0x6A7AD10E)()
+F (..\User\uart.c)(0x6A7AD3B2)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_IntelligentCar-ID:/keil/exe/pack/ARM/CMSIS/5.0.1/CMSIS/Include-ID:/keil/exe/pack/Keil/STM32F1xx_DFP/2.2.0/Device/Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar/uart.o -MD)
 I (..\Core\Inc\main.h)(0x6A0434B7)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x69C51C9A)
 I (..\Core\Inc\stm32f1xx_hal_conf.h)(0x6A0434B7)
@@ -768,9 +769,10 @@ I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x69C51C9A)
 I (..\User\uart.h)(0x6A0434B7)
-I (..\User\global.h)(0x6A0E64A3)
+I (..\User\global.h)(0x6A783817)
+I (D:\keil\exe\core\ARM\ARMCLANG\include\stdio.h)(0x588CAFD2)
 F (..\User\uart.h)(0x6A0434B7)()
-F (..\User\readdata.c)(0x6A0E67C9)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_IntelligentCar-ID:/keil/exe/pack/ARM/CMSIS/5.0.1/CMSIS/Include-ID:/keil/exe/pack/Keil/STM32F1xx_DFP/2.2.0/Device/Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar/readdata.o -MD)
+F (..\User\readdata.c)(0x6A7AD38B)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_IntelligentCar-ID:/keil/exe/pack/ARM/CMSIS/5.0.1/CMSIS/Include-ID:/keil/exe/pack/Keil/STM32F1xx_DFP/2.2.0/Device/Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar/readdata.o -MD)
 I (..\Core\Inc\main.h)(0x6A0434B7)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x69C51C9A)
 I (..\Core\Inc\stm32f1xx_hal_conf.h)(0x6A0434B7)
@@ -800,6 +802,43 @@ I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x69C51C9A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x69C51C9A)
-I (..\User\readdata.h)(0x6A0157C1)
-I (..\User\global.h)(0x6A0E64A3)
-F (..\User\readdata.h)(0x6A0157C1)()
+I (..\User\readdata.h)(0x6A7AD31D)
+I (..\User\global.h)(0x6A783817)
+F (..\User\readdata.h)(0x6A7AD31D)()
+F (..\User\mode.c)(0x6A7AD768)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_IntelligentCar-ID:/keil/exe/pack/ARM/CMSIS/5.0.1/CMSIS/Include-ID:/keil/exe/pack/Keil/STM32F1xx_DFP/2.2.0/Device/Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o intelligentcar/mode.o -MD)
+I (..\User\mode.h)(0x6A7AD250)
+I (..\Core\Inc\main.h)(0x6A0434B7)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x69C51C9A)
+I (..\Core\Inc\stm32f1xx_hal_conf.h)(0x6A0434B7)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x69C51C9A)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x69C51C9A)
+I (..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x69C51C9A)
+I (..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xb.h)(0x69C51C9A)
+I (..\Drivers\CMSIS\Include\core_cm3.h)(0x69C51C66)
+I (D:\keil\exe\core\ARM\ARMCLANG\include\stdint.h)(0x588CAFD2)
+I (..\Drivers\CMSIS\Include\cmsis_version.h)(0x69C51C66)
+I (..\Drivers\CMSIS\Include\cmsis_compiler.h)(0x69C51C66)
+I (..\Drivers\CMSIS\Include\cmsis_armclang.h)(0x69C51C66)
+I (D:\keil\exe\core\ARM\ARMCLANG\include\arm_compat.h)(0x57FC022C)
+I (..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x69C51C9A)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x69C51C9A)
+I (D:\keil\exe\core\ARM\ARMCLANG\include\stddef.h)(0x588CAFD2)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h)(0x69C51C9A)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h)(0x69C51C9A)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h)(0x69C51C9A)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_exti.h)(0x69C51C9A)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h)(0x69C51C9A)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h)(0x69C51C9A)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h)(0x69C51C9A)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x69C51C9A)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x69C51C9A)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x69C51C9A)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x69C51C9A)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x69C51C9A)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x69C51C9A)
+I (..\User\global.h)(0x6A783817)
+I (..\User\readdata.h)(0x6A7AD31D)
+I (..\User\motor.h)(0x6A7AD10E)
+I (..\User\servo.h)(0x6A7AD10E)
+I (..\User\ik.h)(0x6A7AD76D)
+F (..\User\mode.h)(0x6A7AD250)()

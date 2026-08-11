@@ -16,12 +16,12 @@
 
 
 
-void SendmotorCmd(void){                 //将速度通过总线发送到电机
+void Motor_Sendcmd(motorSPEED *motorspeed){                 //将速度通过总线发送到电机
     int LF,RF,LB,RB;   
-    LF = 1500 + motorspeed.LFsd;
-    RF = 1500 + motorspeed.RFsd;
-    LB = 1500 + motorspeed.LBsd;
-    RB = 1500 + motorspeed.RBsd;
+    LF = 1500 + motorspeed->LFsd;
+    RF = 1500 + motorspeed->RFsd;
+    LB = 1500 + motorspeed->LBsd;
+    RB = 1500 + motorspeed->RBsd;
     
     
     char cmd[61];

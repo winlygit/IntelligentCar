@@ -3,11 +3,13 @@
 
 
 #include "main.h"
-#include "global.h"
-#include "readdata.h"
 
 
 
+void mode1_handle(void);
+void mode2_handle(void);
+void mode3_handle(void);
+void mode4_handle(void);
 
 
 

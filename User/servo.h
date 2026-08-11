@@ -15,7 +15,7 @@
 
 void Servo_SetAngle(uint8_t channel, uint16_t angle);
 void servo_init(void);//初始化
-void Servo_Sendcmd(void);
+void Servo_Sendcmd(servoANGLE *servoangle);
 
 
 

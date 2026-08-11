@@ -463,15 +463,15 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
-  if(GPIO_Pin == GPIO_PIN_8){
-        servo_init();
-      motorspeed.LBsd = 0;
-      motorspeed.LFsd = 0;
-      motorspeed.RBsd = 0;
-      motorspeed.RFsd = 0;
-      SendmotorCmd();
-  }
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){//蓝牙断联处理
+//  if(GPIO_Pin == GPIO_PIN_8){
+//        servo_init();
+//      motorspeed.LBsd = 0;
+//      motorspeed.LFsd = 0;
+//      motorspeed.RBsd = 0;
+//      motorspeed.RFsd = 0;
+//      SendmotorCmd();
+//  }
 }
 /* USER CODE END 4 */
 

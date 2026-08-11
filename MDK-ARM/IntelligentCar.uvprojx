@@ -676,6 +676,16 @@
               <FileType>5</FileType>
               <FilePath>..\User\readdata.h</FilePath>
             </File>
+            <File>
+              <FileName>mode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\mode.c</FilePath>
+            </File>
+            <File>
+              <FileName>mode.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\User\mode.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

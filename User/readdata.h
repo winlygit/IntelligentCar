@@ -11,11 +11,13 @@
 
 
 
-MODE readmode (uint8_t Data[]);
 
-int readindexdata3(uint8_t data[],int index1,int index2,int index3);
 
-int readindexdata4(uint8_t data[],int index1,int index2,int index3,int index4);
+MODE readmode (uint8_t *Data);              //模式解析函数
+void readdata12(mode12_data *data,uint8_t *Data);              //模式1和模式2数据解析函数
+void readdata3(mode3_data *data,uint8_t *Data);              //模式3数据解析函数
+void readdata4(mode4_data *data,uint8_t *Data);              //模式4数据解析函数
+
 
 
 

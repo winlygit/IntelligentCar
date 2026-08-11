@@ -65,10 +65,6 @@ uint8_t actionnum;        //动作组中的动作编号
 
 
 /****************存放ik中的全局变量*****************/
-motorSPEED motorspeed;          //计算后得到的电机相对转速，范围（-1000，1000）
-
-servoANGLE servoangle;        //计算后得到的舵机控制量，范围-135-135
-
 float botom_angle = 135;         //底盘舵机控制量，范围0-270
 
 float circle_angle = 135;         //手腕舵机控制量，范围45-225

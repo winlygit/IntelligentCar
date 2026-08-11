@@ -12,6 +12,7 @@
 #include "main.h"
 #include "uart.h"
 #include "global.h"
+#include "stdio.h"
 
 
 
