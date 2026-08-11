@@ -3,9 +3,9 @@
 <title>Static Call Graph - [IntelligentCar\IntelligentCar.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image IntelligentCar\IntelligentCar.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6070001: Last Updated: Tue Aug 11 16:04:13 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6070001: Last Updated: Tue Aug 11 16:27:10 2026
 <BR><P>
-<H3>Maximum Stack Usage =        424 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        432 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 __rt_entry_main &rArr; main &rArr; mode1_handle &rArr; Motor_Sendcmd &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
 <P>
@@ -215,7 +215,7 @@ Global Symbols
 <P><STRONG><a name="[db]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[48]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 424 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 432 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; mode1_handle &rArr; Motor_Sendcmd &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -549,7 +549,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_ik
+<BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_ik
 </UL>
 
 <P><STRONG><a name="[62]"></a>HAL_GPIO_EXTI_Callback</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, main.o(.text.HAL_GPIO_EXTI_Callback))
@@ -812,7 +812,7 @@ Global Symbols
 <P><STRONG><a name="[9]"></a>SVC_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f1xx_it.o(.text.SVC_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
-<P><STRONG><a name="[92]"></a>Servo_Sendcmd</STRONG> (Thumb, 206 bytes, Stack size 16 bytes, servo.o(.text.Servo_Sendcmd))
+<P><STRONG><a name="[8d]"></a>Servo_Sendcmd</STRONG> (Thumb, 206 bytes, Stack size 16 bytes, servo.o(.text.Servo_Sendcmd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Servo_Sendcmd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mode1_handle
@@ -849,7 +849,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
 <P><STRONG><a name="[49]"></a>main</STRONG> (Thumb, 1042 bytes, Stack size 96 bytes, main.o(.text.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 424 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 432 + Unknown Stack Size
 <LI>Call Chain = main &rArr; mode1_handle &rArr; Motor_Sendcmd &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
@@ -876,46 +876,46 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[8a]"></a>mode1_handle</STRONG> (Thumb, 126 bytes, Stack size 112 bytes, mode.o(.text.mode1_handle))
-<BR><BR>[Stack]<UL><LI>Max Depth = 328 + Unknown Stack Size
+<P><STRONG><a name="[8a]"></a>mode1_handle</STRONG> (Thumb, 146 bytes, Stack size 120 bytes, mode.o(.text.mode1_handle))
+<BR><BR>[Stack]<UL><LI>Max Depth = 336 + Unknown Stack Size
 <LI>Call Chain = mode1_handle &rArr; Motor_Sendcmd &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readdata12
-<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Servo_Sendcmd
+<BR>[Calls]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readdata12
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Servo_Sendcmd
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor_Sendcmd
-<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_stop
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_ik
-<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_stop
-<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_stop
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_ik
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_stop
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
 </UL>
 <BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[8c]"></a>mode2_handle</STRONG> (Thumb, 36 bytes, Stack size 56 bytes, mode.o(.text.mode2_handle))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = mode2_handle &rArr; readdata12
+<P><STRONG><a name="[8c]"></a>mode2_handle</STRONG> (Thumb, 76 bytes, Stack size 64 bytes, mode.o(.text.mode2_handle))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = mode2_handle &rArr; readdata12
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readdata12
+<BR>[Calls]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readdata12
 </UL>
 <BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[8b]"></a>mode3_handle</STRONG> (Thumb, 36 bytes, Stack size 24 bytes, mode.o(.text.mode3_handle))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = mode3_handle
+<P><STRONG><a name="[8b]"></a>mode3_handle</STRONG> (Thumb, 76 bytes, Stack size 32 bytes, mode.o(.text.mode3_handle))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = mode3_handle
 </UL>
 <BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readdata3
 </UL>
 <BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[89]"></a>mode4_handle</STRONG> (Thumb, 36 bytes, Stack size 24 bytes, mode.o(.text.mode4_handle))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = mode4_handle &rArr; readdata4
+<P><STRONG><a name="[89]"></a>mode4_handle</STRONG> (Thumb, 76 bytes, Stack size 32 bytes, mode.o(.text.mode4_handle))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = mode4_handle &rArr; readdata4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readdata4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[90]"></a>motor_ik</STRONG> (Thumb, 382 bytes, Stack size 48 bytes, ik.o(.text.motor_ik))
+<P><STRONG><a name="[91]"></a>motor_ik</STRONG> (Thumb, 382 bytes, Stack size 48 bytes, ik.o(.text.motor_ik))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = motor_ik &rArr; sqrt &rArr; _dsqrt &rArr; __fpl_dnaninf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sqrt
@@ -931,11 +931,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mode1_handle
 </UL>
 
-<P><STRONG><a name="[8e]"></a>motor_stop</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, ik.o(.text.motor_stop))
+<P><STRONG><a name="[8f]"></a>motor_stop</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, ik.o(.text.motor_stop))
 <BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mode1_handle
 </UL>
 
-<P><STRONG><a name="[8d]"></a>readdata12</STRONG> (Thumb, 384 bytes, Stack size 24 bytes, readdata.o(.text.readdata12))
+<P><STRONG><a name="[8e]"></a>readdata12</STRONG> (Thumb, 384 bytes, Stack size 24 bytes, readdata.o(.text.readdata12))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = readdata12
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mode2_handle
@@ -956,7 +956,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[91]"></a>servo_ik</STRONG> (Thumb, 266 bytes, Stack size 24 bytes, ik.o(.text.servo_ik))
+<P><STRONG><a name="[92]"></a>servo_ik</STRONG> (Thumb, 266 bytes, Stack size 24 bytes, ik.o(.text.servo_ik))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = servo_ik &rArr; HAL_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
@@ -976,7 +976,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[8f]"></a>servo_stop</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, ik.o(.text.servo_stop))
+<P><STRONG><a name="[90]"></a>servo_stop</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, ik.o(.text.servo_stop))
 <BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mode1_handle
 </UL>
 
@@ -999,13 +999,13 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dsqrt
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_errno
 </UL>
-<BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
+<BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
 </UL>
 
 <P><STRONG><a name="[99]"></a>__aeabi_d2f</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, d2f.o(x$fpl$d2f))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_d2f
 </UL>
-<BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
+<BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
 </UL>
 
 <P><STRONG><a name="[a3]"></a>_d2f</STRONG> (Thumb, 98 bytes, Stack size 32 bytes, d2f.o(x$fpl$d2f), UNUSED)
@@ -1016,7 +1016,7 @@ Global Symbols
 <P><STRONG><a name="[98]"></a>__aeabi_ddiv</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_ddiv
 </UL>
-<BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
+<BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
 </UL>
 
 <P><STRONG><a name="[a6]"></a>_ddiv</STRONG> (Thumb, 552 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv), UNUSED)
@@ -1025,7 +1025,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[96]"></a>__aeabi_i2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dflt))
-<BR><BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
+<BR><BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
 </UL>
 
 <P><STRONG><a name="[ec]"></a>_dflt</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dflt), UNUSED)
@@ -1053,7 +1053,7 @@ Global Symbols
 <P><STRONG><a name="[9e]"></a>__aeabi_fadd</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, faddsub_clz.o(x$fpl$fadd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fadd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_ik
+<BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_ik
 </UL>
 
 <P><STRONG><a name="[a8]"></a>_fadd</STRONG> (Thumb, 196 bytes, Stack size 16 bytes, faddsub_clz.o(x$fpl$fadd), UNUSED)
@@ -1075,8 +1075,8 @@ Global Symbols
 <P><STRONG><a name="[9a]"></a>__aeabi_fcmpgt</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, fcmp.o(x$fpl$fcmp))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_fcmpgt
 </UL>
-<BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_ik
-<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
+<BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_ik
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
 </UL>
 
 <P><STRONG><a name="[ae]"></a>_fgr</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, fcmp.o(x$fpl$fcmp), UNUSED)
@@ -1086,7 +1086,7 @@ Global Symbols
 <P><STRONG><a name="[9f]"></a>__aeabi_fcmpge</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, fcmp.o(x$fpl$fcmp))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_fcmpge
 </UL>
-<BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_ik
+<BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_ik
 </UL>
 
 <P><STRONG><a name="[b0]"></a>_fgeq</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, fcmp.o(x$fpl$fcmp), UNUSED)
@@ -1114,7 +1114,7 @@ Global Symbols
 <P><STRONG><a name="[9c]"></a>__aeabi_fdiv</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, fdiv.o(x$fpl$fdiv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fdiv
 </UL>
-<BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
+<BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
 </UL>
 
 <P><STRONG><a name="[b4]"></a>_fdiv</STRONG> (Thumb, 384 bytes, Stack size 16 bytes, fdiv.o(x$fpl$fdiv), UNUSED)
@@ -1135,8 +1135,8 @@ Global Symbols
 <P><STRONG><a name="[9d]"></a>__aeabi_f2iz</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, ffix.o(x$fpl$ffix))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_f2iz
 </UL>
-<BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_ik
-<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
+<BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_ik
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
 </UL>
 
 <P><STRONG><a name="[b6]"></a>_ffix</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, ffix.o(x$fpl$ffix), UNUSED)
@@ -1144,7 +1144,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[95]"></a>__aeabi_i2f</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, fflt_clz.o(x$fpl$fflt))
-<BR><BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
+<BR><BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
 </UL>
 
 <P><STRONG><a name="[f1]"></a>_fflt</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, fflt_clz.o(x$fpl$fflt), UNUSED)
@@ -1172,7 +1172,7 @@ Global Symbols
 <P><STRONG><a name="[9b]"></a>__aeabi_fmul</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, fmul.o(x$fpl$fmul))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fmul
 </UL>
-<BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
+<BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_ik
 </UL>
 
 <P><STRONG><a name="[b7]"></a>_fmul</STRONG> (Thumb, 258 bytes, Stack size 16 bytes, fmul.o(x$fpl$fmul), UNUSED)

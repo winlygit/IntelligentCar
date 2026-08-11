@@ -7,12 +7,20 @@
 
 
 void mode1_handle(void){
+    motorSPEED motorspeed;
+    servoANGLE servoangle;
+    
+    mode12_data data;
+    data.IFSTOP = 0;
+    data.STATUS = 0;
+
     while(1){
-        motorSPEED motorspeed;
-        servoANGLE servoangle;
-        //读数据
-        mode12_data data;
-        readdata12(&data, RxData);
+        if(rxcplt_flag == 1){
+            //读数据
+            readdata12(&data, RxData);
+            rxcplt_flag = 0;
+            ifrxstart = 0;
+        }
         //先判断是否退出
         if(data.IFSTOP == 1) return;
 
@@ -34,10 +42,18 @@ void mode1_handle(void){
 }
 
 void mode2_handle(void) {
+
+    mode12_data data;
+    data.IFSTOP = 0;
+    data.STATUS = 0;
+
     while(1){
-        //读数据
-        mode12_data data;
-        readdata12(&data, RxData);
+        if(rxcplt_flag == 1){
+            //读数据
+            readdata12(&data, RxData);
+            rxcplt_flag = 0;
+            ifrxstart = 0;
+        }
         //先判断是否退出
         if(data.IFSTOP == 1) return;
 
@@ -47,10 +63,17 @@ void mode2_handle(void) {
 }
 
 void mode3_handle(void) {
+
+    mode3_data data;
+    data.IFSTOP = 0;
+
     while(1){
-        //读数据
-        mode3_data data;
-        readdata3(&data, RxData);
+        if(rxcplt_flag == 1){
+            //读数据
+            readdata3(&data, RxData);
+            rxcplt_flag = 0;
+            ifrxstart = 0;
+        }
         //先判断是否退出
         if(data.IFSTOP == 1) return;
 
@@ -61,10 +84,17 @@ void mode3_handle(void) {
 }
 
 void mode4_handle(void) {
+
+    mode4_data data;
+    data.IFSTOP = 0;
+
     while(1){
-        //读数据
-        mode4_data data;
-        readdata4(&data, RxData);
+        if(rxcplt_flag == 1){
+            //读数据
+            readdata4(&data, RxData);
+            rxcplt_flag = 0;
+            ifrxstart = 0;
+        }
         //先判断是否退出
         if(data.IFSTOP == 1) return;
 
