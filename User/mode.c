@@ -10,14 +10,14 @@ void mode1_handle(void){
     motorSPEED motorspeed;
     servoANGLE servoangle;
     
-    mode12_data data;
+    mode1_data data;
     data.IFSTOP = 0;
     data.STATUS = 0;
 
     while(1){
         if(rxcplt_flag == 1){
             //读数据
-            readdata12(&data, RxData);
+            readdata1(&data, RxData);
             rxcplt_flag = 0;
             ifrxstart = 0;
         }
@@ -43,14 +43,14 @@ void mode1_handle(void){
 
 void mode2_handle(void) {
 
-    mode12_data data;
+    mode2_data data;
     data.IFSTOP = 0;
     data.STATUS = 0;
 
     while(1){
         if(rxcplt_flag == 1){
             //读数据
-            readdata12(&data, RxData);
+            readdata2(&data, RxData);
             rxcplt_flag = 0;
             ifrxstart = 0;
         }

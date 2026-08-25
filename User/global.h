@@ -76,7 +76,17 @@ typedef struct {
     uint8_t STATUS;        //当前模式的状态
     MDATA speedData_primary;          //当前模式下的陀螺仪数据
     SDATA servoData_primary;    //当前模式下的六个舵机控制量
-}mode12_data;
+}mode1_data;
+
+//模式1和模式2数据帧包含的所有数据
+typedef struct {
+
+    uint8_t IFSTOP;        //是否退出当前模式
+    uint8_t STATUS;        //当前模式的状态
+    MDATA speedData_primary;          //当前模式下的陀螺仪数据
+    SDATA servoData_primary;    //当前模式下的六个舵机控制量
+    uint8_t NAME[16];          //模式二动作组名称
+}mode2_data;
 
 //模式3数据帧包含的所有数据
 typedef struct {
