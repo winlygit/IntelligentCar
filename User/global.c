@@ -46,8 +46,6 @@ uint8_t volatile rxcplt_flag = 0;      //数据读完标志位
 
 
 /****************存放readdata中的全局变量*****************/
-uint8_t ifgrab;      //是否抓取标志位，0为不抓取，1为抓取
-uint8_t actionnum;        //动作组中的动作编号
 
 
 
@@ -114,8 +112,15 @@ float circle_angle = 135;         //手腕舵机控制量，范围45-225
 
 
 
+/************存放flash和actiongroup中的全局变量*************/
+uint16_t actiongroup_id;        //动作组编号
 
-/****************存放buzzer和led中的全局变量*****************/
+
+/************存放line中的全局变量*************/
+int tick_signal; 
+
+
+
 
 
 
