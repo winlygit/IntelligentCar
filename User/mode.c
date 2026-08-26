@@ -238,25 +238,40 @@ void mode4_handle(void)
             LINE_Track(&motorspeed, speed);
             Motor_Sendcmd(&motorspeed);
         }
-        else if(data.STATUS == 1 && IFREACH_check(&data, data.DISTANCE) == 1){
-            motor_stop(&motorspeed);
-            Motor_Sendcmd(&motorspeed);
-            Motor_Sendcmd(&motorspeed);
-            Servo_Sendcmd(&servoangle);
-            if(ActionGroup_Find(data.ACTIONID, &addr)){
-                ActionGroup_Play(addr, &motorspeed, &servoangle);
-                sprintf(msg, "Successfully executing Group %d\n", data.ACTIONID);
-                U3_printf((uint8_t*)msg);
+        if(data.STATUS == 1)
+        {
+            //获取实际距离
+            int16_t actual_distance;
+            // *********actual_distance = GetDistance();    ***传感器
+            //检查是否达到阈值
+            data.IFREACH = IFREACH_check(actual_distance, data.DISTANCE);
+
+            if(data.IFREACH == 0)  //未达到，继续巡线
+            {
+                LINE_Track(&motorspeed, speed);
+                Motor_Sendcmd(&motorspeed);
+            }
+            else  //达到阈值，执行动作组
+            {
+                motor_stop(&motorspeed);
+                Motor_Sendcmd(&motorspeed);
+                Servo_Sendcmd(&servoangle);
+
+                if(ActionGroup_Find(data.ACTIONID, &addr))
+                {
+                    ActionGroup_Play(addr, &motorspeed, &servoangle);
+                    sprintf(msg, "Successfully executing Group %d\n", data.ACTIONID);
+                    U3_printf((uint8_t*)msg);
+                }
+                else
+                {
+                    sprintf(msg, "Group %d not found\n", data.ACTIONID);
+                    U3_printf((uint8_t*)msg);
+                }
                 data.STATUS = 0;
                 data.IFREACH = 0;
             }
-            else{
-                sprintf(msg, "Group %d not found\n", data.ACTIONID);
-                U3_printf((uint8_t*)msg);
-                data.STATUS = 0;
-                data.IFREACH = 0;
-            }
+        }
 
         }
     }
-}

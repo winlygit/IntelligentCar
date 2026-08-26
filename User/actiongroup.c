@@ -282,7 +282,7 @@ void ActionGroup_List(void)
     U3_printf((uint8_t*)msg);
 
     uint8_t *ptr = &list_buf[1];
-    for (uint8_t i = 0; i < count; i++) {
+    for (uint16_t i = 0; i < count; i++) {
         if (ptr + 24 > list_buf + list_len) {
             break;
         }
