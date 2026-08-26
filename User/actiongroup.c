@@ -9,6 +9,8 @@
 #include "motor.h"
 #include "servo.h"
 #include <string.h>
+#include <stdio.h>
+#include "uart.h"
 
 /***********全局变量************/
 
@@ -57,9 +59,8 @@ int ActionGroup_StartRecord(const char *name, uint8_t name_len)
     }
 
     // 计算一个动作组最多可能占多少扇区
-    uint16_t max_sectors = (uint16_t)((sizeof(ActionGroupHeader_t) +
-                           MAX_TOTAL_STEPS * sizeof(ActionStep_t) + SECTOR_SIZE - 1) / SECTOR_SIZE);
-
+    uint16_t max_sectors = (uint16_t)((sizeof(ActionGroupHeader_t) +MAX_TOTAL_STEPS * sizeof(ActionStep_t) + SECTOR_SIZE - 1) / SECTOR_SIZE);
+    //其实max_sectors = 3，MAX_TOTAL_STEPS = 507，sizeof(ActionStep_t) = 20，sizeof(ActionGroupHeader_t) = 26
     // 获取当前空闲地址
     uint32_t free_addr = ActionConfig_GetFreeSector();
 
@@ -83,7 +84,7 @@ int ActionGroup_StartRecord(const char *name, uint8_t name_len)
     memcpy(rec_name, name, name_len);
 
     // 先擦掉后面3个扇区，防止原来有数据影响（3个？
-    for (uint16_t s = 0; s < 3; s++) {
+    for (uint16_t s = 0; s < max_sectors; s++) {
         W25Q_SectorErase(rec_addr + s * SECTOR_SIZE);
     }
 
@@ -138,7 +139,7 @@ void ActionGroup_StopRecord(void)
 
     // 更新配置：空闲地址后移实际使用的扇区数
     uint32_t new_free = rec_addr + sectors_needed * SECTOR_SIZE;
-    uint16_t new_id = ActionConfig_GetNextGroupID() + 1;
+    uint16_t new_id = rec_group_id + 1;
     ActionConfig_Update(new_free, new_id);
 }
 
@@ -224,13 +225,17 @@ int ActionGroup_Delete(uint16_t id)
     return 0;
 }
 
-void ActionGroup_List(uint8_t *buf, uint16_t max_len, uint16_t *len)
+void ActionGroup_List(void)
 {
+    uint8_t list_buf[512];      // 内部缓冲区，存放二进制列表数据
+    uint16_t list_len = 0;      // 实际写入的字节数
+
     uint16_t count = 0;
     uint32_t scan = 0;
     uint32_t tail = ActionConfig_GetFreeSector();
-    uint8_t *p = buf + 1;    // 第一个字节留给数量
-    uint16_t remaining = max_len - 1;
+
+    uint8_t *p = list_buf + 1;
+    uint16_t remaining = sizeof(list_buf) - 1;
 
     while (scan < tail && remaining >= 24) {
         uint8_t magic[2];
@@ -263,9 +268,38 @@ void ActionGroup_List(uint8_t *buf, uint16_t max_len, uint16_t *len)
             scan += SECTOR_SIZE;
         }
     }
+    list_buf[0] = count;                 // 第一个字节存放数量
+    list_len = (uint16_t)(p - list_buf); // 实际使用长度
 
-    *buf = count;
-    *len = (uint16_t)(p - buf);
+    //发送逻辑
+    if (list_len < 1) {
+        U3_printf((uint8_t*)"Total:0\n");
+        return;
+    }
+
+    char msg[96];
+    sprintf(msg, "Total:%d\n", count);
+    U3_printf((uint8_t*)msg);
+
+    uint8_t *ptr = &list_buf[1];
+    for (uint8_t i = 0; i < count; i++) {
+        if (ptr + 24 > list_buf + list_len) {
+            break;
+        }
+
+        uint16_t group_id   = ptr[0] | (ptr[1] << 8);
+        uint16_t step_count = ptr[2] | (ptr[3] << 8);
+        uint32_t total_time = ptr[4] | (ptr[5] << 8) | (ptr[6] << 16) | ((uint32_t)ptr[7] << 24);
+
+        char name[17];
+        memcpy(name, &ptr[8], 16);
+        name[16] = '\0';
+
+        sprintf(msg, "ID:%u,Steps:%u,Time:%lu,Name:%s\n",group_id, step_count, (unsigned long)total_time, name);
+        U3_printf((uint8_t*)msg);
+
+        ptr += 24;
+    }
 }
 
 /****************碎片整理*****************/

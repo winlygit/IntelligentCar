@@ -23,7 +23,7 @@ static int is_config_valid(SystemConfig_t *cfg)
 {
     if (cfg->checksum != calc_checksum(cfg)) return 0;
     if (cfg->tail_free_sector % SECTOR_SIZE != 0) return 0;
-    if (cfg->tail_free_sector >= RECORD_END) return 0;
+    if (cfg->tail_free_sector > RECORD_END) return 0;
     return 1;
 }
 

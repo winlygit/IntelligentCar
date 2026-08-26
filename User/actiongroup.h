@@ -1,6 +1,7 @@
 #ifndef __ACTIONGROUP_H
 #define __ACTIONGROUP_H
 #include <stdint.h>
+#include "global.h"
 
 #define SECTOR_SIZE             4096
 #define RECORD_END              0x7FE000   // 录制数据结束地址(**是配置扇区的起始地址)
@@ -67,7 +68,7 @@ void ActionGroup_StopRecord(void);
 int ActionGroup_IsRecording(void);
 int ActionGroup_Find(uint16_t id, uint32_t *addr);
 int ActionGroup_Delete(uint16_t id);
-void ActionGroup_List(uint8_t *buf, uint16_t max_len, uint16_t *len);
+void ActionGroup_List(void);
 void ActionGroup_Defrag(void);
 void ActionGroup_RecordStep(const motorSPEED *motorspeed, const servoANGLE *servoangle, uint8_t d6);
 void ActionGroup_Play(uint32_t addr, motorSPEED *motorspeed, servoANGLE *servoangle);

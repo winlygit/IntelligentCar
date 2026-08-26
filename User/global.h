@@ -106,7 +106,8 @@ typedef struct {
     uint8_t IFREFRESH;     //是否请求刷新动作组目录
     uint8_t STATUS;        //当前模式的状态,是否循迹
     uint8_t ACTIONID;       //请求执行的动作组编号
-    uint8_t LENTH;         //执行动作组的距离阈值
+    uint8_t IFREACH;         //是否达到执行动作组的距离阈值
+    uint16_t DISTANCE;        //距离阈值
 
 }mode4_data;
 

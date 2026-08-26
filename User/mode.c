@@ -5,6 +5,7 @@
 #include "servo.h"
 #include "ik.h"
 #include "actiongroup.h"
+#include "line.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -25,7 +26,12 @@ void mode1_handle(void){
             ifrxstart = 0;
         }
         //先判断是否退出
-        if(data.IFSTOP == 1) return;
+        if(data.IFSTOP == 1) {
+            motor_stop(&motorspeed);
+            servo_stop(&servoangle);
+            Motor_Sendcmd(&motorspeed);
+            Servo_Sendcmd(&servoangle);
+            return;}
 
         //主逻辑
         if(data.STATUS == 0){
@@ -66,7 +72,11 @@ void mode2_handle(void) {
         }
 
         //先判断是否退出
-        if(data.IFSTOP == 1){
+        if(data.IFSTOP == 1){           
+            motor_stop(&motorspeed);
+            servo_stop(&servoangle);
+            Motor_Sendcmd(&motorspeed);
+            Servo_Sendcmd(&servoangle);
             if(ActionGroup_IsRecording() == 1) ActionGroup_StopRecord();
             return;
         }
@@ -117,13 +127,10 @@ void mode3_handle(void) {
 
     uint32_t addr;
 
-    uint8_t list_buf[512];  
-    uint16_t list_len = 0; // List相关
-
     char msg[64];
 
     while(1){
-        if(!rxcplt_flag) continue;
+        __WFI();
         if(rxcplt_flag == 1){
             memset(&data, 0, sizeof(data));
             //读数据
@@ -132,15 +139,19 @@ void mode3_handle(void) {
             ifrxstart = 0;
         }
         //先判断是否退出
-        if(data.IFSTOP == 1) return;
+        if(data.IFSTOP == 1) {
+            motor_stop(&motorspeed);
+            servo_stop(&servoangle);
+            Motor_Sendcmd(&motorspeed);
+            Servo_Sendcmd(&servoangle);
+            return;
+        }
 
         //主逻辑
         if(data.IFREFRESH == 1 && data.STATUS == 0){
             data.STATUS = 1;
-            // 刷新动作组目录
-            ActionGroup_List(list_buf, sizeof(list_buf), &list_len);
-            sprintf(msg, "List:%d\n", list_buf[0]);
-            U3_printf((uint8_t*)msg);
+            // 刷新发送动作组目录
+            ActionGroup_List();
             data.IFREFRESH = 0; // ？？？
             data.STATUS = 0;
         }
@@ -171,6 +182,7 @@ void mode3_handle(void) {
             else{
                 sprintf(msg, "Group %d not found\n", data.DELETEID);
                 U3_printf((uint8_t*)msg);
+                data.STATUS = 0;
             }
             data.IFDELETE = 0;
             data.STATUS = 0;
@@ -180,23 +192,71 @@ void mode3_handle(void) {
     }
 }
 
-void mode4_handle(void) {
-
+void mode4_handle(void)
+{
     mode4_data data;
     data.IFSTOP = 0;
+    data.IFREFRESH = 0;
+    data.STATUS = 0;
+    data.IFREACH = 0;
 
-    while(1){
-        if(rxcplt_flag == 1){
-            //读数据
+    int16_t speed = 300;
+
+    char msg[64];
+
+    uint32_t addr;
+
+    motorSPEED motorspeed;
+    servoANGLE servoangle;
+
+    while(1)
+    {
+        if(rxcplt_flag == 1)
+        {
             readdata4(&data, RxData);
             rxcplt_flag = 0;
             ifrxstart = 0;
         }
-        //先判断是否退出
-        if(data.IFSTOP == 1) return;
 
-        //主逻辑
+        if(data.IFSTOP == 1) {
+            motor_stop(&motorspeed);
+            servo_stop(&servoangle);
+            Motor_Sendcmd(&motorspeed);
+            Servo_Sendcmd(&servoangle);
+            return;
+        }
 
+        if(data.IFREFRESH == 1 && data.STATUS == 0){
+            data.STATUS = 1;
+            // 刷新动作组目录
+            ActionGroup_List();
+            data.IFREFRESH = 0;
+            data.STATUS = 0;
+        }
 
+        if(data.STATUS == 1 && IFREACH_check(&data, data.DISTANCE) == 0){
+            LINE_Track(&motorspeed, speed);
+            Motor_Sendcmd(&motorspeed);
+        }
+        else if(data.STATUS == 1 && IFREACH_check(&data, data.DISTANCE) == 1){
+            motor_stop(&motorspeed);
+            Motor_Sendcmd(&motorspeed);
+            Motor_Sendcmd(&motorspeed);
+            Servo_Sendcmd(&servoangle);
+            if(ActionGroup_Find(data.ACTIONID, &addr)){
+                ActionGroup_Play(addr, &motorspeed, &servoangle);
+                sprintf(msg, "Successfully executing Group %d\n", data.ACTIONID);
+                U3_printf((uint8_t*)msg);
+                data.STATUS = 0;
+                data.IFREACH = 0;
+            }
+            else{
+                sprintf(msg, "Group %d not found\n", data.ACTIONID);
+                U3_printf((uint8_t*)msg);
+                data.STATUS = 0;
+                data.IFREACH = 0;
+            }
+
+        }
     }
 }

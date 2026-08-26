@@ -178,13 +178,22 @@ void readdata4(mode4_data *data,uint8_t* Data)              //模式4数据解�
     }else if(Data[3]== 'A'&&Data[4]== 'C'&&Data[5]== 'L'){
         data->STATUS = 1;
         data->ACTIONID = readindexdata3(Data ,6,7,8);
-        data->LENTH = readindexdata2(Data ,10,11);
+        data->DISTANCE = readindexdata2(Data ,10,11);
     }else if(Data[3]== 'S'&&Data[4]== 'T'){
         data->STATUS = 0;
     }
 
 }
 
+int IFREACH_check(mode4_data *data, int16_t distance) {
+    if (distance <= data->DISTANCE) {
+        data->IFREACH = 1;
+        return 1; // 达到距离阈值
+    } else {
+        data->IFREACH = 0;
+        return 0; // 未达到距离阈值
+    }
+}
     // //电机部分
     
     // speedData_primary.Vx = readindexdata4(Data ,2,3,4,5);
