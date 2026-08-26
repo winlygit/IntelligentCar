@@ -233,11 +233,6 @@ void mode4_handle(void)
             data.IFREFRESH = 0;
             data.STATUS = 0;
         }
-
-        if(data.STATUS == 1 && IFREACH_check(&data, data.DISTANCE) == 0){
-            LINE_Track(&motorspeed, speed);
-            Motor_Sendcmd(&motorspeed);
-        }
         if(data.STATUS == 1)
         {
             //获取实际距离
