@@ -4,6 +4,9 @@
 #include "motor.h"
 #include "servo.h"
 #include "ik.h"
+#include "actiongroup.h"
+#include <string.h>
+#include <stdio.h>
 
 
 void mode1_handle(void){
@@ -47,6 +50,13 @@ void mode2_handle(void) {
     data.IFSTOP = 0;
     data.STATUS = 0;
 
+    motorSPEED motorspeed;
+    servoANGLE servoangle;
+
+    uint32_t last_record_tick = 0;
+    const uint32_t record_each_ms = 50; /* 每50ms记录一步 (换算最大持续录制时间约24s，可考虑调整) */
+
+
     while(1){
         if(rxcplt_flag == 1){
             //读数据
@@ -54,21 +64,68 @@ void mode2_handle(void) {
             rxcplt_flag = 0;
             ifrxstart = 0;
         }
+
         //先判断是否退出
-        if(data.IFSTOP == 1) return;
+        if(data.IFSTOP == 1){
+            if(ActionGroup_IsRecording() == 1) ActionGroup_StopRecord();
+            return;
+        }
 
         //主逻辑
-        
+        if(data.STATUS == 0){ 
+            if(ActionGroup_IsRecording() == 1){ //若正在录制，则停止录制并保存
+                motor_stop(&motorspeed);
+                servo_stop(&servoangle);
+                Motor_Sendcmd(&motorspeed);
+                Servo_Sendcmd(&servoangle);
+                ActionGroup_StopRecord();
+            }
+    }
+        else if(data.STATUS == 1 && ActionGroup_IsRecording() == 0){   // 启动录制
+            char name[16] = {0};
+            strncpy(name, (char*)data.NAME, 16);
+            name[15] = '\0'; // 保证结尾
+            if(ActionGroup_StartRecord(name, strlen(name)) != 0) {
+                char msg[64];
+                sprintf(msg, "Failed to start recording for group: %s\n", name);
+                U3_printf((uint8_t*)msg); // 发送错误信息
+                } else {
+                    last_record_tick = HAL_GetTick();
+                }
+        }
+
+        if(data.STATUS == 1 && ActionGroup_IsRecording() == 1){
+            motor_ik(&motorspeed, &data.speedData_primary);
+            servo_ik(&servoangle, &data.servoData_primary);
+            Motor_Sendcmd(&motorspeed);
+            Servo_Sendcmd(&servoangle);
+
+            uint32_t now = HAL_GetTick();
+            if(now - last_record_tick >= record_each_ms){
+                ActionGroup_RecordStep(&motorspeed, &servoangle, data.servoData_primary.D6);
+                last_record_tick = now;
+            }
+        }
     }
 }
 
 void mode3_handle(void) {
 
     mode3_data data;
+    data.STATUS = 0;
     data.IFSTOP = 0;
 
+    uint32_t addr;
+
+    uint8_t list_buf[512];  
+    uint16_t list_len = 0; // List相关
+
+    char msg[64];
+
     while(1){
+        if(!rxcplt_flag) continue;
         if(rxcplt_flag == 1){
+            memset(&data, 0, sizeof(data));
             //读数据
             readdata3(&data, RxData);
             rxcplt_flag = 0;
@@ -78,6 +135,46 @@ void mode3_handle(void) {
         if(data.IFSTOP == 1) return;
 
         //主逻辑
+        if(data.IFREFRESH == 1 && data.STATUS == 0){
+            data.STATUS = 1;
+            // 刷新动作组目录
+            ActionGroup_List(list_buf, sizeof(list_buf), &list_len);
+            sprintf(msg, "List:%d\n", list_buf[0]);
+            U3_printf((uint8_t*)msg);
+            data.IFREFRESH = 0; // ？？？
+            data.STATUS = 0;
+        }
+        else if(data.IFEXECUTE == 1 && data.STATUS == 0){
+            data.STATUS = 1;
+            // 执行动作组
+            if(ActionGroup_Find(data.ACTIONID, &addr)){
+                motorSPEED motorspeed;
+                servoANGLE servoangle;
+                ActionGroup_Play(addr, &motorspeed, &servoangle);
+                sprintf(msg, "Successfully executing Group %d\n", data.ACTIONID);
+                U3_printf((uint8_t*)msg);
+            }
+            else{
+                sprintf(msg, "Group %d not found\n", data.ACTIONID);
+                U3_printf((uint8_t*)msg);
+            }
+            data.IFEXECUTE = 0;
+            data.STATUS = 0;
+        }
+        else if(data.IFDELETE == 1 && data.STATUS == 0){
+            // 删除动作组
+            if(ActionGroup_Find(data.DELETEID, &addr)){
+                ActionGroup_Delete(data.DELETEID);
+                sprintf(msg, "Successfully deleted Group %d\n", data.DELETEID);
+                U3_printf((uint8_t*)msg);
+            }
+            else{
+                sprintf(msg, "Group %d not found\n", data.DELETEID);
+                U3_printf((uint8_t*)msg);
+            }
+            data.IFDELETE = 0;
+            data.STATUS = 0;
+        }
 
 
     }

@@ -83,7 +83,7 @@ int ActionGroup_StartRecord(const char *name, uint8_t name_len)
     memcpy(rec_name, name, name_len);
 
     // 先擦掉后面3个扇区，防止原来有数据影响（3个？
-    for (uint16_t s = 1; s < 4; s++) {
+    for (uint16_t s = 0; s < 3; s++) {
         W25Q_SectorErase(rec_addr + s * SECTOR_SIZE);
     }
 
@@ -142,41 +142,30 @@ void ActionGroup_StopRecord(void)
     ActionConfig_Update(new_free, new_id);
 }
 
-void ActionGroup_RecordStep(void)
+void ActionGroup_RecordStep(const motorSPEED *motorspeed, const servoANGLE *servoangle, uint8_t d6)
 {
-    if (!recording_active) {
-        return; // 没录制就stop
-    }
-
-    // 如果缓冲区已经满了，自动停止录制
+    if (!recording_active) return;
     if (rec_step_count >= MAX_TOTAL_STEPS) {
         ActionGroup_StopRecord();
         return;
     }
 
-    //拿到当前步的指针
     ActionStep_t *step = &rec_buffer[rec_step_count];
+    step->wheel_fl = motorspeed->LFsd;
+    step->wheel_fr = motorspeed->RFsd;
+    step->wheel_rl = motorspeed->LBsd;
+    step->wheel_rr = motorspeed->RBsd;
+    step->joint[0] = servoangle->D1;
+    step->joint[1] = servoangle->D2;
+    step->joint[2] = servoangle->D3;
+    step->joint[3] = servoangle->D4;
+    step->joint[4] = servoangle->D5;
+    
+    step->flags = d6;
 
-    // 把当前电机的速度存进去
-    step->wheel_fl = motorspeed.LFsd;
-    step->wheel_fr = motorspeed.RFsd;
-    step->wheel_rl = motorspeed.LBsd;
-    step->wheel_rr = motorspeed.RBsd;
-
-    // 把舵机角度存进去
-    step->joint[0] = servoangle.D1;
-    step->joint[1] = servoangle.D2;
-    step->joint[2] = servoangle.D3;
-    step->joint[3] = servoangle.D4;
-    step->joint[4] = servoangle.D5;
-
-    step->flags = servoData_primary.D6;
-
-    // 计算这一步持续了多久
     uint32_t now = HAL_GetTick();
     step->duration_ms = now - last_rec_tick;
     last_rec_tick = now;
-
     rec_step_count++;
     rec_total_time_ms += step->duration_ms;
 }
@@ -320,41 +309,32 @@ void ActionGroup_Defrag(void)
 }
 
 /****************播放*****************/
-void ActionGroup_Play(uint32_t addr)
+
+void ActionGroup_Play(uint32_t addr, motorSPEED *motorspeed, servoANGLE *servoangle)
 {
     ActionGroupHeader_t hdr;
     W25Q_ReadData(addr, (uint8_t*)&hdr, sizeof(hdr));
-
-    if (hdr.magic[0] != 0xAA || hdr.magic[1] != 0x55) {
-        return;
-    }
+    if (hdr.magic[0] != 0xAA || hdr.magic[1] != 0x55) return;
 
     for (uint16_t i = 0; i < hdr.step_count; i++) {
         uint32_t step_start = HAL_GetTick();
-
         ActionStep_t step;
         W25Q_ReadData(addr + sizeof(ActionGroupHeader_t) + i * sizeof(ActionStep_t),
                       (uint8_t*)&step, sizeof(step));
 
-        motorspeed.LFsd = step.wheel_fl;
-        motorspeed.RFsd = step.wheel_fr;
-        motorspeed.LBsd = step.wheel_rl;
-        motorspeed.RBsd = step.wheel_rr;
+        motorspeed->LFsd = step.wheel_fl;
+        motorspeed->RFsd = step.wheel_fr;
+        motorspeed->LBsd = step.wheel_rl;
+        motorspeed->RBsd = step.wheel_rr;
+        servoangle->D1 = step.joint[0];
+        servoangle->D2 = step.joint[1];
+        servoangle->D3 = step.joint[2];
+        servoangle->D4 = step.joint[3];
+        servoangle->D5 = step.joint[4];
+        servoangle->D6 = (step.flags == 1) ? 140 : 68;
 
-        servoangle.D1 = step.joint[0];
-        servoangle.D2 = step.joint[1];
-        servoangle.D3 = step.joint[2];
-        servoangle.D4 = step.joint[3];
-        servoangle.D5 = step.joint[4];
-
-        if (step.flags == 1) {
-            servoangle.D6 = 140;
-        } else {
-            servoangle.D6 = 68;
-        }
-
-        Servo_Sendcmd();
-        SendmotorCmd();
+        Motor_Sendcmd(motorspeed);
+        Servo_Sendcmd(servoangle);
 
         uint32_t elapsed = HAL_GetTick() - step_start;
         if (elapsed < step.duration_ms) {

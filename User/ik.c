@@ -119,4 +119,6 @@ void servo_stop(servoANGLE *servoangle){
     servoangle->D4 = 0;
     servoangle->D5 = 0;
     servoangle->D6 = 68;
+    botom_angle = 135;
+    circle_angle = 135;
 }

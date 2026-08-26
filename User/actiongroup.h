@@ -64,13 +64,13 @@ extern volatile uint32_t rec_total_time_ms;// 当前录制总时长
 void ActionGroup_Init(void);
 int ActionGroup_StartRecord(const char *name, uint8_t name_len);
 void ActionGroup_StopRecord(void);
-void ActionGroup_RecordStep(void);
 int ActionGroup_IsRecording(void);
 int ActionGroup_Find(uint16_t id, uint32_t *addr);
 int ActionGroup_Delete(uint16_t id);
 void ActionGroup_List(uint8_t *buf, uint16_t max_len, uint16_t *len);
 void ActionGroup_Defrag(void);
-void ActionGroup_Play(uint32_t addr);
+void ActionGroup_RecordStep(const motorSPEED *motorspeed, const servoANGLE *servoangle, uint8_t d6);
+void ActionGroup_Play(uint32_t addr, motorSPEED *motorspeed, servoANGLE *servoangle);
 
 
 uint16_t ActionGroup_SectorCount(ActionGroupHeader_t *hdr);

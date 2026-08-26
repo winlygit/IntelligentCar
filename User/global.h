@@ -72,8 +72,8 @@ typedef enum{   //模式枚举变量
 //模式1和模式2数据帧包含的所有数据
 typedef struct {
 
-    uint8_t IFSTOP;        //是否退出当前模式
-    uint8_t STATUS;        //当前模式的状态
+    uint8_t IFSTOP;        //是否退出当前模式,0=不退出，1=退出
+    uint8_t STATUS;        //当前模式的状态,0=停止，1=运行
     MDATA speedData_primary;          //当前模式下的陀螺仪数据
     SDATA servoData_primary;    //当前模式下的六个舵机控制量
 }mode1_data;
@@ -92,10 +92,11 @@ typedef struct {
 typedef struct {
     uint8_t IFSTOP;        //是否退出当前模式
     uint8_t IFREFRESH;     //是否请求刷新动作组目录
-    uint8_t IFEXECUTE;      //是否请求执行动作组
+    uint8_t IFEXECUTE;     //是否请求执行动作组
     uint8_t ACTIONID;       //请求执行的动作组编号
     uint8_t IFDELETE;       //是否请求删除动作组
     uint8_t DELETEID;       //请求删除的动作组编号
+    uint8_t STATUS;        // 当前模式的状态（0：空闲，1：有任务正执行）
 
 }mode3_data;
 
@@ -160,10 +161,9 @@ extern float circle_angle;         //手腕舵机控制量，范围45-225
 
 
 
-/****************存放buzzer和led中的宏定义和全局变量*****************/
 
-
-
+/****************存放line中的宏定义和全局变量*****************/
+extern int tick_signal;  //用于巡线的定时器信号量
 
 
 
