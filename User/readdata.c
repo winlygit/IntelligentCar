@@ -14,6 +14,8 @@
 #include "main.h"
 #include "readdata.h"
 #include "global.h"
+#include "uart.h"
+#include <stdio.h>
 
 int readindexdata2(uint8_t *data,int index1,int index2){      //读取指定两位数，两位数据，默认为正
     
@@ -81,8 +83,10 @@ void readdata1(mode1_data *data,uint8_t* Data)              //模式1数据解�
         data->IFSTOP = 1;//需手动归零
     }else if(Data[3]== 'A'&&Data[4]== 'C'){
         data->STATUS = 1;
+        U3_printf("@ACKM1AC#");//应答
     }else if(Data[3]== 'S'&&Data[4]== 'T'){
         data->STATUS = 0;
+        U3_printf("@ACKM1ST#");//应答
     }else if(Data[3]== ','){
     //电机部分
     
@@ -122,8 +126,14 @@ void readdata2(mode2_data *data,uint8_t* Data)              //模式2数据解�
         data->NAME[0] = Data[9];
         data->NAME[1] = Data[10];
         data->NAME[2] = Data[11];
+        //应答
+        uint8_t ack[16];
+        sprintf(ack,"@ACKM2AC\"%c%c%c\"#",data->NAME[0],data->NAME[1],data->NAME[2]);
+        U3_printf(ack);
     }else if(Data[3]== 'S'&&Data[4]== 'T'){
         data->STATUS = 0;
+        //应答
+        U3_printf("@ACKM2ST#");
     }else if(Data[3]== ','){
     //电机部分
     
@@ -163,9 +173,17 @@ void readdata3(mode3_data *data,uint8_t* Data)              //模式3数据解�
     }else if(Data[3]== 'B'){
         data->IFEXECUTE = 1;//需手动归零
         data->ACTIONID = readindexdata3(Data ,4,5,6);
+        //应答
+        uint8_t ack[16];
+        sprintf(ack,"@ACKM3B%c%c%c#",Data[4],Data[5],Data[6]);
+        U3_printf(ack);
     }else if(Data[3]== 'D'){
         data->IFDELETE = 1;//需手动归零
         data->DELETEID = readindexdata3(Data ,4,5,6);
+        //应答
+        uint8_t ack[16];
+        sprintf(ack,"@ACKM3D%d#",data->DELETEID);
+        U3_printf(ack);
     }
 }
 
@@ -179,8 +197,13 @@ void readdata4(mode4_data *data,uint8_t* Data)              //模式4数据解�
         data->STATUS = 1;
         data->ACTIONID = readindexdata3(Data ,6,7,8);
         data->DISTANCE = readindexdata2(Data ,10,11);
+        //应答
+        uint8_t ack[16];
+        sprintf(ack,"@ACKM4ACL%d\"%d\"#",data->ACTIONID,data->DISTANCE);
+        U3_printf(ack);
     }else if(Data[3]== 'S'&&Data[4]== 'T'){
         data->STATUS = 0;
+        U3_printf("@ACKM4ST#");//应答
     }
 
 }

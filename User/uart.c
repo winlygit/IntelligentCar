@@ -69,6 +69,7 @@ void U3_printf (const uint8_t* pData ) //向串口3发送数据
 
 
 
+
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
     
     if(value == '@'){
