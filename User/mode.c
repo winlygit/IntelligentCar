@@ -6,6 +6,7 @@
 #include "ik.h"
 #include "actiongroup.h"
 #include "line.h"
+#include "uart.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -18,6 +19,8 @@ void mode1_handle(void){
     data.IFSTOP = 0;
     data.STATUS = 0;
 
+    U3_printf("@ACKM1#");
+
     while(1){
         if(rxcplt_flag == 1){
             //读数据
@@ -27,6 +30,7 @@ void mode1_handle(void){
         }
         //先判断是否退出
         if(data.IFSTOP == 1) {
+            U3_printf("@ACKST#");
             motor_stop(&motorspeed);
             servo_stop(&servoangle);
             Motor_Sendcmd(&motorspeed);
@@ -52,6 +56,8 @@ void mode1_handle(void){
 
 void mode2_handle(void) {
 
+    U3_printf("@ACKM2#");
+
     mode2_data data;
     data.IFSTOP = 0;
     data.STATUS = 0;
@@ -72,7 +78,8 @@ void mode2_handle(void) {
         }
 
         //先判断是否退出
-        if(data.IFSTOP == 1){           
+        if(data.IFSTOP == 1){   
+            U3_printf("@ACKST#");        
             motor_stop(&motorspeed);
             servo_stop(&servoangle);
             Motor_Sendcmd(&motorspeed);
@@ -121,6 +128,8 @@ void mode2_handle(void) {
 
 void mode3_handle(void) {
 
+    U3_printf("@ACKM3#");
+
     mode3_data data;
     data.STATUS = 0;
     data.IFSTOP = 0;
@@ -140,6 +149,7 @@ void mode3_handle(void) {
         }
         //先判断是否退出
         if(data.IFSTOP == 1) {
+            U3_printf("@ACKST#");
             motor_stop(&motorspeed);
             servo_stop(&servoangle);
             Motor_Sendcmd(&motorspeed);
@@ -192,8 +202,12 @@ void mode3_handle(void) {
     }
 }
 
+
 void mode4_handle(void)
 {
+
+    U3_printf("@ACKM4#");
+
     mode4_data data;
     data.IFSTOP = 0;
     data.IFREFRESH = 0;
@@ -219,6 +233,7 @@ void mode4_handle(void)
         }
 
         if(data.IFSTOP == 1) {
+            U3_printf("@ACKST#");
             motor_stop(&motorspeed);
             servo_stop(&servoangle);
             Motor_Sendcmd(&motorspeed);
