@@ -9,9 +9,18 @@
 #define PORT     GPIOA
 
 #define IN_LINE        0
-#define NO_LINE     1
+#define NO_LINE        1
 
 void LINE_Track(motorSPEED *motorspeed, int16_t speed);  // 循迹控制函数
 
-#endif
 
+#define TRIG_PORT GPIOA
+#define TRIG_PIN GPIO_PIN_2
+#define ECHO_PORT GPIOB
+#define ECHO_PIN GPIO_PIN_0
+
+void ultrasonic_Init(void);
+int32_t GetDistance(void);
+
+
+#endif

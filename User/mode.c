@@ -251,8 +251,15 @@ void mode4_handle(void)
         if(data.STATUS == 1)
         {
             //获取实际距离
-            int16_t actual_distance;
-            // *********actual_distance = GetDistance();    ***传感器
+            int32_t actual_distance = GetDistance();
+            if(actual_distance == -1)  //测距失败
+            {
+                sprintf(msg, "Distance measurement failed Retrying\n");
+                U3_printf((uint8_t*)msg);
+                data.STATUS = 0;
+                data.IFREACH = 0;
+                continue;
+            }
             //检查是否达到阈值
             data.IFREACH = IFREACH_check(actual_distance, data.DISTANCE);
 
