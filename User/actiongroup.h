@@ -77,3 +77,4 @@ void ActionGroup_Play(uint32_t addr, motorSPEED *motorspeed, servoANGLE *servoan
 uint16_t ActionGroup_SectorCount(ActionGroupHeader_t *hdr);
 
 #endif /* __ACTIONGROUP_H */
+

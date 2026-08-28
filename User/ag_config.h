@@ -10,3 +10,4 @@ uint16_t ActionConfig_GetNextGroupID(void);
 void     ActionConfig_Update(uint32_t new_free_sector, uint16_t new_next_id);
 
 #endif /* __ACTION_CONFIG_H */
+

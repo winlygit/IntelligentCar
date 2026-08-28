@@ -27,3 +27,4 @@ void W25Q_SectorErase(uint32_t addr);
 void W25Q_WaitBusy(uint32_t timeout_ms);
 void W25Q_WriteEnable(void);
 uint8_t W25Q_ReadStatusReg1(void);
+

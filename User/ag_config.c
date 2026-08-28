@@ -112,3 +112,4 @@ void ActionConfig_Update(uint32_t new_free_sector, uint16_t new_next_id)
     sys_cfg.next_group_id = new_next_id;
     save_config();
 }
+

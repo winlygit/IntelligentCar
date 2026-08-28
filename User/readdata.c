@@ -128,7 +128,7 @@ void readdata2(mode2_data *data,uint8_t* Data)              //模式2数据解�
         data->NAME[2] = Data[11];
         //应答
         uint8_t ack[16];
-        sprintf(ack,"@ACKM2AC\"%c%c%c\"#",data->NAME[0],data->NAME[1],data->NAME[2]);
+        sprintf((char*)ack,"@ACKM2AC\"%c%c%c\"#",data->NAME[0],data->NAME[1],data->NAME[2]);
         U3_printf(ack);
     }else if(Data[3]== 'S'&&Data[4]== 'T'){
         data->STATUS = 0;
@@ -175,14 +175,14 @@ void readdata3(mode3_data *data,uint8_t* Data)              //模式3数据解�
         data->ACTIONID = readindexdata3(Data ,4,5,6);
         //应答
         uint8_t ack[16];
-        sprintf(ack,"@ACKM3B%c%c%c#",Data[4],Data[5],Data[6]);
+        sprintf((char*)ack,"@ACKM3B%c%c%c#",Data[4],Data[5],Data[6]);
         U3_printf(ack);
     }else if(Data[3]== 'D'){
         data->IFDELETE = 1;//需手动归零
         data->DELETEID = readindexdata3(Data ,4,5,6);
         //应答
         uint8_t ack[16];
-        sprintf(ack,"@ACKM3D%d#",data->DELETEID);
+        sprintf((char*)ack,"@ACKM3D%d#",data->DELETEID);
         U3_printf(ack);
     }
 }
@@ -199,7 +199,7 @@ void readdata4(mode4_data *data,uint8_t* Data)              //模式4数据解�
         data->DISTANCE = readindexdata2(Data ,10,11);
         //应答
         uint8_t ack[16];
-        sprintf(ack,"@ACKM4ACL%d\"%d\"#",data->ACTIONID,data->DISTANCE);
+        sprintf((char*)ack,"@ACKM4ACL%d\"%d\"#",data->ACTIONID,data->DISTANCE);
         U3_printf(ack);
     }else if(Data[3]== 'S'&&Data[4]== 'T'){
         data->STATUS = 0;

@@ -1,32 +1,40 @@
-intelligentcar/main.o: ../Core/Src/main.c ../Core/Inc\main.h \
-  ../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_hal.h \
-  ../Core/Inc\stm32f1xx_hal_conf.h \
-  ../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_hal_rcc.h \
-  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h \
-  ../Drivers/CMSIS/Device/ST/STM32F1xx/Include\stm32f1xx.h \
-  ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h \
-  ../Drivers/CMSIS/Include\core_cm3.h \
-  D:\keil\exe\core\ARM\ARMCLANG\Bin\..\include\stdint.h \
-  ../Drivers/CMSIS/Include/cmsis_version.h \
-  ../Drivers/CMSIS/Include/cmsis_compiler.h \
-  ../Drivers/CMSIS/Include/cmsis_armclang.h \
-  D:\keil\exe\core\ARM\ARMCLANG\Bin\..\include\arm_compat.h \
-  ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h \
-  ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
-  D:\keil\exe\core\ARM\ARMCLANG\Bin\..\include\stddef.h \
-  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h \
-  ../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_hal_gpio.h \
-  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h \
-  ../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_hal_exti.h \
-  ../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_hal_dma.h \
-  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h \
-  ../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_hal_cortex.h \
-  ../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_hal_flash.h \
-  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
-  ../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_hal_pwr.h \
-  ../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_hal_tim.h \
-  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
-  ../Drivers/STM32F1xx_HAL_Driver/Inc\stm32f1xx_hal_uart.h \
-  D:\keil\exe\core\ARM\ARMCLANG\Bin\..\include\stdio.h ../User\global.h \
-  ../User\uart.h ../User\readdata.h ../User\ik.h ../User\motor.h \
-  ../User\buzzer.h ../User\led.h ../User\servo.h ../User\mode.h
+intelligentcar\main.o: ../Core/Src/main.c
+intelligentcar\main.o: ../Core/Inc/main.h
+intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
+intelligentcar\main.o: ../Core/Inc/stm32f1xx_hal_conf.h
+intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h
+intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h
+intelligentcar\main.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h
+intelligentcar\main.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h
+intelligentcar\main.o: ../Drivers/CMSIS/Include/core_cm3.h
+intelligentcar\main.o: E:\keil5mdk\exe\core\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+intelligentcar\main.o: ../Drivers/CMSIS/Include/cmsis_version.h
+intelligentcar\main.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
+intelligentcar\main.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+intelligentcar\main.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
+intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
+intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
+intelligentcar\main.o: E:\keil5mdk\exe\core\ARM\ARM_Compiler_5.06u7\Bin\..\include\stddef.h
+intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h
+intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h
+intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h
+intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h
+intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h
+intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h
+intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h
+intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
+intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
+intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
+intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
+intelligentcar\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
+intelligentcar\main.o: E:\keil5mdk\exe\core\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio.h
+intelligentcar\main.o: ../User/global.h
+intelligentcar\main.o: ../User/uart.h
+intelligentcar\main.o: ../User/readdata.h
+intelligentcar\main.o: ../User/ik.h
+intelligentcar\main.o: ../User/motor.h
+intelligentcar\main.o: ../User/buzzer.h
+intelligentcar\main.o: ../User/led.h
+intelligentcar\main.o: ../User/servo.h
+intelligentcar\main.o: ../User/mode.h
