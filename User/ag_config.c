@@ -53,6 +53,11 @@ static void scan_and_rebuild_config(void)
         uint8_t magic[2];
         W25Q_ReadData(addr, magic, 2);
 
+        //检查是否为全0xFF（空闲扇区），若是则停止扫描
+        if (magic[0] == 0xFF && magic[1] == 0xFF) {
+            break;  //到达空闲区，后续无需继续
+        }
+
         if (magic[0] == 0xAA && magic[1] == 0x55) {
             uint16_t id;
             W25Q_ReadData(addr + 2, (uint8_t *)&id, 2);
@@ -63,6 +68,7 @@ static void scan_and_rebuild_config(void)
             uint16_t sectors = ActionGroup_SectorCount(&hdr);
             addr += sectors * SECTOR_SIZE;
         } else {
+            //既不是有效动作组，也不是全FF的空闲扇区，说明数据损坏，
             addr += SECTOR_SIZE;
         }
     }
@@ -85,9 +91,9 @@ void ActionConfig_Init(void)
     int vb = is_config_valid(&cfgB) ? (int)cfgB.version : -1;
 
     if (va >= 0 || vb >= 0) {
-        if (va > vb)      sys_cfg = cfgA;
-        else if (vb > va) sys_cfg = cfgB;
-        else              sys_cfg = cfgA;   // 相同则用A
+        if(va > vb)      		sys_cfg = cfgA;
+        else if(vb > va)	  sys_cfg = cfgB;
+        else            	  sys_cfg = cfgA;   // 相同则用A
     } else {
         scan_and_rebuild_config();
     }
@@ -105,7 +111,7 @@ uint16_t ActionConfig_GetNextGroupID(void)
     return sys_cfg.next_group_id;
 }
 
-///更新空闲扇区和下一个ID
+//手动更新空闲扇区和下一个ID
 void ActionConfig_Update(uint32_t new_free_sector, uint16_t new_next_id)
 {
     sys_cfg.tail_free_sector = new_free_sector;
