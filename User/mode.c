@@ -78,7 +78,7 @@ void mode2_handle(void) {
         }
 
         //先判断是否退出
-        if(data.IFSTOP == 1){   
+        if(data.IFSTOP == 1){
             U3_printf("@ACKST#");        
             motor_stop(&motorspeed);
             servo_stop(&servoangle);

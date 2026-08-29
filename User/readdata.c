@@ -123,9 +123,9 @@ void readdata2(mode2_data *data,uint8_t* Data)              //模式2数据解�
         data->IFSTOP = 1;//需手动归零
     }else if(Data[3]== 'A'&&Data[4]== 'C'){
         data->STATUS = 1;
-        data->NAME[0] = Data[9];
-        data->NAME[1] = Data[10];
-        data->NAME[2] = Data[11];
+        data->NAME[0] = Data[6];
+        data->NAME[1] = Data[7];
+        data->NAME[2] = Data[8];
         //应答
         uint8_t ack[16];
         sprintf((char*)ack,"@ACKM2AC\"%c%c%c\"#",data->NAME[0],data->NAME[1],data->NAME[2]);
