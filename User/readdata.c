@@ -108,9 +108,9 @@ void readdata1(mode1_data *data,uint8_t* Data)              //模式1数据解�
 
     //舵机部分
     data->servoData_primary.D1 = readindexdata3(Data ,19,20,21);
-    data->servoData_primary.D2 = readindexdata4(Data ,31,32,33,34);
-    data->servoData_primary.D3 = readindexdata4(Data ,36,37,38,39);
-    data->servoData_primary.D4 = readindexdata4(Data ,41,42,43,44);
+    data->servoData_primary.D2 = readindexdata4(Data ,35,36,37,38);
+    data->servoData_primary.D3 = readindexdata4(Data ,41,42,43,44);
+    data->servoData_primary.D4 = readindexdata4(Data ,45,46,47,48);
     data->servoData_primary.D5 = readindexdata3(Data ,23,24,25);
     data->servoData_primary.D6 = Data[27] - '0';
     }
