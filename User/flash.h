@@ -7,8 +7,8 @@ extern SPI_HandleTypeDef hspi2;
 #define W25Q_SPI            hspi2
 #define W25Q_CS_PORT        GPIOB
 #define W25Q_CS_PIN         GPIO_PIN_12
-#define CS_ENABLE()   HAL_GPIO_WritePin(W25Q_CS_PORT, W25Q_CS_PIN, GPIO_PIN_RESET)
-#define CS_DISABLE()  HAL_GPIO_WritePin(W25Q_CS_PORT, W25Q_CS_PIN, GPIO_PIN_SET)//测试和真实版相反
+#define CS_ENABLE()   HAL_GPIO_WritePin(W25Q_CS_PORT, W25Q_CS_PIN, GPIO_PIN_SET)
+#define CS_DISABLE()  HAL_GPIO_WritePin(W25Q_CS_PORT, W25Q_CS_PIN, GPIO_PIN_RESET)  //测试和真实版相反
 #define W25Q_CMD_WRITE_ENABLE       0x06
 #define W25Q_CMD_READ_STATUS1       0x05
 #define W25Q_CMD_READ_DATA          0x03

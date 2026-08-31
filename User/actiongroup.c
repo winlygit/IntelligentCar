@@ -227,40 +227,48 @@ int ActionGroup_Delete(uint16_t id)
 
 void ActionGroup_List(void)
 {
-    uint8_t list_buf[512];      // 内部缓冲区，存放二进制列表数据
-    uint16_t list_len = 0;      // 实际写入的字节数
-
+    uint32_t tail = ActionConfig_GetFreeSector();
     uint16_t count = 0;
     uint32_t scan = 0;
-    uint32_t tail = ActionConfig_GetFreeSector();
 
-    uint8_t *p = list_buf + 1;
-    uint16_t remaining = sizeof(list_buf) - 1;
-
-    while (scan < tail && remaining >= 24) {
+    // 第一次扫描：统计动作组个数                         
+    while (scan < tail) {
         uint8_t magic[2];
         W25Q_ReadData(scan, magic, 2);
+        if (magic[0] == 0xAA && magic[1] == 0x55) {
+            count++;
+            ActionGroupHeader_t hdr;
+            W25Q_ReadData(scan, (uint8_t *)&hdr, sizeof(hdr));
+            uint16_t sectors = ActionGroup_SectorCount(&hdr);
+            scan += sectors * SECTOR_SIZE;
+        } else {
+            scan += SECTOR_SIZE;
+        }
+    }
 
+    // 发送帧头 @M3+个数
+    char header[16];
+    sprintf(header, "@M3%d", count);
+    U3_printf((uint8_t*)header);
+
+    // 第二次扫描：发送每个动作组
+    scan = 0;
+    while (scan < tail) {
+        uint8_t magic[2];
+        W25Q_ReadData(scan, magic, 2);
         if (magic[0] == 0xAA && magic[1] == 0x55) {
             ActionGroupHeader_t hdr;
             W25Q_ReadData(scan, (uint8_t *)&hdr, sizeof(hdr));
 
-            // 填充动作组信息：编号(2B)+步数(2B)+总时间(4B)+名称(16B)
-            *p++ = hdr.group_id & 0xFF;
-            *p++ = (hdr.group_id >> 8) & 0xFF;
-            *p++ = hdr.step_count & 0xFF;
-            *p++ = (hdr.step_count >> 8) & 0xFF;
-            *p++ = hdr.total_time_ms & 0xFF;
-            *p++ = (hdr.total_time_ms >> 8) & 0xFF;
-            *p++ = (hdr.total_time_ms >> 16) & 0xFF;
-            *p++ = (hdr.total_time_ms >> 24) & 0xFF;
-
-            for (int i = 0; i < 16; i++) {
-                *p++ = hdr.name[i];
+            // 计算名称实际长度（到 '\0' 为止）
+            int name_len = 0;
+            while (name_len < 16 && hdr.name[name_len] != '\0') {
+                name_len++;
             }
 
-            count++;
-            remaining -= 24;
+            char item[32]; //最大长度：双引号+3位编号+15字符名称+双引号+结束符 = 22
+            sprintf(item, "\"%03u%.*s\"", hdr.group_id, name_len, hdr.name);
+            U3_printf((uint8_t*)item);
 
             uint16_t sectors = ActionGroup_SectorCount(&hdr);
             scan += sectors * SECTOR_SIZE;
@@ -268,38 +276,9 @@ void ActionGroup_List(void)
             scan += SECTOR_SIZE;
         }
     }
-    list_buf[0] = count;                 // 第一个字节存放数量
-    list_len = (uint16_t)(p - list_buf); // 实际使用长度
 
-    //发送逻辑
-    if (list_len < 1) {
-        U3_printf((uint8_t*)"Total:0\n");
-        return;
-    }
-
-    char msg[96];
-    sprintf(msg, "Total:%d\n", count);
-    U3_printf((uint8_t*)msg);
-
-    uint8_t *ptr = &list_buf[1];
-    for (uint16_t i = 0; i < count; i++) {
-        if (ptr + 24 > list_buf + list_len) {
-            break;
-        }
-
-        uint16_t group_id   = ptr[0] | (ptr[1] << 8);
-        uint16_t step_count = ptr[2] | (ptr[3] << 8);
-        uint32_t total_time = ptr[4] | (ptr[5] << 8) | (ptr[6] << 16) | ((uint32_t)ptr[7] << 24);
-
-        char name[17];
-        memcpy(name, &ptr[8], 16);
-        name[16] = '\0';
-
-        sprintf(msg, "ID:%u,Steps:%u,Time:%lu,Name:%s\n",group_id, step_count, (unsigned long)total_time, name);
-        U3_printf((uint8_t*)msg);
-
-        ptr += 24;
-    }
+    // 发送帧尾
+    U3_printf((uint8_t*)"#");
 }
 
 /****************碎片整理*****************/
