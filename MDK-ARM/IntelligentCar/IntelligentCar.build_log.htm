@@ -3,84 +3,58 @@
 <pre>
 <h1>�Vision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: ��Vision V5.43.1.0
-Copyright (C) 2025 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: 1 Winly, 1, LIC=UJWP0-B1F29-Y8EFK-ZNSRS-R47UK-3MSB3
+IDE-Version: ��Vision V5.40.0.0
+Copyright (C) 2024 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 877 482484686@qq.com
+77
+User-based license: Keil MDK Community (non-commercial free of charge)
+Valid until: Jun 1 2033. Cached until: Sep 7 2026
  
 Tool Versions:
-Toolchain:       MDK-ARM Plus  Version: 5.43.0.0
-Toolchain Path:  E:\keil5mdk\exe\core\ARM\ARMCLANG\Bin
-C Compiler:      ArmClang.exe V6.24
-Assembler:       Armasm.exe V6.24
-Linker/Locator:  ArmLink.exe V6.24
-Library Manager: ArmAr.exe V6.24
-Hex Converter:   FromElf.exe V6.24
-CPU DLL:         SARMCM3.DLL V5.43.0.0
+Toolchain:       Keil MDK Community (non-commercial free of charge  Version: 5.40.0.3
+Toolchain Path:  C:\Users\48248\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.22
+Assembler:       Armasm.exe V6.22
+Linker/Locator:  ArmLink.exe V6.22
+Library Manager: ArmAr.exe V6.22
+Hex Converter:   FromElf.exe V6.22
+CPU DLL:         SARMCM3.DLL V5.40.0.3
 Dialog DLL:      DCM.DLL V1.17.5.0
-Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.3.1.0
-Dialog DLL:      TCM.DLL V1.56.6.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.3.0.0
+Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
-E:\cubemx project\IntelligentCar\MDK-ARM\IntelligentCar.uvprojx
-Project File Date:  08/29/2026
+C:\Users\48248\Desktop\IntelligentCar\MDK-ARM\IntelligentCar.uvprojx
+Project File Date:  08/31/2026
 
 <h2>Output:</h2>
-*** Using Compiler 'V6.24', folder: 'E:\keil5mdk\exe\core\ARM\ARMCLANG\Bin'
+*** Using Compiler 'V6.22', folder: 'C:\Users\48248\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'IntelligentCar'
 assembling startup_stm32f103xb.s...
+compiling stm32f1xx_hal_gpio_ex.c...
+compiling stm32f1xx_it.c...
+compiling stm32f1xx_hal.c...
+compiling stm32f1xx_hal_rcc_ex.c...
+compiling stm32f1xx_hal_msp.c...
+compiling stm32f1xx_hal_gpio.c...
+compiling stm32f1xx_hal_dma.c...
 compiling stm32f1xx_hal_cortex.c...
 compiling main.c...
-compiling stm32f1xx_hal_gpio_ex.c...
-compiling stm32f1xx_hal_gpio.c...
-compiling stm32f1xx_hal_msp.c...
-compiling stm32f1xx_hal.c...
-compiling stm32f1xx_it.c...
-compiling stm32f1xx_hal_pwr.c...
-compiling stm32f1xx_hal_rcc_ex.c...
-compiling stm32f1xx_hal_dma.c...
 compiling stm32f1xx_hal_rcc.c...
-compiling stm32f1xx_hal_flash.c...
 compiling stm32f1xx_hal_spi.c...
+compiling stm32f1xx_hal_pwr.c...
+compiling stm32f1xx_hal_flash.c...
 compiling stm32f1xx_hal_exti.c...
-compiling stm32f1xx_hal_flash_ex.c...
-compiling buzzer.c...
 compiling global.c...
+compiling buzzer.c...
 compiling system_stm32f1xx.c...
-compiling led.c...
+compiling stm32f1xx_hal_flash_ex.c...
 compiling ik.c...
-compiling stm32f1xx_hal_tim_ex.c...
+compiling led.c...
 compiling motor.c...
+compiling stm32f1xx_hal_tim_ex.c...
 compiling servo.c...
 compiling uart.c...
-compiling ag_config.c...
-compiling line.c...
-../User/readdata.c(86): warning: passing 'char[10]' to parameter of type 'const uint8_t *' (aka 'const unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-   86 |         U3_printf("@ACKM1AC#");//应答
-      |                   ^~~~~~~~~~~
-../User\uart.h(17): note: passing argument to parameter 'pData' here
-   17 | void U3_printf (const uint8_t* pData);
-      |                                ^
-../User/readdata.c(89): warning: passing 'char[10]' to parameter of type 'const uint8_t *' (aka 'const unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-   89 |         U3_printf("@ACKM1ST#");//应答
-      |                   ^~~~~~~~~~~
-../User\uart.h(17): note: passing argument to parameter 'pData' here
-   17 | void U3_printf (const uint8_t* pData);
-      |                                ^
-../User/readdata.c(136): warning: passing 'char[10]' to parameter of type 'const uint8_t *' (aka 'const unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  136 |         U3_printf("@ACKM2ST#");
-      |                   ^~~~~~~~~~~
-../User\uart.h(17): note: passing argument to parameter 'pData' here
-   17 | void U3_printf (const uint8_t* pData);
-      |                                ^
-../User/readdata.c(206): warning: passing 'char[10]' to parameter of type 'const uint8_t *' (aka 'const unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  206 |         U3_printf("@ACKM4ST#");//应答
-      |                   ^~~~~~~~~~~
-../User\uart.h(17): note: passing argument to parameter 'pData' here
-   17 | void U3_printf (const uint8_t* pData);
-      |                                ^
-4 warnings generated.
-compiling readdata.c...
-compiling flash.c...
 ../User/mode.c(22): warning: passing 'char[8]' to parameter of type 'const uint8_t *' (aka 'const unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
    22 |     U3_printf("@ACKM1#");
       |               ^~~~~~~~~
@@ -131,21 +105,60 @@ compiling flash.c...
       |                                ^
 8 warnings generated.
 compiling mode.c...
+../User/readdata.c(86): warning: passing 'char[10]' to parameter of type 'const uint8_t *' (aka 'const unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+   86 |         U3_printf("@ACKM1AC#");//应答
+      |                   ^~~~~~~~~~~
+../User\uart.h(17): note: passing argument to parameter 'pData' here
+   17 | void U3_printf (const uint8_t* pData);
+      |                                ^
+../User/readdata.c(89): warning: passing 'char[10]' to parameter of type 'const uint8_t *' (aka 'const unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+   89 |         U3_printf("@ACKM1ST#");//应答
+      |                   ^~~~~~~~~~~
+../User\uart.h(17): note: passing argument to parameter 'pData' here
+   17 | void U3_printf (const uint8_t* pData);
+      |                                ^
+../User/readdata.c(136): warning: passing 'char[10]' to parameter of type 'const uint8_t *' (aka 'const unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  136 |         U3_printf("@ACKM2ST#");
+      |                   ^~~~~~~~~~~
+../User\uart.h(17): note: passing argument to parameter 'pData' here
+   17 | void U3_printf (const uint8_t* pData);
+      |                                ^
+../User/readdata.c(206): warning: passing 'char[10]' to parameter of type 'const uint8_t *' (aka 'const unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  206 |         U3_printf("@ACKM4ST#");//应答
+      |                   ^~~~~~~~~~~
+../User\uart.h(17): note: passing argument to parameter 'pData' here
+   17 | void U3_printf (const uint8_t* pData);
+      |                                ^
+4 warnings generated.
+compiling readdata.c...
+../User/actiongroup.c(250): warning: passing 'uint8_t[2]' (aka 'unsigned char[2]') to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  250 |     sprintf(rr, "@M3%d", count);
+      |             ^~
+C:\Users\48248\AppData\Local\Keil_v5\ARM\ARMCLANG\bin\..\include\stdio.h(417): note: passing argument to parameter here
+  417 | extern _ARMABI int sprintf(char * __restrict /*s*/, const char * __restrict /*format*/, ...) __attribute__((__nonnull__(1,2)));
+      |                                                   ^
+../User/actiongroup.c(250): warning: 'sprintf' will always overflow; destination buffer has size 2, but format string expands to at least 5 [-Wformat-overflow]
+  250 |     sprintf(rr, "@M3%d", count);
+      |     ^
+2 warnings generated.
 compiling actiongroup.c...
 compiling stm32f1xx_hal_uart.c...
+compiling ag_config.c...
+compiling flash.c...
+compiling line.c...
 compiling stm32f1xx_hal_tim.c...
 linking...
-Program Size: Code=24272 RO-data=724 RW-data=20 ZI-data=18148  
+Program Size: Code=24236 RO-data=732 RW-data=20 ZI-data=18148  
 FromELF: creating hex file...
-"IntelligentCar\IntelligentCar.axf" - 0 Error(s), 12 Warning(s).
+"IntelligentCar\IntelligentCar.axf" - 0 Error(s), 14 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
-                https://www.keil.com/pack/ARM.CMSIS.6.2.0.pack
-                ARM::CMSIS@6.2.0
+                https://www.keil.com/pack/ARM.CMSIS.6.1.0.pack
+                ARM::CMSIS@6.1.0
                 CMSIS (Common Microcontroller Software Interface Standard)
-   * Component: CORE Version: 6.1.1
+   * Component: CORE Version: 6.1.0
 
 Package Vendor: Keil
                 https://www.keil.com/pack/Keil.STM32F1xx_DFP.2.4.1.pack
@@ -154,12 +167,12 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   ./RTE/_IntelligentCar
-  E:/keil5mdk/exe/pack/ARM/CMSIS/6.2.0/CMSIS/Core/Include
-  E:/keil5mdk/exe/pack/Keil/STM32F1xx_DFP/2.4.1/Device/Include
+  C:/Users/48248/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include
+  C:/Users/48248/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ARM::CMSIS:CORE@6.1.1
+   * Component: ARM::CMSIS:CORE@6.1.0
       Include file:  CMSIS/Core/Include/tz_context.h
 Build Time Elapsed:  00:00:02
 </pre>

@@ -30,7 +30,6 @@ static uint32_t last_rec_tick = 0;      // 上一次采样时的时间戳
 
 static uint8_t sector_buf[SECTOR_SIZE]; // 碎片整理时临时搬数据用的
 
-
 /* RAM录制缓冲区，大小由MAX_TOTAL_STEPS决定，就是先存这里 */
 static ActionStep_t rec_buffer[MAX_TOTAL_STEPS];
 
@@ -60,7 +59,7 @@ int ActionGroup_StartRecord(const char *name, uint8_t name_len)
 
     // 计算一个动作组最多可能占多少扇区
     uint16_t max_sectors = (uint16_t)((sizeof(ActionGroupHeader_t) +MAX_TOTAL_STEPS * sizeof(ActionStep_t) + SECTOR_SIZE - 1) / SECTOR_SIZE);
-    //其实max_sectors = 3，MAX_TOTAL_STEPS = 507，sizeof(ActionStep_t) = 20，sizeof(ActionGroupHeader_t) = 26
+    // 其实max_sectors = 3，MAX_TOTAL_STEPS = 507，sizeof(ActionStep_t) = 20，sizeof(ActionGroupHeader_t) = 26
     // 获取当前空闲地址
     uint32_t free_addr = ActionConfig_GetFreeSector();
 
@@ -84,9 +83,9 @@ int ActionGroup_StartRecord(const char *name, uint8_t name_len)
     memcpy(rec_name, name, name_len);
 
     // 先擦掉后面3个扇区，防止原来有数据影响（3个？
-    for (uint16_t s = 0; s < max_sectors; s++) {
-        W25Q_SectorErase(rec_addr + s * SECTOR_SIZE);
-    }
+    // for (uint16_t s = 0; s < max_sectors; s++) {
+    //     W25Q_SectorErase(rec_addr + s * SECTOR_SIZE);
+    // }
 
     rec_step_count = 0;        //步数清零
     rec_total_time_ms = 0;     // 总时间清零
@@ -227,7 +226,8 @@ int ActionGroup_Delete(uint16_t id)
 
 void ActionGroup_List(void)
 {
-    uint32_t tail = ActionConfig_GetFreeSector();
+   // uint32_t tail = ActionConfig_GetFreeSector();
+    uint32_t tail = 0X7FF000;   /*       !@!!!!!!    */
     uint16_t count = 0;
     uint32_t scan = 0;
 
@@ -244,7 +244,7 @@ void ActionGroup_List(void)
         } else {
             scan += SECTOR_SIZE;
         }
-    }
+    } 
 
     // 发送帧头 @M3+个数
     char header[16];

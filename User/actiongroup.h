@@ -46,6 +46,7 @@ typedef struct {
 } ActionGroupHeader_t;
 #pragma pack(pop)
 
+
 // config结构体
 typedef struct {
     uint32_t tail_free_sector;  // 尾部空闲扇区地址（4KB对齐）
