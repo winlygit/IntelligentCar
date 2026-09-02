@@ -96,6 +96,7 @@ void mode2_handle(void) {
                 Motor_Sendcmd(&motorspeed);
                 Servo_Sendcmd(&servoangle);
                 ActionGroup_StopRecord();
+                U3_printf((uint8_t*)"@ACKM2ST#"); // 应答结束录制
             }
     }
         else if(data.STATUS == 1 && ActionGroup_IsRecording() == 0){   // 启动录制
@@ -104,7 +105,7 @@ void mode2_handle(void) {
             name[15] = '\0'; // 保证结尾
             if(ActionGroup_StartRecord(name, strlen(name)) != 0) {
                 char msg[64];
-                sprintf(msg, "Failed to start recording for group: %s\n", name);
+                sprintf(msg, "Fail", name); // *********只能抓包，上位机无法收到
                 U3_printf((uint8_t*)msg); // 发送错误信息
                 } else {
                     last_record_tick = HAL_GetTick();
@@ -159,11 +160,13 @@ void mode3_handle(void) {
             return;
         }
 
-        //主逻辑
+        //主逻辑如下
+
+        //请求刷新动作组
         if(data.IFREFRESH == 1 && data.STATUS == 0){
             data.STATUS = 1;
             // 刷新发送动作组目录
-            ActionGroup_List();
+            ActionGroup_List_3();
             data.IFREFRESH = 0; // ？？？
             data.STATUS = 0;
         }
@@ -174,7 +177,7 @@ void mode3_handle(void) {
                 motorSPEED motorspeed;
                 servoANGLE servoangle;
                 ActionGroup_Play(addr, &motorspeed, &servoangle);
-                sprintf(msg, "Successfully executing Group %d\n", data.ACTIONID);
+                sprintf(msg, "@ACKM3B%03d#", data.ACTIONID); // 执行成功应答
                 U3_printf((uint8_t*)msg);
             }
             else{
@@ -188,11 +191,11 @@ void mode3_handle(void) {
             // 删除动作组
             if(ActionGroup_Find(data.DELETEID, &addr)){
                 ActionGroup_Delete(data.DELETEID);
-                sprintf(msg, "Successfully deleted Group %d\n", data.DELETEID);
+                sprintf(msg, "@ACKM3D%03d#", data.DELETEID);
                 U3_printf((uint8_t*)msg);
             }
             else{
-                sprintf(msg, "Group %d not found\n", data.DELETEID);
+                sprintf(msg, "Group %d not found\n", data.DELETEID);// *********只能抓包，上位机无法收到
                 U3_printf((uint8_t*)msg);
                 data.STATUS = 0;
             }
@@ -246,17 +249,19 @@ void mode4_handle(void)
         if(data.IFREFRESH == 1 && data.STATUS == 0){
             data.STATUS = 1;
             // 刷新动作组目录
-            ActionGroup_List();
+            ActionGroup_List_4();
             data.IFREFRESH = 0;
             data.STATUS = 0;
         }
         if(data.STATUS == 1)
         {
+            sprintf(msg, "@M4ACL%03d%02d#", data.ACTIONID, data.DISTANCE);
+            U3_printf((uint8_t*)msg);
             //获取实际距离
             int32_t actual_distance = GetDistance();
             if(actual_distance == -1)  //测距失败
             {
-                sprintf(msg, "Distance measurement failed Retrying\n");
+                sprintf(msg, "Distance measurement failed Retrying\n"); // *********只能抓包，上位机无法收到
                 U3_printf((uint8_t*)msg);
                 data.STATUS = 0;
                 data.IFREACH = 0;
@@ -279,12 +284,12 @@ void mode4_handle(void)
                 if(ActionGroup_Find(data.ACTIONID, &addr))
                 {
                     ActionGroup_Play(addr, &motorspeed, &servoangle);
-                    sprintf(msg, "Successfully executing Group %d\n", data.ACTIONID);
+                    sprintf(msg, "Start", data.ACTIONID); // *********只能抓包，上位机无法收到
                     U3_printf((uint8_t*)msg);
                 }
                 else
                 {
-                    sprintf(msg, "Group %d not found\n", data.ACTIONID);
+                    sprintf(msg, "Group %d not found\n", data.ACTIONID);// *********只能抓包，上位机无法收到
                     U3_printf((uint8_t*)msg);
                 }
                 data.STATUS = 0;

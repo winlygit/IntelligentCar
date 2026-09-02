@@ -224,10 +224,9 @@ int ActionGroup_Delete(uint16_t id)
     return 0;
 }
 
-void ActionGroup_List(void)
+void ActionGroup_List_3(void)
 {
-   // uint32_t tail = ActionConfig_GetFreeSector();
-    uint32_t tail = 0X7FF000;   /*       !@!!!!!!    */
+    uint32_t tail = ActionConfig_GetFreeSector();
     uint16_t count = 0;
     uint32_t scan = 0;
 
@@ -266,8 +265,8 @@ void ActionGroup_List(void)
                 name_len++;
             }
 
-            char item[32]; //最大长度：双引号+3位编号+15字符名称+双引号+结束符 = 22
-            sprintf(item, "\"%03u%.*s\"", hdr.group_id, name_len, hdr.name);
+            char item[32];
+            sprintf(item, "%03d%s", hdr.group_id,hdr.name);   //注意格式，编号和名称的位数
             U3_printf((uint8_t*)item);
 
             uint16_t sectors = ActionGroup_SectorCount(&hdr);
@@ -281,44 +280,121 @@ void ActionGroup_List(void)
     U3_printf((uint8_t*)"#");
 }
 
+void ActionGroup_List_4(void)
+{
+    uint32_t tail = ActionConfig_GetFreeSector();
+    uint16_t count = 0;
+    uint32_t scan = 0;
+
+    // 第一次扫描：统计动作组个数                         
+    while (scan < tail) {
+        uint8_t magic[2];
+        W25Q_ReadData(scan, magic, 2);
+        if (magic[0] == 0xAA && magic[1] == 0x55) {
+            count++;
+            ActionGroupHeader_t hdr;
+            W25Q_ReadData(scan, (uint8_t *)&hdr, sizeof(hdr));
+            uint16_t sectors = ActionGroup_SectorCount(&hdr);
+            scan += sectors * SECTOR_SIZE;
+        } else {
+            scan += SECTOR_SIZE;
+        }
+    } 
+
+    // 发送帧头 @M4+个数
+    char header[16];
+    sprintf(header, "@M4%d", count);
+    U3_printf((uint8_t*)header);
+
+    // 第二次扫描：发送每个动作组
+    scan = 0;
+    while (scan < tail) {
+        uint8_t magic[2];
+        W25Q_ReadData(scan, magic, 2);
+        if (magic[0] == 0xAA && magic[1] == 0x55) {
+            ActionGroupHeader_t hdr;
+            W25Q_ReadData(scan, (uint8_t *)&hdr, sizeof(hdr));
+
+            // 计算名称实际长度（到 '\0' 为止）
+            int name_len = 0;
+            while (name_len < 16 && hdr.name[name_len] != '\0') {
+                name_len++;
+            }
+
+            char item[32];
+            sprintf(item, "%03d%s", hdr.group_id,hdr.name);   //注意格式，编号和名称的位数
+            U3_printf((uint8_t*)item);
+
+            uint16_t sectors = ActionGroup_SectorCount(&hdr);
+            scan += sectors * SECTOR_SIZE;
+        } else {
+            scan += SECTOR_SIZE;
+        }
+    }
+
+    // 发送帧尾
+    U3_printf((uint8_t*)"#");
+}
 /****************碎片整理*****************/
 void ActionGroup_Defrag(void)
 {
     uint32_t read_addr = 0;
     uint32_t write_addr = 0;
     uint32_t tail = ActionConfig_GetFreeSector();
+    uint16_t new_id = 1;  //新编号从 1 开始
 
     while (read_addr < tail) {
         uint8_t magic[2];
         W25Q_ReadData(read_addr, magic, 2);
 
+        //跳过非动作组区域
         if (magic[0] != 0xAA || magic[1] != 0x55) {
             read_addr += SECTOR_SIZE;
             continue;
         }
 
-        ActionGroupHeader_t hdr;
-        W25Q_ReadData(read_addr, (uint8_t *)&hdr, sizeof(hdr));
-        uint16_t sectors = ActionGroup_SectorCount(&hdr);
+        // 读取原始头部
+        ActionGroupHeader_t hdr_orig;
+        W25Q_ReadData(read_addr, (uint8_t *)&hdr_orig, sizeof(hdr_orig));
+        uint16_t sectors = ActionGroup_SectorCount(&hdr_orig);
+        // 准备新头部（仅修改 ID）
+        ActionGroupHeader_t hdr_new = hdr_orig;
+        hdr_new.group_id = new_id;
 
         if (read_addr != write_addr) {
+            // 需要搬移所有扇区
             for (uint16_t s = 0; s < sectors; s++) {
-                uint32_t src = read_addr + s * SECTOR_SIZE;
-                uint32_t dst = write_addr + s * SECTOR_SIZE;
+                uint32_t src = read_addr + s * SECTOR_SIZE; //source地址
+                uint32_t dst = write_addr + s * SECTOR_SIZE; // destination地址
 
                 W25Q_ReadData(src, sector_buf, SECTOR_SIZE);
+
+                // 第一个扇区：用新头部覆盖缓冲区中的头部区域
+                if (s == 0) {
+                    memcpy(sector_buf, &hdr_new, sizeof(hdr_new));
+                }
+
                 W25Q_SectorErase(dst);
                 W25Q_WriteData(dst, sector_buf, SECTOR_SIZE);
                 W25Q_SectorErase(src);
+            }
+        } else {
+            //若原位，只需更新 ID
+            if (hdr_orig.group_id != new_id) {
+                W25Q_ReadData(read_addr, sector_buf, SECTOR_SIZE);
+                memcpy(sector_buf, &hdr_new, sizeof(hdr_new));
+                W25Q_SectorErase(read_addr);
+                W25Q_WriteData(read_addr, sector_buf, SECTOR_SIZE);
             }
         }
 
         read_addr += sectors * SECTOR_SIZE;
         write_addr += sectors * SECTOR_SIZE;
+        new_id++;
     }
 
-    // 更新配置中的空闲扇区地址，ID保持不变
-    ActionConfig_Update(write_addr, ActionConfig_GetNextGroupID());
+    //更新配置：空闲扇区地址 + 下一个可用 ID（new_id 此时为最大 ID + 1）
+    ActionConfig_Update(write_addr, new_id);
 }
 
 /****************播放*****************/
