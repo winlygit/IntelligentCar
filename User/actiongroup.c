@@ -112,7 +112,7 @@ void ActionGroup_StopRecord(void)
     }
 
     // 把除了第一个扇区以外的其他扇区擦掉
-    for (uint16_t s = 1; s < sectors_needed; s++) {
+    for (uint16_t s = 0; s < sectors_needed; s++) {
         W25Q_SectorErase(rec_addr + s * SECTOR_SIZE);
     }
 

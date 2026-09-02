@@ -83,10 +83,10 @@ void readdata1(mode1_data *data,uint8_t* Data)              //模式1数据解�
         data->IFSTOP = 1;//需手动归零
     }else if(Data[3]== 'A'&&Data[4]== 'C'){
         data->STATUS = 1;
-        U3_printf("@ACKM1AC#");//应答
+        U3_printf((uint8_t*)"@ACKM1AC#");//应答
     }else if(Data[3]== 'S'&&Data[4]== 'T'){
         data->STATUS = 0;
-        U3_printf("@ACKM1ST#");//应答
+        U3_printf((uint8_t*)"@ACKM1ST#");//应答
     }else if(Data[3]== ','){
     //电机部分
     
@@ -133,7 +133,7 @@ void readdata2(mode2_data *data,uint8_t* Data)              //模式2数据解�
     }else if(Data[3]== 'S'&&Data[4]== 'T'){
         data->STATUS = 0;
         //应答
-        U3_printf("@ACKM2ST#");
+        U3_printf((uint8_t*)"@ACKM2ST#");
     }else if(Data[3]== ','){
     //电机部分
     
@@ -203,7 +203,7 @@ void readdata4(mode4_data *data,uint8_t* Data)              //模式4数据解�
         U3_printf(ack);
     }else if(Data[3]== 'S'&&Data[4]== 'T'){
         data->STATUS = 0;
-        U3_printf("@ACKM4ST#");//应答
+        U3_printf((uint8_t*)"@ACKM4ST#");//应答
     }
 
 }

@@ -67,10 +67,6 @@ float botom_angle = 135;         //底盘舵机控制量，范围0-270
 
 float circle_angle = 135;         //手腕舵机控制量，范围45-225
 
-motorSPEED motorspeed;
-
-servoANGLE servoangle;
-
 
 
 

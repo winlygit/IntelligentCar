@@ -19,7 +19,7 @@ void mode1_handle(void){
     data.IFSTOP = 0;
     data.STATUS = 0;
 
-    U3_printf("@ACKM1#");
+    U3_printf((uint8_t*)"@ACKM1#");
 
     while(1){
         if(rxcplt_flag == 1){
@@ -30,7 +30,7 @@ void mode1_handle(void){
         }
         //先判断是否退出
         if(data.IFSTOP == 1) {
-            U3_printf("@ACKST#");
+            U3_printf((uint8_t*)"@ACKST#");
             motor_stop(&motorspeed);
             servo_stop(&servoangle);
             Motor_Sendcmd(&motorspeed);
@@ -56,7 +56,7 @@ void mode1_handle(void){
 
 void mode2_handle(void) {
 
-    U3_printf("@ACKM2#");
+    U3_printf((uint8_t*)"@ACKM2#");
 
     mode2_data data;
     data.IFSTOP = 0;
@@ -79,7 +79,7 @@ void mode2_handle(void) {
 
         //先判断是否退出
         if(data.IFSTOP == 1){
-            U3_printf("@ACKST#");        
+            U3_printf((uint8_t*)"@ACKST#");        
             motor_stop(&motorspeed);
             servo_stop(&servoangle);
             Motor_Sendcmd(&motorspeed);
@@ -128,12 +128,14 @@ void mode2_handle(void) {
 
 void mode3_handle(void) {
 
-    U3_printf("@ACKM3#");
+    U3_printf((uint8_t*)"@ACKM3#");
 
     mode3_data data;
     data.STATUS = 0;
     data.IFSTOP = 0;
 
+    motorSPEED motorspeed;
+    servoANGLE servoangle;
     uint32_t addr;
 
     char msg[64];
@@ -149,7 +151,7 @@ void mode3_handle(void) {
         }
         //先判断是否退出
         if(data.IFSTOP == 1) {
-            U3_printf("@ACKST#");
+            U3_printf((uint8_t*)"@ACKST#");
             motor_stop(&motorspeed);
             servo_stop(&servoangle);
             Motor_Sendcmd(&motorspeed);
@@ -206,7 +208,7 @@ void mode3_handle(void) {
 void mode4_handle(void)
 {
 
-    U3_printf("@ACKM4#");
+    U3_printf((uint8_t*)"@ACKM4#");
 
     mode4_data data;
     data.IFSTOP = 0;
@@ -214,14 +216,14 @@ void mode4_handle(void)
     data.STATUS = 0;
     data.IFREACH = 0;
 
+    motorSPEED motorspeed;
+    servoANGLE servoangle;
+    
     int16_t speed = 300;
 
     char msg[64];
 
     uint32_t addr;
-
-    motorSPEED motorspeed;
-    servoANGLE servoangle;
 
     while(1)
     {
@@ -233,7 +235,7 @@ void mode4_handle(void)
         }
 
         if(data.IFSTOP == 1) {
-            U3_printf("@ACKST#");
+            U3_printf((uint8_t*)"@ACKST#");
             motor_stop(&motorspeed);
             servo_stop(&servoangle);
             Motor_Sendcmd(&motorspeed);

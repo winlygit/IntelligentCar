@@ -136,8 +136,9 @@ int main(void)
   uart_init();
 	servo_init();
   /* USER CODE END 2 */
-  uint8_t msg[2] = {0xAA, 0x55};
-  W25Q_WriteData(0x4FE000, msg, 2); // 写入魔数，标记配置区已初始化
+//  W25Q_ChipErase();
+//  uint8_t msg[2] = {0xAA, 0x55};
+//  W25Q_WriteData(0x4FE000, msg, 2); // 写入魔数，标记配置区已初始化
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	
