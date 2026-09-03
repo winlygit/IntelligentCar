@@ -113,12 +113,13 @@ void servo_ik(servoANGLE *servoangle, SDATA *servoData_primary){
 }
 
 void servo_stop(servoANGLE *servoangle){
-    servoangle->D1 = 0;
-    servoangle->D2 = 0;
-    servoangle->D3 = 0;
-    servoangle->D4 = 0;
-    servoangle->D5 = 0;
-    servoangle->D6 = 68;
+    servoangle->D1 = 135;
+    servoangle->D2 = 135;
+    servoangle->D3 = 135;
+    servoangle->D4 = 135;
+    servoangle->D5 = 135;
+    servoangle->D6 = 202;
     botom_angle = 135;
     circle_angle = 135;
+
 }
