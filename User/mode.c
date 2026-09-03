@@ -105,7 +105,7 @@ void mode2_handle(void) {
             name[15] = '\0'; // 保证结尾
             if(ActionGroup_StartRecord(name, strlen(name)) != 0) {
                 char msg[64];
-                sprintf(msg, "Fail", name); // *********只能抓包，上位机无法收到
+                sprintf(msg, "Fail %s", name); // *********只能抓包，上位机无法收到
                 U3_printf((uint8_t*)msg); // 发送错误信息
                 } else {
                     last_record_tick = HAL_GetTick();
@@ -120,7 +120,7 @@ void mode2_handle(void) {
 
             uint32_t now = HAL_GetTick();
             if(now - last_record_tick >= record_each_ms){
-                ActionGroup_RecordStep(&motorspeed, &servoangle, data.servoData_primary.D6);
+                ActionGroup_RecordStep(&servoangle, data.servoData_primary.D6);
                 last_record_tick = now;
             }
         }
@@ -174,9 +174,8 @@ void mode3_handle(void) {
             data.STATUS = 1;
             // 执行动作组
             if(ActionGroup_Find(data.ACTIONID, &addr)){
-                motorSPEED motorspeed;
                 servoANGLE servoangle;
-                ActionGroup_Play(addr, &motorspeed, &servoangle);
+                ActionGroup_Play(addr, &servoangle);
                 sprintf(msg, "@ACKM3B%03d#", data.ACTIONID); // 执行成功应答
                 U3_printf((uint8_t*)msg);
             }
@@ -283,8 +282,8 @@ void mode4_handle(void)
 
                 if(ActionGroup_Find(data.ACTIONID, &addr))
                 {
-                    ActionGroup_Play(addr, &motorspeed, &servoangle);
-                    sprintf(msg, "Start", data.ACTIONID); // *********只能抓包，上位机无法收到
+                     ActionGroup_Play(addr, &servoangle);
+                    sprintf(msg, "Start %d", data.ACTIONID); // *********只能抓包，上位机无法收到
                     U3_printf((uint8_t*)msg);
                 }
                 else

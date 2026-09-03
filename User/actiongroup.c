@@ -11,11 +11,9 @@
 #include <string.h>
 #include <stdio.h>
 #include "uart.h"
+#include "ik.h"
 
 /***********全局变量************/
-
-uint16_t error_time = 1;                // 误差补偿，但用RAM缓冲后其实用不上了
-
 
 volatile int recording_active = 0;      // 表示现在是不是正在录制，1=是，0=不是
 uint16_t rec_group_id = 0;              // 当前录制的动作组ID
@@ -28,7 +26,7 @@ static char rec_name[16];               // 当前录制的动作组名字
 static uint32_t last_rec_tick = 0;      // 上一次采样时的时间戳
 
 
-static uint8_t sector_buf[SECTOR_SIZE]; // 碎片整理时临时搬数据用的
+static uint8_t sector_buf[SECTOR_SIZE]; //碎片整理时临时搬数据用的
 
 /* RAM录制缓冲区，大小由MAX_TOTAL_STEPS决定，就是先存这里 */
 static ActionStep_t rec_buffer[MAX_TOTAL_STEPS];
@@ -142,7 +140,7 @@ void ActionGroup_StopRecord(void)
     ActionConfig_Update(new_free, new_id);
 }
 
-void ActionGroup_RecordStep(const motorSPEED *motorspeed, const servoANGLE *servoangle, uint8_t d6)
+void ActionGroup_RecordStep(const servoANGLE *servoangle, uint8_t d6)
 {
     if (!recording_active) return;
     if (rec_step_count >= MAX_TOTAL_STEPS) {
@@ -151,16 +149,11 @@ void ActionGroup_RecordStep(const motorSPEED *motorspeed, const servoANGLE *serv
     }
 
     ActionStep_t *step = &rec_buffer[rec_step_count];
-    step->wheel_fl = motorspeed->LFsd;
-    step->wheel_fr = motorspeed->RFsd;
-    step->wheel_rl = motorspeed->LBsd;
-    step->wheel_rr = motorspeed->RBsd;
     step->joint[0] = servoangle->D1;
     step->joint[1] = servoangle->D2;
     step->joint[2] = servoangle->D3;
     step->joint[3] = servoangle->D4;
     step->joint[4] = servoangle->D5;
-    
     step->flags = d6;
 
     uint32_t now = HAL_GetTick();
@@ -399,22 +392,22 @@ void ActionGroup_Defrag(void)
 
 /****************播放*****************/
 
-void ActionGroup_Play(uint32_t addr, motorSPEED *motorspeed, servoANGLE *servoangle)
+void ActionGroup_Play(uint32_t addr, servoANGLE *servoangle)
 {
     ActionGroupHeader_t hdr;
     W25Q_ReadData(addr, (uint8_t*)&hdr, sizeof(hdr));
     if (hdr.magic[0] != 0xAA || hdr.magic[1] != 0x55) return;
 
+    // 播放前停止电机
+    motorSPEED motorspeed;
+    motor_stop(&motorspeed);
+    Motor_Sendcmd(&motorspeed);
+
     for (uint16_t i = 0; i < hdr.step_count; i++) {
         uint32_t step_start = HAL_GetTick();
         ActionStep_t step;
-        W25Q_ReadData(addr + sizeof(ActionGroupHeader_t) + i * sizeof(ActionStep_t),
-                      (uint8_t*)&step, sizeof(step));
+        W25Q_ReadData(addr + sizeof(ActionGroupHeader_t) + i * sizeof(ActionStep_t),(uint8_t*)&step, sizeof(step));
 
-        motorspeed->LFsd = step.wheel_fl;
-        motorspeed->RFsd = step.wheel_fr;
-        motorspeed->LBsd = step.wheel_rl;
-        motorspeed->RBsd = step.wheel_rr;
         servoangle->D1 = step.joint[0];
         servoangle->D2 = step.joint[1];
         servoangle->D3 = step.joint[2];
@@ -422,7 +415,6 @@ void ActionGroup_Play(uint32_t addr, motorSPEED *motorspeed, servoANGLE *servoan
         servoangle->D5 = step.joint[4];
         servoangle->D6 = (step.flags == 1) ? 140 : 68;
 
-        Motor_Sendcmd(motorspeed);
         Servo_Sendcmd(servoangle);
 
         uint32_t elapsed = HAL_GetTick() - step_start;

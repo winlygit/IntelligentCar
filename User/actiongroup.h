@@ -7,7 +7,7 @@
 #define RECORD_END              0x7FE000   // 录制数据结束地址(**是配置扇区的起始地址)
 
 /* 每个扇区最多可容纳的步骤数 */
-#define MAX_STEPS_PER_SECTOR    169
+#define MAX_STEPS_PER_SECTOR    260
 
 // 后续根据RAM缓冲区大小实测
 #define MAX_RECORD_SECTORS      3
@@ -19,19 +19,12 @@
 #define CONFIG_SECTOR_B         0x7FF000
 
 
-/* 误差补偿时间（毫秒），用于补偿 Flash 写入耗时，但已经用RAM缓冲区替代 */
-extern uint16_t error_time;
-
 /* 结构体 */
 #pragma pack(push, 1)
 
 // 每个动作步骤的结构体
 typedef struct {
     uint32_t duration_ms;       // 本步骤持续时间 (ms)
-    int16_t  wheel_fl;          // 左前轮速度
-    int16_t  wheel_fr;          // 右前轮速度
-    int16_t  wheel_rl;          // 左后轮速度
-    int16_t  wheel_rr;          // 右后轮速度
     int16_t  joint[5];          // 5个关节角度 (0.1°)
     uint8_t  flags;             // 特殊标志（如夹爪）
 } ActionStep_t;
@@ -42,7 +35,7 @@ typedef struct {
     uint16_t group_id;          // 动作组编号
     char     name[16];          // 名称
     uint16_t step_count;        // 实际步骤数
-    uint32_t total_time_ms;     // 总时长 (ms)
+    uint32_t total_time_ms;     // 总时长 (ms)，最长约39s
 } ActionGroupHeader_t;
 #pragma pack(pop)
 
@@ -72,8 +65,8 @@ int ActionGroup_Delete(uint16_t id);
 void ActionGroup_List_3(void);
 void ActionGroup_List_4(void);
 void ActionGroup_Defrag(void);
-void ActionGroup_RecordStep(const motorSPEED *motorspeed, const servoANGLE *servoangle, uint8_t d6);
-void ActionGroup_Play(uint32_t addr, motorSPEED *motorspeed, servoANGLE *servoangle);
+void ActionGroup_RecordStep(const servoANGLE *servoangle, uint8_t d6);
+void ActionGroup_Play(uint32_t addr, servoANGLE *servoangle);
 
 
 uint16_t ActionGroup_SectorCount(ActionGroupHeader_t *hdr);
