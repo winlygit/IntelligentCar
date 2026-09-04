@@ -120,7 +120,7 @@ void mode2_handle(void) {
 
             uint32_t now = HAL_GetTick();
             if(now - last_record_tick >= record_each_ms){
-                ActionGroup_RecordStep(&servoangle, data.servoData_primary.D6);
+                ActionGroup_RecordStep(&servoangle);
                 last_record_tick = now;
             }
         }
@@ -174,7 +174,6 @@ void mode3_handle(void) {
             data.STATUS = 1;
             // 执行动作组
             if(ActionGroup_Find(data.ACTIONID, &addr)){
-                servoANGLE servoangle;
                 ActionGroup_Play(addr, &servoangle);
                 sprintf(msg, "@ACKM3B%03d#", data.ACTIONID); // 执行成功应答
                 U3_printf((uint8_t*)msg);

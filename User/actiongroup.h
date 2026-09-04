@@ -7,7 +7,7 @@
 #define RECORD_END              0x7FE000   // 录制数据结束地址(**是配置扇区的起始地址)
 
 /* 每个扇区最多可容纳的步骤数 */
-#define MAX_STEPS_PER_SECTOR    260
+#define MAX_STEPS_PER_SECTOR    250
 
 // 后续根据RAM缓冲区大小实测
 #define MAX_RECORD_SECTORS      3
@@ -25,8 +25,7 @@
 // 每个动作步骤的结构体
 typedef struct {
     uint32_t duration_ms;       // 本步骤持续时间 (ms)
-    int16_t  joint[5];          // 5个关节角度 (0.1°)
-    uint8_t  flags;             // 特殊标志（如夹爪）
+    int16_t  joint[6];          // 6个关节角度 (0.1°)
 } ActionStep_t;
 
 // 动作组头部结构体
@@ -65,7 +64,7 @@ int ActionGroup_Delete(uint16_t id);
 void ActionGroup_List_3(void);
 void ActionGroup_List_4(void);
 void ActionGroup_Defrag(void);
-void ActionGroup_RecordStep(const servoANGLE *servoangle, uint8_t d6);
+void ActionGroup_RecordStep(const servoANGLE *servoangle);
 void ActionGroup_Play(uint32_t addr, servoANGLE *servoangle);
 
 

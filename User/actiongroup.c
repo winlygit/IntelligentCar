@@ -140,7 +140,7 @@ void ActionGroup_StopRecord(void)
     ActionConfig_Update(new_free, new_id);
 }
 
-void ActionGroup_RecordStep(const servoANGLE *servoangle, uint8_t d6)
+void ActionGroup_RecordStep(const servoANGLE *servoangle)
 {
     if (!recording_active) return;
     if (rec_step_count >= MAX_TOTAL_STEPS) {
@@ -154,7 +154,7 @@ void ActionGroup_RecordStep(const servoANGLE *servoangle, uint8_t d6)
     step->joint[2] = servoangle->D3;
     step->joint[3] = servoangle->D4;
     step->joint[4] = servoangle->D5;
-    step->flags = d6;
+    step->joint[5] = servoangle->D6;
 
     uint32_t now = HAL_GetTick();
     step->duration_ms = now - last_rec_tick;
@@ -413,7 +413,7 @@ void ActionGroup_Play(uint32_t addr, servoANGLE *servoangle)
         servoangle->D3 = step.joint[2];
         servoangle->D4 = step.joint[3];
         servoangle->D5 = step.joint[4];
-        servoangle->D6 = (step.flags == 1) ? 140 : 68;
+        servoangle->D6 = step.joint[5];
 
         Servo_Sendcmd(servoangle);
 
