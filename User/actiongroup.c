@@ -15,6 +15,8 @@
 
 /***********全局变量************/
 
+ActionGroupHeader_t hdr;
+
 volatile int recording_active = 0;      // 表示现在是不是正在录制，1=是，0=不是
 uint16_t rec_group_id = 0;              // 当前录制的动作组ID
 volatile uint16_t rec_step_count = 0;   // 当前录了多少步了
@@ -57,10 +59,8 @@ int ActionGroup_StartRecord(const char *name, uint8_t name_len)
 
     // 计算一个动作组最多可能占多少扇区
     uint16_t max_sectors = (uint16_t)((sizeof(ActionGroupHeader_t) +MAX_TOTAL_STEPS * sizeof(ActionStep_t) + SECTOR_SIZE - 1) / SECTOR_SIZE);
-    // 其实max_sectors = 3，MAX_TOTAL_STEPS = 507，sizeof(ActionStep_t) = 20，sizeof(ActionGroupHeader_t) = 26
     // 获取当前空闲地址
     uint32_t free_addr = ActionConfig_GetFreeSector();
-
     // 空间不够则先整理碎片
     if (free_addr + max_sectors * SECTOR_SIZE > RECORD_END) {
         ActionGroup_Defrag();
@@ -103,8 +103,7 @@ void ActionGroup_StopRecord(void)
     uint16_t steps = rec_step_count; //实际录了多少步
 
     //计算实际需要几个扇区
-    uint16_t sectors_needed = (uint16_t)((sizeof(ActionGroupHeader_t) +
-                              steps * sizeof(ActionStep_t) + SECTOR_SIZE - 1) / SECTOR_SIZE);
+    uint16_t sectors_needed = (uint16_t)((sizeof(ActionGroupHeader_t) +steps * sizeof(ActionStep_t) + SECTOR_SIZE - 1) / SECTOR_SIZE);
     if (sectors_needed == 0) {
         sectors_needed = 1; // 至少1个扇区，用来放头部
     }
@@ -394,7 +393,6 @@ void ActionGroup_Defrag(void)
 
 void ActionGroup_Play(uint32_t addr, servoANGLE *servoangle)
 {
-    ActionGroupHeader_t hdr;
     W25Q_ReadData(addr, (uint8_t*)&hdr, sizeof(hdr));
     if (hdr.magic[0] != 0xAA || hdr.magic[1] != 0x55) return;
 
@@ -416,8 +414,6 @@ void ActionGroup_Play(uint32_t addr, servoANGLE *servoangle)
         servoangle->D6 = step.joint[5];
 
         Servo_Sendcmd(servoangle);
-        U3_printf("1");
-
         uint32_t elapsed = HAL_GetTick() - step_start;
         if (elapsed < step.duration_ms) {
             HAL_Delay(step.duration_ms - elapsed);

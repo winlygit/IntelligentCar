@@ -20,6 +20,15 @@ void mode1_handle(void){
     data.STATUS = 0;
 
     U3_printf((uint8_t*)"@ACKM1#");
+    data.speedData_primary.Vx = 0;
+    data.speedData_primary.Vy = 0;
+    data.speedData_primary.Wz = 0;
+    data.servoData_primary.D1 = 135;
+    data.servoData_primary.D2 = 90;
+    data.servoData_primary.D3 = 90;
+    data.servoData_primary.D4 = 90;
+    data.servoData_primary.D5 = 135;
+    data.servoData_primary.D6 = 0;
 
     while(1){
         if(rxcplt_flag == 1){
@@ -68,7 +77,16 @@ void mode2_handle(void) {
     U3_printf((uint8_t*)"@ACKM2#");
 
     uint32_t last_record_tick = 0;
-    const uint32_t record_each_ms = 50; /* 每50ms记录一步 (换算最大持续录制时间约24s，可考虑调整) */
+    const uint32_t record_each_ms = 50; /* 每50ms记录一步 (换算最大持续录制时间约35s，可考虑调整) */
+    data.speedData_primary.Vx = 0;
+    data.speedData_primary.Vy = 0;
+    data.speedData_primary.Wz = 0;
+    data.servoData_primary.D1 = 135;
+    data.servoData_primary.D2 = 90;
+    data.servoData_primary.D3 = 90;
+    data.servoData_primary.D4 = 90;
+    data.servoData_primary.D5 = 135;
+    data.servoData_primary.D6 = 0;
 
 
     while(1){
