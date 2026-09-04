@@ -240,7 +240,7 @@ void ActionGroup_List_3(void)
 
     // 发送帧头 @M3+个数
     char header[16];
-    sprintf(header, "@M3%d", count);
+    sprintf(header, "@M3%02d", count);
     U3_printf((uint8_t*)header);
 
     // 第二次扫描：发送每个动作组
@@ -259,7 +259,7 @@ void ActionGroup_List_3(void)
             }
 
             char item[32];
-            sprintf(item, "%03d%s", hdr.group_id,hdr.name);   //注意格式，编号和名称的位数
+            sprintf(item, "\"%02d%s\"", hdr.group_id,hdr.name);   //注意格式，编号和名称的位数
             U3_printf((uint8_t*)item);
 
             uint16_t sectors = ActionGroup_SectorCount(&hdr);
@@ -296,7 +296,7 @@ void ActionGroup_List_4(void)
 
     // 发送帧头 @M4+个数
     char header[16];
-    sprintf(header, "@M4%d", count);
+    sprintf(header, "@M4%02d", count);
     U3_printf((uint8_t*)header);
 
     // 第二次扫描：发送每个动作组
@@ -315,7 +315,7 @@ void ActionGroup_List_4(void)
             }
 
             char item[32];
-            sprintf(item, "%03d%s", hdr.group_id,hdr.name);   //注意格式，编号和名称的位数
+            sprintf(item, "\"%02d%s\"", hdr.group_id,hdr.name);   //注意格式，编号和名称的位数
             U3_printf((uint8_t*)item);
 
             uint16_t sectors = ActionGroup_SectorCount(&hdr);
