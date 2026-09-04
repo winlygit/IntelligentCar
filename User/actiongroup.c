@@ -416,6 +416,7 @@ void ActionGroup_Play(uint32_t addr, servoANGLE *servoangle)
         servoangle->D6 = step.joint[5];
 
         Servo_Sendcmd(servoangle);
+        U3_printf("1");
 
         uint32_t elapsed = HAL_GetTick() - step_start;
         if (elapsed < step.duration_ms) {
