@@ -56,7 +56,7 @@ void mode1_handle(void){
 
 void mode2_handle(void) {
 
-    U3_printf((uint8_t*)"@ACKM2#");
+    
 
     mode2_data data;
     data.IFSTOP = 0;
@@ -64,6 +64,8 @@ void mode2_handle(void) {
 
     motorSPEED motorspeed;
     servoANGLE servoangle;
+    
+    U3_printf((uint8_t*)"@ACKM2#");
 
     uint32_t last_record_tick = 0;
     const uint32_t record_each_ms = 50; /* 每50ms记录一步 (换算最大持续录制时间约24s，可考虑调整) */
