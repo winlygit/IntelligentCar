@@ -400,6 +400,8 @@ void ActionGroup_Play(uint32_t addr, servoANGLE *servoangle)
     motorSPEED motorspeed;
     motor_stop(&motorspeed);
     Motor_Sendcmd(&motorspeed);
+    servo_stop(servoangle);
+    Servo_Sendcmd(servoangle);
 
     for (uint16_t i = 0; i < hdr.step_count; i++) {
         uint32_t step_start = HAL_GetTick();
@@ -419,5 +421,10 @@ void ActionGroup_Play(uint32_t addr, servoANGLE *servoangle)
             HAL_Delay(step.duration_ms - elapsed);
         }
     }
+    // 播放结束后停止电机和舵机
+	motor_stop(&motorspeed);
+    Motor_Sendcmd(&motorspeed);
+    servo_stop(servoangle);
+    Servo_Sendcmd(servoangle);
 }
 

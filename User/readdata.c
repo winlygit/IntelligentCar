@@ -97,7 +97,7 @@ void readdata1(mode1_data *data,uint8_t* Data)              //模式1数据解�
         data->speedData_primary.Vx = 0;
         data->speedData_primary.Vy = 0;
     }
-    #define WW 29     //控制wz的数据的位置
+    #define WW 31     //控制wz的数据的位置
     if (Data[WW] == '0'){
         data->speedData_primary.Wz =   0;
     }else if(Data[WW] == '1'){
@@ -144,7 +144,7 @@ void readdata2(mode2_data *data,uint8_t* Data)              //模式2数据解�
         data->speedData_primary.Vx = 0;
         data->speedData_primary.Vy = 0;
     }
-    #define WW 29     //控制wz的数据的位置
+    #define WW 31     //控制wz的数据的位置
     if (Data[WW] == '0'){
         data->speedData_primary.Wz =   0;
     }else if(Data[WW] == '1'){
