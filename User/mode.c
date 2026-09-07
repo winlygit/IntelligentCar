@@ -228,19 +228,19 @@ void mode3_handle(void) {
 
 void mode4_handle(void)
 {
-    //进入模式4应答：@M4# 由手机APP经蓝牙(UART2)触发主分发进入本函数；
-    //这句 @ACKM4# 经 UART3 发给 OpenMV，作为 OpenMV“开始工作”的启动信号。
     U3_printf((uint8_t*)"@ACKM4#");
+
     mode4_data data;
+
     memset(&data, 0, sizeof(data));
     data.speedData_primary.Vx = 0;
     data.speedData_primary.Vy = 0;
     data.speedData_primary.Wz = 0;
-    data.servoData_primary.D1 = 45;                 //与 OpenMV 中位 NEUTRAL 对齐（D1死区）
+    data.servoData_primary.D1 = 135;
     data.servoData_primary.D2 = 90;
     data.servoData_primary.D3 = 90;
     data.servoData_primary.D4 = 90;
-    data.servoData_primary.D5 = 45;
+    data.servoData_primary.D5 = 135;
     data.servoData_primary.D6 = 0;
 
     motorSPEED motorspeed;
@@ -252,7 +252,7 @@ void mode4_handle(void)
     {
         uint32_t now = HAL_GetTick();
 
-        //—— 1)超声波非阻塞测距，并每50ms上报一帧 @Dxxxx#（搜索阶段也要持续上报）——
+        //超声波非阻塞测距，并每50ms上报一帧 @Dxxxx#（搜索阶段也要持续上报）
         Ultrasonic_Tick(now, 50);
         if(now - last_dist_ms >= 50){
             last_dist_ms = now;
@@ -266,7 +266,7 @@ void mode4_handle(void)
             }
         }
 
-        //—— 2)收 OpenMV 帧（还是调用原来的 readdata4，名字没变）——
+        //收 OpenMV 帧
         if(rxcplt_flag == 1)
         {
             readdata4(&data, RxData);
@@ -274,7 +274,7 @@ void mode4_handle(void)
             ifrxstart = 0;
         }
 
-        //—— 3)退出 ——
+        //检查退出
         if(data.IFSTOP == 1) {
             U3_printf((uint8_t*)"@ACKST#");
             motor_stop(&motorspeed);
@@ -284,13 +284,13 @@ void mode4_handle(void)
             return;
         }
 
-        //—— 4)刷新动作组目录（功能保留，视觉流程默认不发）——
+        //刷新动作组目录（功能保留，但好像没什么用）
         if(data.IFREFRESH == 1){
             ActionGroup_List_4();
             data.IFREFRESH = 0;
         }
 
-        //—— 5)执行：暂停就停车回中；使能就按视觉帧解算并下发 ——
+        //执行：暂停就停车回中；使能就按视觉帧解算并下发
         if(data.STATUS == 0)
         {
             motor_stop(&motorspeed);
