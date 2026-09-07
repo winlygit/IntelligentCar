@@ -25,4 +25,4 @@ intelligentcar/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\User\global.h ..\User\uart.h ..\User\readdata.h ..\User\ik.h \
   ..\User\motor.h ..\User\buzzer.h ..\User\led.h ..\User\servo.h \
   ..\User\mode.h ..\User\ag_config.h ..\User\actiongroup.h \
-  ..\User\flash.h
+  ..\User\flash.h ..\User\ultrasonic.h

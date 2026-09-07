@@ -50,6 +50,7 @@
 #include "ag_config.h"
 #include "actiongroup.h"
 #include "flash.h"
+#include "ultrasonic.h"
 
 /* USER CODE END Includes */
 
@@ -136,6 +137,7 @@ int main(void)
   uart_init();
 	servo_init();
   ActionGroup_Init();
+  Ultrasonic_Init();
   /* USER CODE END 2 */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */

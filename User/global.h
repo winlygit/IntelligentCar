@@ -102,13 +102,11 @@ typedef struct {
 
 //模式4数据帧包含的所有数据
 typedef struct {
-    uint8_t IFSTOP;        //是否退出当前模式
-    uint8_t IFREFRESH;     //是否请求刷新动作组目录
-    uint8_t STATUS;        //当前模式的状态,是否循迹
-    uint8_t ACTIONID;       //请求执行的动作组编号
-    uint8_t IFREACH;         //是否达到执行动作组的距离阈值
-    uint16_t DISTANCE;        //距离阈值
-
+    uint8_t IFSTOP;                 //是否退出当前模式,0=否，1=是
+    uint8_t IFREFRESH;              //是否请求刷新动作组目录
+    uint8_t STATUS;                 //当前模式状态,0=暂停(停车回中)，1=使能执行
+    MDATA  speedData_primary;       //视觉下发的速度量（同 mode1/2）
+    SDATA  servoData_primary;       //视觉下发的六个舵机量
 }mode4_data;
 
 

@@ -5,10 +5,10 @@
 #include "servo.h"
 #include "ik.h"
 #include "actiongroup.h"
-#include "line.h"
 #include "uart.h"
 #include <string.h>
 #include <stdio.h>
+#include "ultrasonic.h"
 
 
 void mode1_handle(void){
@@ -228,26 +228,45 @@ void mode3_handle(void) {
 
 void mode4_handle(void)
 {
-
+    //进入模式4应答：@M4# 由手机APP经蓝牙(UART2)触发主分发进入本函数；
+    //这句 @ACKM4# 经 UART3 发给 OpenMV，作为 OpenMV“开始工作”的启动信号。
     U3_printf((uint8_t*)"@ACKM4#");
-
     mode4_data data;
-    data.IFSTOP = 0;
-    data.IFREFRESH = 0;
-    data.STATUS = 0;
-    data.IFREACH = 0;
+    memset(&data, 0, sizeof(data));
+    data.speedData_primary.Vx = 0;
+    data.speedData_primary.Vy = 0;
+    data.speedData_primary.Wz = 0;
+    data.servoData_primary.D1 = 45;                 //与 OpenMV 中位 NEUTRAL 对齐（D1死区）
+    data.servoData_primary.D2 = 90;
+    data.servoData_primary.D3 = 90;
+    data.servoData_primary.D4 = 90;
+    data.servoData_primary.D5 = 45;
+    data.servoData_primary.D6 = 0;
 
     motorSPEED motorspeed;
     servoANGLE servoangle;
-    
-    int16_t speed = 300;
-
-    char msg[64];
-
-    uint32_t addr;
+    uint32_t last_dist_ms = 0;
+    char dmsg[12];
 
     while(1)
     {
+        uint32_t now = HAL_GetTick();
+
+        //—— 1)超声波非阻塞测距，并每50ms上报一帧 @Dxxxx#（搜索阶段也要持续上报）——
+        Ultrasonic_Tick(now, 50);
+        if(now - last_dist_ms >= 50){
+            last_dist_ms = now;
+            int32_t d_cm = Ultrasonic_GetDistance_cm();
+            if(d_cm < 0){
+                U3_printf((uint8_t*)"@D9999#");     //本次测距无效
+            }else{
+                if(d_cm > 9998) d_cm = 9998;
+                sprintf(dmsg, "@D%04ld#", (long)d_cm);
+                U3_printf((uint8_t*)dmsg);
+            }
+        }
+
+        //—— 2)收 OpenMV 帧（还是调用原来的 readdata4，名字没变）——
         if(rxcplt_flag == 1)
         {
             readdata4(&data, RxData);
@@ -255,6 +274,7 @@ void mode4_handle(void)
             ifrxstart = 0;
         }
 
+        //—— 3)退出 ——
         if(data.IFSTOP == 1) {
             U3_printf((uint8_t*)"@ACKST#");
             motor_stop(&motorspeed);
@@ -264,56 +284,26 @@ void mode4_handle(void)
             return;
         }
 
-        if(data.IFREFRESH == 1 && data.STATUS == 0){
-            data.STATUS = 1;
-            // 刷新动作组目录
+        //—— 4)刷新动作组目录（功能保留，视觉流程默认不发）——
+        if(data.IFREFRESH == 1){
             ActionGroup_List_4();
             data.IFREFRESH = 0;
-            data.STATUS = 0;
         }
-        if(data.STATUS == 1)
+
+        //—— 5)执行：暂停就停车回中；使能就按视觉帧解算并下发 ——
+        if(data.STATUS == 0)
         {
-            sprintf(msg, "@M4ACL%03d%02d#", data.ACTIONID, data.DISTANCE);
-            U3_printf((uint8_t*)msg);
-            //获取实际距离
-            int32_t actual_distance = GetDistance();
-            if(actual_distance == -1)  //测距失败
-            {
-                sprintf(msg, "Distance measurement failed Retrying\n"); // *********只能抓包，上位机无法收到
-                U3_printf((uint8_t*)msg);
-                data.STATUS = 0;
-                data.IFREACH = 0;
-                continue;
-            }
-            //检查是否达到阈值
-            data.IFREACH = IFREACH_check(actual_distance, data.DISTANCE);
-
-            if(data.IFREACH == 0)  //未达到，继续巡线
-            {
-                LINE_Track(&motorspeed, speed);
-                Motor_Sendcmd(&motorspeed);
-            }
-            else  //达到阈值，执行动作组
-            {
-                motor_stop(&motorspeed);
-                Motor_Sendcmd(&motorspeed);
-                Servo_Sendcmd(&servoangle);
-
-                if(ActionGroup_Find(data.ACTIONID, &addr))
-                {
-                     ActionGroup_Play(addr, &servoangle);
-                    sprintf(msg, "Start %d", data.ACTIONID); // *********只能抓包，上位机无法收到
-                    U3_printf((uint8_t*)msg);
-                }
-                else
-                {
-                    sprintf(msg, "Group %d not found\n", data.ACTIONID);// *********只能抓包，上位机无法收到
-                    U3_printf((uint8_t*)msg);
-                }
-                data.STATUS = 0;
-                data.IFREACH = 0;
-            }
+            motor_stop(&motorspeed);
+            servo_stop(&servoangle);
+            Motor_Sendcmd(&motorspeed);
+            Servo_Sendcmd(&servoangle);
         }
-
+        else
+        {
+            motor_ik(&motorspeed, &data.speedData_primary);
+            servo_ik(&servoangle, &data.servoData_primary);
+            Motor_Sendcmd(&motorspeed);
+            Servo_Sendcmd(&servoangle);
         }
     }
+}

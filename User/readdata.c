@@ -186,25 +186,44 @@ void readdata3(mode3_data *data,uint8_t* Data)              //模式3数据解�
     }
 }
 
-void readdata4(mode4_data *data,uint8_t* Data)              //模式4数据解析函数
+void readdata4(mode4_data *data,uint8_t* Data)              //模式4数据解析函数（视觉）
 {
     if(Data[1]=='S'&&Data[2]=='T'){
         data->IFSTOP = 1;//需手动归零
     }else if(Data[3]== 'R'&&Data[4]== 'E'){
         data->IFREFRESH = 1;//需手动归零
-    }else if(Data[3]== 'A'&&Data[4]== 'C'&&Data[5]== 'L'){
+    }else if(Data[3]== 'A'&&Data[4]== 'C'&&Data[5]!= 'L'){
+        //@M4AC# 使能（旧 @M4ACL 循迹帧随 line.c 废弃，Data[5]=='L' 不再处理）
         data->STATUS = 1;
-        data->ACTIONID = readindexdata3(Data ,6,7,8);
-        data->DISTANCE = readindexdata2(Data ,10,11);
-        //应答
-        uint8_t ack[16];
-        sprintf((char*)ack,"@ACKM4ACL%d\"%d\"#",data->ACTIONID,data->DISTANCE);
-        U3_printf(ack);
+        U3_printf((uint8_t*)"@ACKM4AC#");//应答
     }else if(Data[3]== 'S'&&Data[4]== 'T'){
         data->STATUS = 0;
         U3_printf((uint8_t*)"@ACKM4ST#");//应答
+    }else if(Data[3]== ','){
+        //==== 运动/舵机帧 @M4,...#（索引逐位对照 readdata1）====
+        //电机部分
+        data->speedData_primary.Vx = readindexdata4(Data ,4,5,6,7);
+        data->speedData_primary.Vy = -readindexdata4(Data ,9,10,11,12);
+        if((data->speedData_primary.Vx <= limit&&data->speedData_primary.Vx >= -limit)&&(data->speedData_primary.Vy <= limit&&data->speedData_primary.Vy >= -limit)){
+            data->speedData_primary.Vx = 0;
+            data->speedData_primary.Vy = 0;
+        }
+        //Wz 在 Data[31]：'0'停 '1'顺时针(-Vz) '2'逆时针(+Vz)
+        if (Data[31] == '0'){
+            data->speedData_primary.Wz =   0;
+        }else if(Data[31] == '1'){
+            data->speedData_primary.Wz =  -Vz;
+        }else if(Data[31] == '2'){
+            data->speedData_primary.Wz = Vz;
+        }
+        //舵机部分
+        data->servoData_primary.D1 = readindexdata4(Data ,19,20,21,22);
+        data->servoData_primary.D5 = readindexdata4(Data ,24,25,26,27);
+        data->servoData_primary.D6 = Data[29] - '0';
+        data->servoData_primary.D2 = readindexdata4(Data ,33,34,35,36);
+        data->servoData_primary.D3 = readindexdata4(Data ,38,39,40,41);
+        data->servoData_primary.D4 = readindexdata4(Data ,43,44,45,46);
     }
-
 }
 
 int IFREACH_check(int16_t actual_distance, int16_t threshold) {

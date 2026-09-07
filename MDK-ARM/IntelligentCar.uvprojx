@@ -778,14 +778,14 @@
               <FilePath>..\User\flash.h</FilePath>
             </File>
             <File>
-              <FileName>line.c</FileName>
+              <FileName>ultrasonic.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\line.c</FilePath>
+              <FilePath>..\User\ultrasonic.c</FilePath>
             </File>
             <File>
-              <FileName>line.h</FileName>
+              <FileName>ultrasonic.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\User\line.h</FilePath>
+              <FilePath>..\User\ultrasonic.h</FilePath>
             </File>
           </Files>
         </Group>

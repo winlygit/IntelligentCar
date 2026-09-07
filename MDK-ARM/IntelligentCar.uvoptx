@@ -819,8 +819,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\User\line.c</PathWithFileName>
-      <FilenameWithoutPath>line.c</FilenameWithoutPath>
+      <PathWithFileName>..\User\ultrasonic.c</PathWithFileName>
+      <FilenameWithoutPath>ultrasonic.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -831,8 +831,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\User\line.h</PathWithFileName>
-      <FilenameWithoutPath>line.h</FilenameWithoutPath>
+      <PathWithFileName>..\User\ultrasonic.h</PathWithFileName>
+      <FilenameWithoutPath>ultrasonic.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
