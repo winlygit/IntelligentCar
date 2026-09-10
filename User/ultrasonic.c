@@ -1,24 +1,3 @@
-/*
- * ultrasonic.c —— HC-SR04 超声波驱动（TIM4 PWM输入捕获），【下位机侧配套代码】
- *
- * 硬件（驱动板 V1.0 原理图）：
- *   Echo -> PB6 = TIM4_CH1（PWM输入：CH1直接模式 + CH2间接模式，从模式复位）
- *   Trig -> PB7（GPIO 推挽输出，发 10us 脉冲）
- *
- * CubeMX 配置步骤：
- *   1) Timers -> TIM4：
- *      Combined Channels -> PWM Input on CH1(PB6)
- *      Clock Source: Internal；Prescaler = 72-1（72MHz/72=1MHz，1 tick=1us）
- *      Counter Period = 65535；
- *      CH1: PWM Input Mode direct  (TI1FP1，上升沿复位计数器并锁周期)
- *      CH2: PWM Input Mode indirect(TI1FP1，下降沿锁脉宽)
- *      NVIC：TIM4 global interrupt 打勾使能
- *   2) PB7 配 GPIO_Output(Push-Pull, no pull, low)，用户标签可写 TRIG
- *   3) main 初始化里调用 Ultrasonic_Init()
- *   4) 在工程【已有】的 HAL_TIM_IC_CaptureCallback() 里转调
- *      Ultrasonic_IC_Callback(htim)；若工程没有该回调，把本文件末尾注释解开
- *      （全工程只能存在一个 HAL_TIM_IC_CaptureCallback）。
- */
 #include "ultrasonic.h"
 #include "stm32f1xx_hal.h"
 
@@ -30,7 +9,7 @@ static volatile uint8_t  s_new = 0;
 static uint32_t s_trig_tick = 0;
 static int32_t  s_last_cm = -1;
 
-/* DWT 微秒级延时，用来发 10us Trig 脉冲（Cortex-M3 可用） */
+/* DWT 微秒级延时，用来发 10us Trig 脉冲 */
 static void dwt_delay_us(uint32_t us)
 {
     uint32_t start = DWT->CYCCNT;
@@ -101,7 +80,7 @@ void Ultrasonic_IC_Callback(TIM_HandleTypeDef *htim)
 }
 
 /*
- * 若工程里没有 HAL_TIM_IC_CaptureCallback，解开下面这段（只能存在一份）：
+ * 若工程里没有 HAL_TIM_IC_CaptureCallback，解开下面这段：
  *
  * void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
  * {
