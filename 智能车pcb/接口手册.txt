@@ -1,0 +1,16 @@
+串口1用作烧录和监听信息        PA9 TX1      PA10 RX1
+串口2用作openmv连接            PA2 TX2      PA3 RX2
+串口3用作蓝牙                          PB10 TX3     PB11 RX3       PB1  EXTI1,用作检测蓝牙连接状态
+串口4用作控制总线电机            PC10 TX4    PC11 RX4
+串口5引出备用  	                  PC12 TX5    PD2 RX5
+
+SPI2用作内部flash连接      PB12 CS    PB13 SCK    PB14 MISO   PB15  MOSI
+TIM8channel1234对应舵机0123   PC6789 
+TIM2channel12对应舵机45  PA0 PA1
+
+IIC 1	引出备用  PB8 SCL      PB9 SDA
+TIM1和TIM4和TIM5可做内部定时器计时用
+TIM3用作超声波传感器模块连接channel1用作输入捕获直接模式，channel2用作输入捕获间接模式  引脚为PB4，  PB5为trig触发引脚
+
+STLINK调试  PA13 SWDIO    PA14  SWCLK
+

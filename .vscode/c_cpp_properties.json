@@ -1,21 +1,21 @@
 {
     "configurations": [
         {
-            "name": "IntelligentCar",
+            "name": "INTELLIGENTCAR",
             "includePath": [
-                "${env:INTELLIGENTCAR}\\IntelligentCar\\Core\\Inc",
-                "${env:INTELLIGENTCAR}\\IntelligentCar\\Drivers\\STM32F1xx_HAL_Driver\\Inc",
-                "${env:INTELLIGENTCAR}\\IntelligentCar\\Drivers\\STM32F1xx_HAL_Driver\\Inc\\Legacy",
-                "${env:INTELLIGENTCAR}\\IntelligentCar\\Drivers\\CMSIS\\Device\\ST\\STM32F1xx\\Include",
-                "${env:INTELLIGENTCAR}\\IntelligentCar\\Drivers\\CMSIS\\Include",
+                "${env:INTELLIGENTCAR}\\INTELLIGENTCAR\\Core\\Inc",
+                "${env:INTELLIGENTCAR}\\INTELLIGENTCAR\\Drivers\\STM32F1xx_HAL_Driver\\Inc",
+                "${env:INTELLIGENTCAR}\\INTELLIGENTCAR\\Drivers\\STM32F1xx_HAL_Driver\\Inc\\Legacy",
+                "${env:INTELLIGENTCAR}\\INTELLIGENTCAR\\Drivers\\CMSIS\\Device\\ST\\STM32F1xx\\Include",
+                "${env:INTELLIGENTCAR}\\INTELLIGENTCAR\\Drivers\\CMSIS\\Include",
                 "${env:INTELLIGENTCAR}\\IntelligentCar\\User",
-                "${env:INTELLIGENTCAR}\\IntelligentCar\\MDK-ARM",
-                "${env:INTELLIGENTCAR}\\IntelligentCar\\Core\\Src",
-                "${env:INTELLIGENTCAR}\\IntelligentCar\\Drivers\\STM32F1xx_HAL_Driver\\Src"
+                "${env:INTELLIGENTCAR}\\INTELLIGENTCAR\\MDK-ARM",
+                "${env:INTELLIGENTCAR}\\INTELLIGENTCAR\\Core\\Src",
+                "${env:INTELLIGENTCAR}\\INTELLIGENTCAR\\Drivers\\STM32F1xx_HAL_Driver\\Src"
             ],
             "defines": [
                 "USE_HAL_DRIVER",
-                "STM32F103xB",
+                "STM32F103xE",
                 "__CC_ARM",
                 "__arm__",
                 "__align(x)=",

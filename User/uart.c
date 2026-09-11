@@ -18,37 +18,37 @@
 
 
 
-//void U1_printf (const uint8_t* pData ) //向串口1发送数据
-//{   
-//    if (pData == NULL){
-//        return;
-//    }
-//    
-//    uint16_t len = 0;
-//    while (pData[len] != '\0')
-//    {
-//        len++;
-//    }
-//    HAL_UART_Transmit_IT(&huart1,pData,len);
+void U1_printf (const uint8_t* pData ) //向串口1发送数据
+{   
+   if (pData == NULL){
+       return;
+   }
+   
+   uint16_t len = 0;
+   while (pData[len] != '\0')
+   {
+       len++;
+   }
+   HAL_UART_Transmit_IT(&huart1,pData,len);
 
 
-//}
+}
 
-//void U2_printf (const uint8_t* pData ) //向串口2发送数据
-//{   
-//    if (pData == NULL){
-//        return;
-//    }
-//    
-//    uint16_t len = 0;
-//    while (pData[len] != '\0')
-//    {
-//        len++;
-//    }
-//    HAL_UART_Transmit_DMA(&huart2,pData,len);
+void U2_printf (const uint8_t* pData ) //向串口2发送数据
+{   
+   if (pData == NULL){
+       return;
+   }
+   
+   uint16_t len = 0;
+   while (pData[len] != '\0')
+   {
+       len++;
+   }
+   HAL_UART_Transmit_DMA(&huart2,pData,len);
 
 
-//}
+}
 
 
 void U3_printf (const uint8_t* pData ) //向串口3发送数据
@@ -66,6 +66,38 @@ void U3_printf (const uint8_t* pData ) //向串口3发送数据
 
 
 }
+
+void U4_printf (const uint8_t* pData ) //向串口4发送数据
+{   
+    if (pData == NULL){
+        return;
+    }
+    
+    uint16_t len = 0;
+    while (pData[len] != '\0')
+    {
+        len++;
+    }
+    HAL_UART_Transmit(&huart4,pData,len,HAL_MAX_DELAY);
+
+
+}
+
+// void U5_printf (const uint8_t* pData ) //向串口5发送数据
+// {   
+//     if (pData == NULL){
+//         return;
+//     }
+    
+//     uint16_t len = 0;
+//     while (pData[len] != '\0')
+//     {
+//         len++;
+//     }
+//     HAL_UART_Transmit(&huart5,pData,len,HAL_MAX_DELAY);
+
+
+// }
 
 
 

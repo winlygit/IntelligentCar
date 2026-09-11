@@ -28,7 +28,7 @@ void Motor_Sendcmd(motorSPEED *motorspeed){                 //将速度通过总
     sprintf(cmd,"#001P%04dT0000!#002P%04dT0000!#003P%04dT0000!#004P%04dT0000!",LF,RF,LB,RB);
     
     
-    U3_printf((uint8_t*)cmd);
+    U4_printf((uint8_t*)cmd);
 }
 
 
