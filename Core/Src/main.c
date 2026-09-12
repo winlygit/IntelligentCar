@@ -4,32 +4,32 @@
   实现的功能：1.手姿控制小车运动
              2.按键/摇杆控制机械臂
              3.自动化实现动作组
-  
+             4.视觉识别自动搬运
   
     传感器引脚:
-        循迹（S1-PA0 PA1） 
-        超声波(S3-PB0 PA2) 
+        超声波(Trig PB5 Echo PB4) 
     舵机引脚：
-        DJ0-PB3
-        DJ1-PB8
-        DJ2-PB9
-        DJ3-PB6
-        DJ4-PB7
-        DJ5-PB4
-    蜂鸣器引脚：
-        BEEP-PB5
+        DJ0-PC6
+        DJ1-PC7
+        DJ2-PC8
+        DJ3-PC9
+        DJ4-PA0
+        DJ5-PA1
     LED引脚：
-        LED-PB13
-    按键引脚：
-      KEY1-PA8 KEY2-PA11
-    
-    统一总线口： TX3 RX3
-    蓝牙状态：PA8 ，飞线到KEY1
+        LED-PC13  开漏低电平点亮
+    通信：
+        串口1用作烧录和监听信息   PA9 TX1 PA10 RX1
+        串口2用作openmv连接       PA2 TX2 PA3 RX2
+        串口3用作蓝牙             PB10 TX3 PB11 RX3 
+        串口4用作控制总线电机     PC10 TX4 PC11 RX4
+        串口5引出备用             PC12 TX5 PD2 RX5
+    蓝牙状态：
+        PB1
     
     主频：72M
     单片机型号：STM32F103RCT6
 ******************************************************************************
-*/
+**/
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -161,10 +161,10 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    if(rxcplt_flag == 1){
-          mode = readmode(RxData);
-          rxcplt_flag = 0;
-          ifrxstart = 0;
+    if(rxcplt_flag_Phone == 1){
+          mode = readmode(RxData_Phone);
+          rxcplt_flag_Phone = 0;
+          ifrxstart_Phone = 0;
           
           switch (mode) {
               case mode1:

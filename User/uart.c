@@ -29,7 +29,7 @@ void U1_printf (const uint8_t* pData ) //向串口1发送数据
    {
        len++;
    }
-   HAL_UART_Transmit_IT(&huart1,pData,len);
+   HAL_UART_Transmit(&huart1,pData,len,HAL_MAX_DELAY);
 
 
 }
@@ -45,7 +45,7 @@ void U2_printf (const uint8_t* pData ) //向串口2发送数据
    {
        len++;
    }
-   HAL_UART_Transmit_DMA(&huart2,pData,len);
+   HAL_UART_Transmit(&huart2,pData,len,HAL_MAX_DELAY);
 
 
 }
@@ -62,7 +62,12 @@ void U3_printf (const uint8_t* pData ) //向串口3发送数据
     {
         len++;
     }
+
+    
     HAL_UART_Transmit(&huart3,pData,len,HAL_MAX_DELAY);
+    uint8_t a[] = "STM32:";
+    HAL_UART_Transmit(&huart1,a,6,HAL_MAX_DELAY);
+    HAL_UART_Transmit(&huart1,pData,len,HAL_MAX_DELAY);
 
 
 }
@@ -103,30 +108,39 @@ void U4_printf (const uint8_t* pData ) //向串口4发送数据
 
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-    
-    if(value == '@'){
-    uart_index = 0;
-    ifrxstart = 1;
-    }
-    
-    if(ifrxstart ==1){
-    RxData[uart_index++] = value;
-
-    }
-    
-    if(value == '#'){
+    if(huart == &huart3){
+        if(value_Phone == '@'){
+            uart_index_Phone = 0;
+            ifrxstart_Phone = 1;
+        }
         
-        rxcplt_flag = 1;
-            
+        if(ifrxstart_Phone ==1) RxData_Phone[uart_index_Phone++] = value_Phone;
+
+        if(value_Phone == '#') rxcplt_flag_Phone = 1;
+
+        HAL_UART_Receive_IT(&huart3,&value_Phone,1);
+
+    }else if(huart == &huart2){
+        if(value_Openmv == '@'){
+            uart_index_Openmv = 0;
+            ifrxstart_Openmv = 1;
+        }
+        
+        if(ifrxstart_Openmv ==1) RxData_Openmv[uart_index_Openmv++] = value_Openmv;
+
+        
+        if(value_Openmv == '#') rxcplt_flag_Openmv = 1;
+        
+        HAL_UART_Receive_IT(&huart2,&value_Openmv,1);
     }
     
-    HAL_UART_Receive_IT(&huart3,&value,1);
     
 }
 
 void uart_init(void){
-    sprintf((char*)RxData,"@,+000,+000,+000,045,045,0,0,088,+000,+000,+000,cs,#");
-    HAL_UART_Receive_IT(&huart3,&value,1);
+    
+    HAL_UART_Receive_IT(&huart3,&value_Phone,1);
+    HAL_UART_Receive_IT(&huart2,&value_Openmv,1);
 }
  
 

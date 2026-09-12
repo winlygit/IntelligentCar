@@ -24,12 +24,20 @@
 #define MAX 256        //最大接收量
 #define BlueState HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_8)     //蓝牙状态检测引脚
 
-extern uint8_t RxData[MAX];          //上位机原始数据帧存放处
+extern uint8_t RxData_Phone[MAX];          //上位机原始数据帧存放处
+extern uint8_t RxData_Openmv[MAX];         //openmv原始数据帧存放处
 
-extern uint8_t value;     //上位机发来的字节
-extern uint16_t volatile uart_index;    //读到位
-extern uint8_t volatile ifrxstart;       //是否开始读数据的标志位
-extern uint8_t volatile rxcplt_flag;      //数据读完标志位
+extern uint8_t value_Phone;     //上位机发来的字节
+extern uint8_t value_Openmv;    //openmv发来的字节
+
+extern uint16_t volatile uart_index_Phone;    //读到位
+extern uint16_t volatile uart_index_Openmv;    //读到位
+
+extern uint8_t volatile ifrxstart_Phone;       //是否开始读数据的标志位
+extern uint8_t volatile ifrxstart_Openmv;       //是否开始读数据的标志
+
+extern uint8_t volatile rxcplt_flag_Phone;      //数据读完标志位
+extern uint8_t volatile rxcplt_flag_Openmv;      //数据读完标志位
 
 
 

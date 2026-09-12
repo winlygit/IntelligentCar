@@ -31,11 +31,11 @@ void mode1_handle(void){
     data.servoData_primary.D6 = 0;
 
     while(1){
-        if(rxcplt_flag == 1){
+        if(rxcplt_flag_Phone == 1){
             //读数据
-            readdata1(&data, RxData);
-            rxcplt_flag = 0;
-            ifrxstart = 0;
+            readdata1(&data, RxData_Phone);
+            rxcplt_flag_Phone = 0;
+            ifrxstart_Phone = 0;
         }
         //先判断是否退出
         if(data.IFSTOP == 1) {
@@ -90,11 +90,11 @@ void mode2_handle(void) {
 
 
     while(1){
-        if(rxcplt_flag == 1){
+        if(rxcplt_flag_Phone == 1){
             //读数据
-            readdata2(&data, RxData);
-            rxcplt_flag = 0;
-            ifrxstart = 0;
+            readdata2(&data, RxData_Phone);
+            rxcplt_flag_Phone = 0;
+            ifrxstart_Phone = 0;
         }
 
         //先判断是否退出
@@ -163,12 +163,12 @@ void mode3_handle(void) {
 
     while(1){
         __WFI();
-        if(rxcplt_flag == 1){
+        if(rxcplt_flag_Phone == 1){
             memset(&data, 0, sizeof(data));
             //读数据
-            readdata3(&data, RxData);
-            rxcplt_flag = 0;
-            ifrxstart = 0;
+            readdata3(&data, RxData_Phone);
+            rxcplt_flag_Phone = 0;
+            ifrxstart_Phone = 0;
         }
         //先判断是否退出
         if(data.IFSTOP == 1) {
@@ -266,12 +266,19 @@ void mode4_handle(void)
             }
         }
 
-        //收 OpenMV 帧
-        if(rxcplt_flag == 1)
+        //收 手机 帧
+        if(rxcplt_flag_Phone == 1)
         {
-            readdata4(&data, RxData);
-            rxcplt_flag = 0;
-            ifrxstart = 0;
+            readdata4(&data, RxData_Phone);
+            rxcplt_flag_Phone = 0;
+            ifrxstart_Phone = 0;
+        }
+        //收 openmv 帧
+        if(rxcplt_flag_Openmv == 1)
+        {
+            readdata4(&data, RxData_Openmv);
+            rxcplt_flag_Openmv = 0;
+            ifrxstart_Openmv = 0;
         }
 
         //检查退出
